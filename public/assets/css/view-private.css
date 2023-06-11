@@ -1,0 +1,161 @@
+* {
+    font-family: 'Poppins', sans-serif;
+    scroll-behavior: smooth;
+  
+}
+
+body {
+    background-color: #85B5ED;
+    margin: 0;
+    padding: 0;
+
+    /* overflow-x: hidden; */
+}
+
+.container{
+    padding: 80px 70px;
+}
+
+
+
+.back{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.back button{
+    background-color: transparent;
+    border: none;
+    font-size: 25px;
+    padding: 0;
+    margin-top: 5px;
+    cursor: pointer;
+}
+
+.back p{
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.first-row{
+    display: flex;
+    gap: 40px;
+    justify-content: center;
+    margin-top: 15px;
+}
+
+.upcoming, .history{
+    width: 600px;
+    height: 180px;
+    background-color: #AACFFB;
+    border-radius: 10px;
+}
+
+.header{
+    margin-left: 20px;
+    background-color: #0A2647;
+    width: fit-content;
+    height: 40px;
+    padding: 0px 20px;
+    display: flex;
+    align-items: center;
+    margin-top: -10px;
+    color: white;
+    border-radius: 15px;
+    font-size: 15px;
+    font-weight: 600;
+}
+.content{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 10px 30px;
+    border-bottom: 1px solid black;
+}
+.left-side{
+    line-height: 0px;
+}
+.left-side p:first-child{
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.left-side p:last-child{
+    font-size: 14px;
+    font-weight: 500;
+    opacity: 0.7;
+}
+.right-side{
+    line-height: 5px;
+}
+.right-side p:first-child{
+    font-size: 14px;
+    font-weight: 500;
+    opacity: 0.7;
+}
+
+.right-side p:last-child{
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.content:last-child{
+    border-bottom: none;
+}
+
+.second-row{
+    margin: 0px 20px;
+}
+
+.schedule-header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .schedule .titles p:first-child{
+    font-size: 20px;
+    color: #0A2647;
+    font-weight: 700;
+  }
+
+  .schedule .titles p:last-child{
+    font-size: 14px;
+    color: #0A2647;
+    font-weight: 500;
+    margin-top: -20px;
+  }
+
+  .date-picker input{
+    background-color: #0A2647;
+    color: white;
+    font-weight: 500;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 15px;
+  }
+
+  .date-picker input::-webkit-calendar-picker-indicator {
+    filter: invert(100%);
+
+  }
+  td{
+    width: 150px;
+    height: 60px;
+    text-align: center;
+  }
+  table {
+    border-collapse: collapse;
+  }
+.bbt{
+    border-bottom: 1px solid black;
+}
+td:first-child{
+    opacity: 0.6;
+    font-weight: 600;
+}
+tr:first-child{
+    opacity: 0.6;
+    font-weight: 600;
+}

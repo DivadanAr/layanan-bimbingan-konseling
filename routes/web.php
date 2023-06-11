@@ -42,8 +42,30 @@ Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
     'verified',
+    'role:guru_bk|wali_kelas|siswa'
 ])->group(function () {
     Route::get('/home', function () {
         return view('users.index');
     })->name('home');
+    Route::get('/siswas', function () {
+        return view('users.siswa');
+    });
+    
+    Route::get('/private-view', function () {
+        return view('users.view-private');
+    });
+    Route::get('/study-view', function () {
+        return view('users.view-study');
+    });
+    Route::get('/career-view', function () {
+        return view('users.view-career');
+    });
+    Route::get('/social-view', function () {
+        return view('users.view-social');
+    });
+    
+    Route::get('/signin', function () {
+        return view('signin');
+    });
+    
 });

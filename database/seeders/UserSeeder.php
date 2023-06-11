@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Siswa;
 use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -37,13 +38,22 @@ class UserSeeder extends Seeder
 
         $walas->assignRole('wali_kelas');
 
-        $siswa = User::create([
+        $siswaAcount = User::create([
             'name' => 'Divadan Arya',
             'email' => 'divadan@gmail.com',
             'password' => bcrypt('12345678'),
         ]);
 
-        $siswa->assignRole('siswa');
+        $siswaAcount->assignRole('siswa');
 
+        // $siswa = Siswa::create([
+        //     'user_id' => $siswaAcount->id,
+        //     'nama' => 'Divadan Arya',
+        //     'nisn' => '55612314',
+        //     'tanggal_lahir' => '2005-12-16',
+        //     'kelamin' => 'Laki-laki',
+        //     'telepon' => '081297283285',
+        //     'kelas_id' => 8
+        // ]);
     }
 }

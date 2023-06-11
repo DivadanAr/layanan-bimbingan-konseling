@@ -20,7 +20,8 @@ class PetaKerawananController extends Controller
     {
         $userId = Auth()->id();
         $walasId = Walas::where('user_id', $userId)->first();
-        $data = PetaKerawanan::where('wali_kelas_id', $walasId->id)->get();
+        $kelasId = Kelas::where('wali_kelas_id', $walasId->id)->first();
+        $data = PetaKerawanan::where('kelas_id', $kelasId->id)->get();
 
         $data = $data->groupBy('siswa_id')->map(function ($item) {
             $item[0]->jenis_kerawanan = $item->pluck('jenis_kerawanan.jenis_kerawanan')->implode(', ');

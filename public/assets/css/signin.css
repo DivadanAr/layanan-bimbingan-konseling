@@ -1,0 +1,216 @@
+* {
+    font-family: 'Poppins', sans-serif;
+    scroll-behavior: smooth;
+    box-sizing: border-box;  
+}
+
+body {
+    background-color: #85B5ED;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+}
+
+.container{
+    display: flex;
+}
+
+.left-side{
+    width: 60vw;
+    height: 100vh;
+    background-color: white;
+    border-radius: 0px 70px 70px 0px;
+}
+
+.right-side{
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.signin-box{
+    border-radius: 20px;
+    padding: 20px 50px;
+    width: 400px;
+    height: fit-content;
+    background-color: white;
+}
+
+.signin-header{
+    line-height: 3px;
+    border-bottom: 2px solid rgba(0, 0, 0, 0.225);
+}
+
+.signin-header p:first-child{
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.signin-header p:last-child{
+    font-size: 16px;
+    font-weight: 500;
+    opacity: 0.6;
+}
+
+.signin-content{
+    margin-top: 30px;
+    margin-bottom: 100px;
+}
+
+.id{
+    line-height: 2px;
+    position: relative;
+    width: 300px;
+}
+.id p{
+    font-weight: 500;
+    opacity: 0.5;
+    font-size: 14px;
+}
+
+  .id-input {
+    border-radius: 10px;
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    border: 2px solid rgba(0, 0, 0, 0.339);
+    opacity: 0.5;
+  }
+
+  .id-input input {
+    flex: 1;
+    margin-left: 10px;
+    border: none;
+    outline: none;
+    background-color: transparent;
+    color: #333;
+  }
+
+  .id-input input[type="text"]:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0 30px white inset; /* Atur latar belakang autofill */
+  }
+
+
+  
+.password{
+    margin-top: 30px;
+    line-height: 2px;
+    position: relative;
+    width: 300px;
+}
+.password p{
+    font-weight: 500;
+    opacity: 0.5;
+    font-size: 14px;
+}
+
+  .password-input {
+    border-radius: 10px;
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    border: 2px solid rgba(0, 0, 0, 0.339);
+    opacity: 0.5;
+  }
+
+  .password-input input {
+    flex: 1;
+    margin-left: 10px;
+    border: none;
+    outline: none;
+    background-color: transparent;
+    color: #333;
+  }
+
+  .password-input input[type="password"]:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0 30px white inset; /* Atur latar belakang autofill */
+  }
+
+  .password-input input[type="text"]:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0 30px white inset; /* Atur latar belakang autofill */
+  }
+
+  button {
+    padding: 10px 30px;
+    width: 100%;
+    border: 0;
+    border-radius: 10px;
+    background-color: #85B5ED;
+    color: #ffffff;
+    font-weight: Bold;
+    transition: all 0.5s;
+    -webkit-transition: all 0.5s;
+    margin-bottom: 10px;
+  }
+  
+  button:hover {
+    background-color: #6fc5ff;
+    box-shadow: 0 0 20px #6fc5ff50;
+    transform: scale(1.1);
+  }
+  
+  button:active {
+    background-color: #3d94cf;
+    transition: all 0.25s;
+    -webkit-transition: all 0.25s;
+    box-shadow: none;
+    transform: scale(0.98);
+  }
+
+  .left-side{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+.carousell{
+    margin-top: -40px;
+    margin-left: -100px;
+    width: 36vw;
+    transform: translate(0%, 0%);
+    overflow: hidden;
+    box-sizing: border-box;
+}
+
+  .wrapper{
+    width: 100%;
+    display: flex;
+    animation: slide 15s infinite;
+  }
+
+  @keyframes slide{
+    0%{
+        transform: translateX(0);
+    }
+    25%{
+        transform: translateX(0);
+    }
+    30%{
+        transform: translateX(-100%);
+    }
+    50%{
+        transform: translateX(-100%);
+    }
+    55%{
+        transform: translateX(-200%);
+    }
+    75%{
+        transform: translateX(-200%);
+    }
+    80%{
+        transform: translateX(-300%);
+    }
+    100%{
+        transform: translateX(-300%);
+    }
+  }
+
+  .slide1, .slide2, .slide3{
+    width: 100vw;
+  }
+  img{
+    width: 100%;
+  }
