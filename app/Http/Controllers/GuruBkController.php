@@ -28,7 +28,6 @@ class GuruBkController extends Controller
         })->get();
 
         return view('data-guru-bk', compact('guru'));
-
     }
 
     /**
@@ -46,17 +45,17 @@ class GuruBkController extends Controller
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
-                'nama' => 'required',
-                'nipd' => 'required',
-                'kelamin' => 'required',
-                'kelas' => 'required',
-                'tanggal_lahir' => 'required',
-                'telepon' => 'required',
-                'photo' => 'required',
-                'email' => 'required|email|unique:users',
-                'password' => 'required|min:8',
+            'nama' => 'required',
+            'nipd' => 'required',
+            'kelamin' => 'required',
+            'kelas' => 'required',
+            'tanggal_lahir' => 'required',
+            'telepon' => 'required',
+            'photo' => 'required',
+            'email' => 'required|email|unique:users',
+            'password' => 'required|min:8',
         ]);
-        
+
         $request->validate([
             'nama' => 'required',
             'nipd' => 'required',
@@ -74,7 +73,7 @@ class GuruBkController extends Controller
         }
 
         $extention = $request->file('photo')->extension();
-        $imgname = $request->input('nama').$request->input('nipd').'.'.$extention;
+        $imgname = $request->input('nama') . $request->input('nipd') . '.' . $extention;
 
         $this->validate($request, ['photo' => 'required']);
         $path = Storage::putFileAs('public/profile-photos', $request->file('photo'), $imgname);
@@ -105,7 +104,6 @@ class GuruBkController extends Controller
         $data->save();
 
         return redirect()->route('guru.index')->with('success', 'Guru BK berhasil ditambahkan.');
-
     }
 
     /**
@@ -123,7 +121,7 @@ class GuruBkController extends Controller
     {
         $guru = GuruBk::findOrFail($id);
         $kelas = Kelas::with('wali_kelas')->get();
-        return view('edit-guru', compact('guru', 'kelas'));  
+        return view('edit-guru', compact('guru', 'kelas'));
     }
 
     /**
@@ -131,6 +129,43 @@ class GuruBkController extends Controller
      */
     public function update(Request $request, string $id)
     {
+        // $kelas = Kelas::where('guru_bk_id', $id);
+        // $kelas->guru_bk_id = null;
+        // $kelas->update();
+
+
+        // dd($kelas);
+
+        // $kelas = $guruBk->kelas1;
+        // foreach ($kelas as $kelasItem) {
+        //     $kelasItem->guru_bk_id = $request->input('kelas_id');
+        //     $kelasItem->save();
+        // }
+
+        // $data->guru_bk_id = $request->input('kelasi_id');
+        // $kelasi->save();
+        // $kelasi = GuruBk::findOrFail($id);
+        // $data = $kelasi->kelas;
+
+        // $kelas = Kelas::findOrFail($id);
+        // $data = $guru->kelas->guru_bk_id;
+        // $data = $request->all();
+        // $data->save();
+
+        // $guru1 = GuruBk::findOrFail($id);
+        // $guru1->kelas->guru_bk_id = $request->input('kelas_id');
+        // $data->save();
+        // $guru1->update();
+
+        // GuruBk::where($data, $id)->update([
+        //     'guru_bk_id' => $request->input('kelas_id'),
+        // ]);
+        // dd($kelasi);
+
+        // $kelas = Kelas::findOrFail();
+        // $kelas->guru_bk_id = $request->input('kelas_id');
+        // $kelas->save();
+
         $validator = Validator::make($request->all(), [
             'nama' => 'required',
             'nipd' => 'required',
@@ -138,24 +173,25 @@ class GuruBkController extends Controller
             'tanggal_lahir' => 'required',
             'telepon' => 'required',
             'photo' => 'nullable|mimes:jpeg,jpg,png|max:1024',
-            'email' =>'required',
+            'email' => 'required',
+            'kelas_id' => 'required',
             'password' => 'nullable|min:8',
         ]);
-    
+
         if ($validator->fails()) {
             return redirect()->back()->withErrors($validator)->withInput();
         }
-    
+
         $guru = GuruBk::findOrFail($id);
         $user = $guru->user;
-    
+
         $user->name = $request->input('nama');
         $user->email = $request->input('email');
-    
+
         if ($request->has('password')) {
             $user->password = bcrypt($request->input('password'));
         }
-    
+
         if ($request->hasFile('photo')) {
             $this->validate($request, ['photo' => 'mimes:jpeg,jpg,png|max:1024']);
             $extention = $request->file('photo')->extension();
@@ -164,24 +200,37 @@ class GuruBkController extends Controller
             $user->profile_photo_path = $imgname;
             $guru->foto = $imgname;
         }
-    
+
         $user->save();
-    
+
         $guru->nama = $request->input('nama');
         $guru->nipd = $request->input('nipd');
         $guru->tanggal_lahir = $request->input('tanggal_lahir');
         $guru->kelamin = $request->input('kelamin');
         $guru->telepon = $request->input('telepon');
         $guru->save();
-    
+
+        $guruBk = GuruBk::findOrFail($id);
+        $guruBk->kelas1->guru_bk_id = null;
+        $guruBk->save();
+
+        Kelas::where('guru_bk_id', $id)->update([
+            'guru_bk_id' => null,
+        ]);
+
         if ($request->has('kelas')) {
-            $data = Kelas::findOrFail($request->input('kelas'));
+            $data = Kelas::findOrFail($request->input('kelas_id'));
             $data->guru_bk_id = $guru->id;
             $data->save();
         }
 
-        return redirect()->route('guru.index')->with('success', 'Data Guru berhasil diperbarui.');
+        $data = Kelas::findOrFail($request->input('kelas_id'));
 
+        $data->guru_bk_id = $guru->id;
+
+        $data->save();
+
+        return redirect()->route('guru.index')->with('success', 'Data Guru berhasil diperbarui.');
     }
 
     /**
@@ -191,10 +240,10 @@ class GuruBkController extends Controller
     {
         $guru = GuruBk::findOrFail($id);
         $user = $guru->user; // Mendapatkan akun pengguna guru$guru terkait
-    
+
         $guru->delete();
         $user->delete(); // Menghapus akun pengguna
-    
+
         return redirect()->route('guru.index')->with('success', 'Akun Guru BK berhasil terhapus.');
     }
 }
