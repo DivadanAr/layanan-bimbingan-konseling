@@ -113,12 +113,6 @@
         </a>
       </li>
 
-      <li class="menu-item">
-        <a href="{{route('kerawanan.create')}}" class="menu-link">
-          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20"><g fill="currentColor"><path d="M6.5 6a1.5 1.5 0 1 1-3 0a1.5 1.5 0 0 1 3 0Zm0 4a1.5 1.5 0 1 1-3 0a1.5 1.5 0 0 1 3 0Zm0 4a1.5 1.5 0 1 1-3 0a1.5 1.5 0 0 1 3 0Z"/><path fill-rule="evenodd" d="M7.5 6a1 1 0 0 1 1-1h7a1 1 0 1 1 0 2h-7a1 1 0 0 1-1-1Zm0 4a1 1 0 0 1 1-1h7a1 1 0 1 1 0 2h-7a1 1 0 0 1-1-1Zm0 4a1 1 0 0 1 1-1h7a1 1 0 1 1 0 2h-7a1 1 0 0 1-1-1Z" clip-rule="evenodd"/></g></svg>
-          <div style="margin-left: 10px" data-i18n="Jenis Kerawanan">Jenis Kerawanan</div>
-        </a>
-      </li>
       @endif
 
       @if (Auth::user()->hasRole('wali_kelas')||Auth::user()->hasRole('guru_bk'))
@@ -130,6 +124,14 @@
       </li>          
       @endif
       
+      @if (Auth::user()->hasRole('guru_bk'))
+      <li class="menu-item">
+        <a href="{{route('konseling.index')}}" class="menu-link">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 48 48"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="4"><rect width="40" height="30" x="4" y="10" stroke-linejoin="round" rx="2"/><path d="M14 6v8m11 9H14m20 8H14M34 6v8"/></g></svg>
+          <div style="margin-left: 10px" data-i18n="Layanan BK">Layanan BK</div>
+        </a>
+      </li>
+      @endif
       
     </ul>
   </aside>
