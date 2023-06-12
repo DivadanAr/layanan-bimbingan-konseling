@@ -79,6 +79,12 @@ body {
     color: #0A2647;
 }
 
+td {
+    width: 110px;
+    height: 60px;
+    text-align: center;
+}
+
 .pp {
     width: 150px;
     height: 150px;
@@ -176,62 +182,6 @@ body {
     width: 100%;
 }
 
-.schedule-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-
-.schedule .titles p:first-child {
-    font-size: 25px;
-    color: #0A2647;
-    font-weight: 700;
-}
-
-.schedule .titles p:last-child {
-    font-size: 15px;
-    color: #0A2647;
-    font-weight: 500;
-    margin-top: -30px;
-}
-
-.date-picker input {
-    background-color: #0A2647;
-    color: white;
-    font-weight: 500;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 15px;
-}
-
-.date-picker input::-webkit-calendar-picker-indicator {
-    filter: invert(100%);
-
-}
-
-td {
-    width: 110px;
-    height: 60px;
-    text-align: center;
-}
-
-table {
-    border-collapse: collapse;
-}
-
-.bbt {
-    border-bottom: 1px solid black;
-}
-
-td:first-child {
-    opacity: 0.6;
-    font-weight: 600;
-}
-
-tr:first-child {
-    opacity: 0.6;
-    font-weight: 600;
-}
 
 .private-header p:first-child {
     margin: 0;

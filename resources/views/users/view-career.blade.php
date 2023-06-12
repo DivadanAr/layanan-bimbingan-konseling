@@ -2,6 +2,7 @@
 
 @section('css')
 <link rel="stylesheet" href="assets/css/view-career.css">
+<link rel="stylesheet" href="assets/css/tabel-schedule.css">
 @endsection
 
 @section('content')
@@ -148,9 +149,17 @@
                         <td></td>
                         <td></td>
                         <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
+                        <td colspan="3" style="padding: 0px">
+                            <div class="karir">
+                                <div class="schedule-book">
+                                    <p>Bimbingan Karier</p>
+                                    <p>Mrs. Sheila Riani P S.Pst</p>
+                                </div>
+                            </div>
+                         
+                        </td>
+                        {{-- <td></td>
+                        <td></td> --}}
                         <td></td>
                         <td></td>
                     </tr>

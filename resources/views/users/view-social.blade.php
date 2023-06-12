@@ -2,6 +2,8 @@
 
 @section('css')
 <link rel="stylesheet" href="assets/css/view-social.css">
+<link rel="stylesheet" href="assets/css/tabel-schedule.css">
+
 @endsection
 
 @section('content')
@@ -170,8 +172,16 @@
                         <td></td>
                         <td></td>
                         <td></td>
-                        <td></td>
-                        <td></td>
+                        <td colspan="2" style="padding: 0px">
+                            <div class="sosial">
+                                <div class="schedule-book">
+                                    <p>Social Conseling</p>
+                                    <p>Mrs. Sheila Riani P S.Pst</p>
+                                </div>
+                            </div>
+                         
+                        </td>
+                        {{-- <td></td> --}}
                         <td></td>
                         <td></td>
                         <td></td>

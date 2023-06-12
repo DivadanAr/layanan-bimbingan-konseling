@@ -2,6 +2,7 @@
 
 @section('css')
 <link rel="stylesheet" href="assets/css/siswa.css">
+<link rel="stylesheet" href="assets/css/tabel-schedule.css">
 @endsection
 
 @section('content')
@@ -95,8 +96,15 @@
                     </tr>
                     <tr class="bbt">
                         <td>Mon</td>
-                        <td></td>
-                        <td></td>
+                        <td colspan="2" style="padding: 0px">
+                            <div class="belajar">
+                            <div class="schedule-book">
+                                <p>Study Conseling</p>
+                                <p>Mrs. Sheila Riani P S.Pst</p>
+                                </div>
+                            </div>
+                        </td>
+                        {{-- <td></td> --}}
                         <td></td>
                         <td></td>
                         <td></td>
@@ -109,9 +117,18 @@
                         <td></td>
                         <td></td>
                         <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
+                        <td colspan="3" style="padding: 0px">
+                            <div class="karir">
+                                <div class="schedule-book">
+                                    <p>Career Counseling</p>
+                                    <p>Mrs. Sheila Riani P S.Pst</p>
+                                </div>
+                            </div>
+                         
+                        </td>
+                        {{-- <td></td>
+                        <td></td> --}}
+                    
                         <td></td>
                         <td></td>
                     </tr>
@@ -134,8 +151,17 @@
                         <td></td>
                         <td></td>
                         <td></td>
-                        <td></td>
-                        <td></td>
+
+                        <td colspan="2" style="padding: 0px">
+                            <div class="sosial">
+                                <div class="schedule-book">
+                                    <p>Social Conseling</p>
+                                    <p>Mrs. Sheila Riani P S.Pst</p>
+                                </div>
+                            </div>
+                         
+                        </td>
+                        {{-- <td></td> --}}
                     </tr>
                     <tr class="bbt">
                         <td>Fri</td>
@@ -151,8 +177,17 @@
                     <tr class="bbt">
                         <td>Sat</td>
                         <td></td>
-                        <td></td>
-                        <td></td>
+                        
+                        <td colspan="2" style="padding: 0px">
+                            <div class="pribadi">
+                                <div class="schedule-book">
+                                    <p>Private Conseling</p>
+                                    <p>Mrs. Sheila Riani P S.Pst</p>
+                                </div>
+                            </div>
+                         
+                        </td>
+                        {{-- <td></td> --}}
                         <td></td>
                         <td></td>
                         <td></td>

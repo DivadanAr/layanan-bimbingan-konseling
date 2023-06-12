@@ -12,6 +12,10 @@ body {
     overflow-x: hidden;
 }
 
+a{
+    text-decoration: none;
+}
+
 nav{
     padding: 0px;
     position: fixed;
@@ -38,129 +42,6 @@ body::-webkit-scrollbar-thumb
 	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
 	background-color: #779fe4;
 }
-
-
-.navbar {
-    display: flex;
-    margin: 0;
-    justify-content: space-between;
-    padding: 10px 20px;
-    background-color: #85B5ED;
-   
-}
-
-.logo {
-    justify-content: center;
-    align-items: center;
-    display: flex;
-    width: 18vw;
-    height: 7vh;
-    background-color: white;
-    gap: 10px;
-    border-radius: 30px;
-    box-shadow: -5px -35px 80px 30px rgba(255, 255, 255, 0.336);
-}
-
-.logo img {
-    width: 50px;
-    height: 40px;
-}
-
-.logo p {
-    font-size: 15px;
-    font-weight: 700;
-    opacity: 0.75;
-}
-
-.menu {
-    margin-right: 100px;
-}
-
-.menu ul {
-    list-style: none;
-    display: flex;
-    gap: 30px;
-}
-
-.menu li a {
-    text-decoration: none;
-    color: #0A2647;
-    opacity: 0.75;
-    font-weight: 500;
-}
-
-.cta {
-    position: relative;
-    margin: auto;
-    padding: 12px 18px;
-    transition: all 0.2s ease;
-    border: none;
-    background: none;
-   }
-   
-   .cta:before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    display: block;
-    border-radius: 50px;
-    background: #AACFFB;
-    width: 45px;
-    height: 45px;
-    transition: all 0.3s ease;
-        box-shadow: -5px -35px 80px 90px #aacefb87;
-
-   }
-   
-   .cta span {
-    position: relative;
-    font-size: 16px;
-    font-weight: 700;
-    letter-spacing: 0.05em;
-    color: #234567;
-   }
-   
-   .cta svg {
-    position: relative;
-    top: 0;
-    margin-left: 10px;
-    fill: none;
-    stroke-linecap: round;
-    stroke-linejoin: round;
-    stroke: #234567;
-    stroke-width: 2;
-    transform: translateX(-5px);
-    transition: all 0.3s ease;
-   }
-   
-   .cta:hover:before {
-    width: 100%;
-    background: #AACFFB;
-   }
-   
-   .cta:hover svg {
-    transform: translateX(0);
-   }
-   
-   .cta:active {
-    transform: scale(0.95);
-   }
-
-/* .login button {
-    width: 10vw;
-    height: 5vh;
-    border-radius: 15px;
-    border: none;
-    font-size: 16px;
-    background-color: white;
-    cursor: pointer;
-    font-weight: 600;
-    opacity: 0.80;
-    box-shadow: -5px -35px 80px 90px rgba(255, 255, 255, 0.336);
-
-} */
-
 
 
 /* Hero */
@@ -369,7 +250,7 @@ body::-webkit-scrollbar-thumb
 .first-row img{
     width: 520px;
     height: 280px;
-    background-color: #0A2647;
+    /* background-color: #0A2647; */
     border-radius: 15px;
     box-shadow: 5px 0px 60px 30px rgba(255, 255, 255, 0.336);
 
@@ -399,26 +280,48 @@ body::-webkit-scrollbar-thumb
     display: flex;
     gap: 60px;
 }
-.others .top img{
+
+
+.top-img{
     width: 100px;
     height: 100px;
+    background-color: #AACFFB;
     border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.top-img img{
+    width: 80px;
+height: fit-content;
+background-color: none;
+background-color: transparent;
+box-shadow: none;
 }
 .top{
+    flex-direction: column;
     display: flex;
-    gap: 10px;
-    align-items: end;
+    gap: 0px;
+    align-items: center;
 }
 .top p{
+    text-align: center;
     color: white;
     font-weight: 600;
-    line-height: 18px;
+    line-height: 16px;
+    font-size: 14px;
 }
+.top p span{
+    font-weight: 400;
+}
+
 .others{
     margin-top: 30px;
     display: flex;
     flex-direction: column;
     gap: 20px;
+    align-items: center;
+    justify-content: center;
 }
 
 /* .others button{
@@ -432,68 +335,20 @@ body::-webkit-scrollbar-thumb
     box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
 } */
 
-.others-btn {
-    position: relative;
-    font-size: 14px;
-    font-weight: 500;
-    letter-spacing: 0px;
-    height: 3em;
-    padding: 0 3em;
-    border: none;
-    background-color: #0A2647;
-    color: #fff;
-   
-    overflow: hidden;
-    border-radius: 5px
-   }
-   
-   .others-btn::before {
-    content: '';
-    display: block;
-    position: absolute;
-    z-index: 0;
-    bottom: 0;
-    left: 0;
-    height: 0px;
-    width: 100%;
-    background: #85B5ED;
-    background: linear-gradient(90deg, #85B5ED30, #85B5ED);
-    transition: 0.2s;
-   }
-   
-   .others-btn .label {
-    position: relative;
-   }
-   
-   .others-btn .icon {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 3em;
-    width: 3em;
-    position: absolute;
-    top: 3em;
-    right: 0;
-    opacity: 0;
-    transition: 0.4s;
-   }
-   
-   .others-btn:hover::before {
-    height: 100%;
-   }
-   
-   .others-btn:hover .icon {
-    top: 0;
-    opacity: 1;
-   }
 .visi{
     width: 400px;
     height: 200px;
     border-radius: 15px;
     background-color: #AACFFB;
     padding: 20px;
+    transition: all 0.5s;
     box-shadow: 5px 0px 60px 30px rgba(255, 255, 255, 0.336);
 }
+.visi:hover {
+    /* border: 1px solid black; */
+    transform: scale(1.05);
+  }
+  
 .visi-head{
     display: flex;
     gap: 15px;
@@ -535,12 +390,18 @@ body::-webkit-scrollbar-thumb
 .misi{
     margin-top: -80px;
     width: 400px;
-    height: 200px;
+    height: 220px;
     border-radius: 15px;
     background-color: #AACFFB;
+    transition: all 0.5s;
     box-shadow: 5px 0px 60px 10px rgba(255, 255, 255, 0.336);
     padding: 20px;
 }
+.misi:hover {
+    /* border: 1px solid black; */
+    transform: scale(1.05);
+  }
+
 .misi-head{
     display: flex;
     gap: 15px;
@@ -567,9 +428,14 @@ body::-webkit-scrollbar-thumb
 }
 
 .lasts-icon{
-    width: 100px;
-    height: 100px;
+    width: 80px;
+    height: 80px;
     border-radius: 50%;
+    font-size: 50px;
+    display: flex;
+color: white;
+    justify-content: center;
+    align-items: center;
     background-color: #0A2647;
 }
 
@@ -888,7 +754,23 @@ body::-webkit-scrollbar-thumb
     padding: 10px 40px;
     border-radius: 15px;
     background-color: #0A2647;
+    transition: all 0.5s;
     color: white;   
+    font-weight: 600;
+}
+
+
+.schedule button:hover {
+    /* border: 1px solid black; */
+    transform: scale(1.05);
+  }
+  
+  .schedule button:active {
+    transform: scale(0.95) rotateZ(1.7deg);
+  }
+
+.schedule a{
+    color: white;
 }
 
 footer{
