@@ -6,6 +6,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\KerawananController;
 use App\Http\Controllers\KonselingBKController;
 use App\Http\Controllers\PetaKerawananController;
+use App\Http\Controllers\QuotesController;
 use App\Http\Controllers\SiswaController;
 use App\Http\Controllers\WalasController;
 use Illuminate\Support\Facades\Route;
@@ -38,6 +39,7 @@ Route::middleware([
     Route::resource('kerawanan', KerawananController::class);
     Route::resource('konseling', KonselingBKController::class);
     Route::resource('peta-kerawanan', PetaKerawananController::class);
+    Route::resource('quotes', QuotesController::class);
 });
 
 Route::middleware([
