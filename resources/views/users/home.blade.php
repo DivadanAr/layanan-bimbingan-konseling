@@ -54,16 +54,22 @@
             <div class="first-row-right">
                 <div class="first-row-right-top">
                     <p>About Us</p>
-                    <p>Lorem ipsum dolor sit amet consectetur. Ornare felis viverra orci nisi. Neque condimentum eu
-                        dolor turpis. Tristique donec Lorem ipsum dolor sit amet consectetur. </p>
+                    <p>We are a counseling service that provides people with the direction and assistance they need to succeed. Maximize your potential and our dedicated team's support to get through challenges in school.</p>
                 </div>
                 <div class="first-row-right-bottom">
                     <div class="others">
                         <div class="top">
-                            <img src="" alt="">
-                            <p>20+ More <br> Pics</p>
+                            <div class="top-img">
+
+                                <img src="assets/img/logoTb.png" alt="">
+                            </div>
+                            <p>Taruna Bhakti <br>
+                                <span>
+                                    Conseling Program
+                                </span>
+                             </p>
                         </div>
-                        <button class="others-btn">
+                        {{-- <button class="others-btn">
                             <span class="label">See Other Pics</span>
                             <span class="icon">
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
@@ -73,7 +79,7 @@
                                     </path>
                                 </svg>
                             </span>
-                        </button>
+                        </button> --}}
                     </div>
                     <div class="visi">
                         <div class="visi-head">
@@ -83,9 +89,8 @@
                             <p>Our Vision</p>
                         </div>
                         <p class="visi-desk">
-                            The vision of our counseling services is the realization of a happy human life through the
-                            availability of assistance services in providing developmental support and problem solving
-                            so that students develop optimally, independently and happily.
+                            Assisting students to reach their full potential and flourish academically by providing all-encompassing counseling and guidance services.
+provide students with the professional advice and support that is required to make educated decisions concerning their academic and career prospects.
                         </p>
                     </div>
                 </div>
@@ -100,24 +105,22 @@
                     <p>Our Mision</p>
                 </div>
                 <p class="misi-desk">
-                    The primary mission of counseling guidance is to provide assistance and understanding to individuals
-                    or groups in overcoming the problems they face. This involves listening with empathy, understanding
-                    their situation, and providing relevant and useful advice.
+                    To offer inclusive guidance and counseling facilities that respond to each student's specific needs in order to support their achievement and general well-being.
+to work together with parents, teachers, and the rest of the educational environment to build a strong system of support that supports children' academic, social, and emotional development.
                 </p>
             </div>
             <div class="ones">
-                <p>Kegiatan Sosial</p>
-                <p>Lorem ipsum dolor sit amet consectetur. Ornare felis viverra orci nisi. Neque condimentum eu dolor
-                    turpis.</p>
+                <p>With 4 Kind Of Conseling</p>
+                <p>We provide 4 kind of conseling, which are Private conseling, Study Conseling, Social Conseling and Career Conseling</p>
             </div>
 
             <div class="lasts">
                 <div class="lasts-icon">
-
+                    <iconify-icon icon="mingcute:safety-certificate-fill"></iconify-icon>
                 </div>
                 <div class="lasts-text">
-                    <p>Trusted Dah</p>
-                    <p>Lorem ipsum dolor sit amet consectetur. Ornare felis viverra orci nisi.</p>
+                    <p>Safety Guaranteed</p>
+                    <p>We guarantee your secret will be safe with us</p>
                 </div>
             </div>
         </div>
@@ -126,15 +129,34 @@
     
     <div class="schedule" id="schedule">
         <p>You Can Scedhule An Appointment From Now On</p>
+
+        
+        @if (Auth::check())
+        @if (Auth::user()->hasRole('admin')||Auth::user()->hasRole('guru_bk')||Auth::user()->hasRole('wali_kelas'))
+        <a href="/">
+        <button disabled>
+                Scedhule For An Appointment
+            </button>
+        </a>
+        @elseif (Auth::user()->hasRole('siswa'))
+        <a href="/siswas">
         <button>
-            Scedhule For An Appointment
-        </button>
+                Scedhule For An Appointment
+            </button>
+        </a>
+        @endif
+        @else 
+        <a href="/home">
+        <button>
+                Scedhule For An Appointment
+            </button>
+        </a>
+        @endif
+       
     </div>
     <footer>
         <p class="footer-title">Starbhak Konseling</p>
-        <p class="footer-desk">Lorem ipsum dolor sit amet consectetur. Ornare felis viverra orci nisi. Lorem ipsum dolor
-            sit amet consectetur. Ornare felis viverra orci nisi. Lorem ipsum dolor sit amet consectetur. Ornare felis
-            viverra orci nisi. </p>
+        <p class="footer-desk">Empowering students with expert guidance and counsel for improvements in the future. We promote their improvement, wellbeing, and success together. </p>
         <ul>
             <li><a href="">Home</a></li>
             <li><a href="">About</a></li>
@@ -182,7 +204,7 @@
         </ul>
         <div class="lines"></div>
         <div class="copyright">
-            <p>© Copyright 2023. All Right Reserved | Sheyla Aulya</p>
+            <p>© Copyright 2023. All Right Reserved </p>
         </div>
     </footer>
 
