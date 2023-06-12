@@ -1,137 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Starbhak Konseling</title>
+@extends('users.layout.app')
+@section('css')
     <link rel="stylesheet" href="assets/css/home.css">
-
-    {{-- Fonts - Poppins --}}
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
-        rel="stylesheet">
-
-    {{-- iconify --}}
-    <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
-
-    {{-- AOS --}}
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-</head>
-<style>
-    .dropdown {
-        position: relative;
-        display: inline-block;
-    }
-
-    .dropdown-toggle {
-        background: none;
-        border: none;
-        padding: 0;
-        cursor: pointer;
-    }
-
-    .dropdown-content {
-        padding: 0px;
-        right: 10%;
-        top: -1%
-        display: none;
-        position: absolute;
-        background-color: #f9f9f9;
-        min-width: 160px;
-        box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-        z-index: 1;
-    }
-
-    .dropdown.open .dropdown-content {
-        display: block;
-    }
-
-    .desc {
-        padding: 15px;
-        text-align: center;
-    }
-
-    ul {
-        list-style-type: none;
-    }
-</style>
+@endsection
+@section('content')
 
 <body>
-    <nav>
-        <div class="navbar">
-
-            <div class="logo">
-                <img src="assets/img/logoTb.png" alt="">
-                <p>Starbhak Konseling</p>
-            </div>
-            <div class="menu">
-                <ul>
-                    <li><a href="#hero">Home</a></li>
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#teachers">Teachers</a></li>
-                    <li><a href="#schedule">Schedule</a></li>
-                </ul>
-            </div>
-            @if (Auth::check())
-            <div class="dropdown">
-                @if (Auth::user()->hasRole('admin')||Auth::user()->hasRole('siswa'))
-                <button class="dropdown-toggle" id="dropdownButton">
-                    <div class="avatar" style="border-radius: 100%">
-                        <img src="{{ Auth::user()->profile_photo_url }}" alt class="w-px-40 h-auto rounded-circle"
-                            style="border-radius: 100%; width: 42px; border: 5px solid #72a9e9" />
-                    </div>
-                </button>
-                @else
-                <button class="dropdown-toggle" id="dropdownButton">
-                    <div class="avatar" style="border-radius: 100%">
-                        <img src="{{ asset('storage/profile-photos') }}/{{ Auth::user()->profile_photo_path }}" alt class="w-px-40 h-auto rounded-circle"
-                            style="border-radius: 100%; width: 42px; border: 5px solid #72a9e9" />
-                    </div>
-                </button>
-                @endif
-                <div class="dropdown-content" style="border-radius: 7px;">
-                        <div style="margin: 10px 15px"><a style="text-decoration: none; color: black; display: flex; align-items: center; gap: 10px" class="dropdown-item setting" href="{{ url('setting') }}">Profile <iconify-icon icon="solar:user-bold" style="font-size: 20px; color: grey;"></iconify-icon>
-                        </a></div>
-                        @if (Auth::user()->hasRole('admin')||Auth::user()->hasRole('guru_bk')||Auth::user()->hasRole('wali_kelas'))
-                        <div style="margin: 10px 15px"><a style="text-decoration: none; color: black; display: flex; align-items: center; gap: 10px" class="dropdown-item setting" href="{{ url('dashboard') }}">Dashboard 
-                            {{-- <iconify-icon icon="solar:user-bold" style="font-size: 20px; color: grey;"></iconify-icon> --}}
-                        </a></div>
-                        @endif
-                        <div>
-                            <hr class="dropdown-divider">
-                        </div>
-                        <div style="margin: 10px 15px">
-                            <form method="POST" action="{{ route('logout') }}">
-                                @csrf
-                            
-                                <button type="submit" class="dropdown-item" style="background-color: transparent; border:none; padding: 0px; color: red; display: flex; align-items: center; gap: 10px" onclick="event.preventDefault(); this.closest('form').submit();">
-                                    <span class="align-middle" style="font-size: 16px">Log Out</span>
-                                    <iconify-icon icon="ic:round-logout" style="font-size: 20px; color: red;"></iconify-icon>
-                                </button>
-                            </form>
-                        </div>
-                </div>
-            </div>
-
-            @else
-            <div class="login">
-                <a href="/login">
-                    <button class="cta">
-                        <span>Login Now</span>
-                        <svg viewBox="0 0 13 10" height="10px" width="15px">
-                            <path d="M1,5 L11,5"></path>
-                            <polyline points="8 1 12 5 8 9"></polyline>
-                        </svg>
-                    </button>
-                </a>
-            </div>
-            @endif
-        </div>
-    </nav>
     <div class="hero" id="hero">
         <div class="left-side">
             <div class="left-hero-text">
@@ -249,33 +122,8 @@
             </div>
         </div>
     </div>
-    <div class="teachers" id="teachers">
-        <div class="teacher-left">
-            <div class="pict">
-                <img src="" alt="">
-            </div>
-        </div>
-        <div class="teacher-right">
-            <p class="teacherttl">
-                Meet Our Qualified Teacher
-            </p>
-
-            <p class="teachername">
-                Mrs. Sheila Riani P S.Pst
-            </p>
-            <p class="teacherdesc">
-                Lorem ipsum dolor sit amet consectetur. Ornare felis viverra orci nisi. Neque condimentum eu dolor
-                turpis. Tristique donec Lorem ipsum dolor sit amet consectetur. Ornare felis viverra orci nisi. Neque
-                condimentum eu dolor turpis. Tristique donec
-                Lorem ipsum dolor sit amet consectetur
-            </p>
-        </div>
-        <div class="next">
-            <button>
-                <iconify-icon icon="ic:round-navigate-next"></iconify-icon>
-            </button>
-        </div>
-    </div>
+    @include('users.layout.slider')
+    
     <div class="schedule" id="schedule">
         <p>You Can Scedhule An Appointment From Now On</p>
         <button>
@@ -343,24 +191,6 @@
         AOS.init();
     </script>
 
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            var dropdown = document.querySelector(".dropdown");
-            var dropdownContent = dropdown.querySelector(".dropdown-content");
-            var dropdownToggle = dropdown.querySelector(".dropdown-toggle");
+    
 
-            dropdownToggle.addEventListener("click", function () {
-                dropdown.classList.toggle("open");
-            });
-
-            document.addEventListener("click", function (event) {
-                if (!dropdown.contains(event.target)) {
-                    dropdown.classList.remove("open");
-                }
-            });
-        });
-    </script>
-
-</body>
-
-</html>
+@endsection

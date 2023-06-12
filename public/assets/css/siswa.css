@@ -167,6 +167,10 @@ body {
 
 }
 
+.edit-profile a{
+    color: black;
+}
+
 .right-side {
     margin-left: 350px;
     width: 100%;
@@ -876,3 +880,47 @@ tr:first-child {
   border: 1px solid rgba(0, 0, 0, 0.418);
 }
 
+
+.drag-area{
+    max-width: 600px;
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 3px dashed rgba(128, 128, 128, 0.356);
+    justify-content: center;
+    border-radius: 5px;
+}
+
+.drag-area .icon{
+    font-size: 50px;
+    margin-bottom: 25px;
+    color: #1683ff;
+}
+
+.drag-area .header{
+    font-size: 18px;
+    font-weight: 500;
+    opacity: 0.8;
+}
+
+.drag-area .button{
+    color: #1683ff;
+    opacity: 1;
+    cursor: pointer;
+}
+
+.drag-area.active{
+    border: #1683ff 2px solid;
+}
+
+.fileinfo p{
+    font-size: 12px;
+}
+
+.image-preview img{
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 50%;
+}
