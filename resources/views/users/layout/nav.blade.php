@@ -16,21 +16,22 @@
         </div>
         @if (Auth::check())
         <div class="dropdown">
-            <li class="nav__listitem">  @if (Auth::user()->hasRole('admin')||Auth::user()->hasRole('siswa'))
+            <li class="nav__listitem">  
+                {{-- @if (Auth::user()->hasRole('admin')||Auth::user()->hasRole('siswa')) --}}
                 <button class="dropdown-toggle" id="dropdownButton">
                     <div class="avatar" style="border-radius: 100%">
                         <img src="{{ Auth::user()->profile_photo_url }}" alt class="w-px-40 h-auto rounded-circle"
                             style="border-radius: 100%; width: 42px; border: 5px solid #72a9e9" />
                     </div>
                 </button>
-                @else
+                {{-- @else
                 <button class="dropdown-toggle" id="dropdownButton">
                     <div class="avatar" style="border-radius: 100%">
                         <img src="{{ asset('storage/profile-photos') }}/{{ Auth::user()->profile_photo_path }}" alt class="w-px-40 h-auto rounded-circle"
                             style="border-radius: 100%; width: 42px; border: 5px solid #72a9e9" />
                     </div>
                 </button>
-                @endif
+                @endif --}}
                 <ul class="nav__listitemdrop">
                   <li>
                     @if (Auth::user()->hasRole('admin')||Auth::user()->hasRole('guru_bk')||Auth::user()->hasRole('wali_kelas'))
