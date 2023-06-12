@@ -2,6 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\GuruBk;
+use App\Models\Kelas;
+use App\Models\LayananBk;
+use App\Models\Siswa;
+use App\Models\Walas;
 use Illuminate\Http\Request;
 
 class KonselingBKController extends Controller
@@ -11,7 +16,7 @@ class KonselingBKController extends Controller
      */
     public function index()
     {
-        //
+        return view('layanan-bk');
     }
 
     /**
@@ -19,7 +24,13 @@ class KonselingBKController extends Controller
      */
     public function create()
     {
-        //
+        
+        $userId = Auth()->id();
+        $guru = GuruBk::where('user_id', $userId)->first();
+        $kelas = Kelas::where('guru_bk_id', $guru->id)->first();
+        $siswa = Siswa::where('kelas_id', $kelas->id)->get();
+        $jenis_layanan = LayananBk::all();
+        return view('create-konseling', compact('jenis_layanan', 'siswa'));
     }
 
     /**
@@ -27,7 +38,7 @@ class KonselingBKController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
     }
 
     /**

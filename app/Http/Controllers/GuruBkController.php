@@ -73,7 +73,7 @@ class GuruBkController extends Controller
         }
 
         $extention = $request->file('photo')->extension();
-        $imgname = $request->input('nama') . $request->input('nipd') . '.' . $extention;
+        $imgname = $request->input('nipd') . '.' . $extention;
 
         $this->validate($request, ['photo' => 'required']);
         $path = Storage::putFileAs('public/profile-photos', $request->file('photo'), $imgname);

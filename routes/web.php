@@ -4,6 +4,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\GuruBkController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\KerawananController;
+use App\Http\Controllers\KonselingBKController;
 use App\Http\Controllers\PetaKerawananController;
 use App\Http\Controllers\SiswaController;
 use App\Http\Controllers\WalasController;
@@ -35,6 +36,7 @@ Route::middleware([
     Route::resource('walas', WalasController::class);
     Route::resource('dashboard', DashboardController::class);
     Route::resource('kerawanan', KerawananController::class);
+    Route::resource('konseling', KonselingBKController::class);
     Route::resource('peta-kerawanan', PetaKerawananController::class);
 });
 
