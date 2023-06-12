@@ -122,33 +122,8 @@
             </div>
         </div>
     </div>
-    <div class="teachers" id="teachers">
-        <div class="teacher-left">
-            <div class="pict">
-                <img src="" alt="">
-            </div>
-        </div>
-        <div class="teacher-right">
-            <p class="teacherttl">
-                Meet Our Qualified Teacher
-            </p>
-
-            <p class="teachername">
-                Mrs. Sheila Riani P S.Pst
-            </p>
-            <p class="teacherdesc">
-                Lorem ipsum dolor sit amet consectetur. Ornare felis viverra orci nisi. Neque condimentum eu dolor
-                turpis. Tristique donec Lorem ipsum dolor sit amet consectetur. Ornare felis viverra orci nisi. Neque
-                condimentum eu dolor turpis. Tristique donec
-                Lorem ipsum dolor sit amet consectetur
-            </p>
-        </div>
-        <div class="next">
-            <button>
-                <iconify-icon icon="ic:round-navigate-next"></iconify-icon>
-            </button>
-        </div>
-    </div>
+    @include('users.layout.slider')
+    
     <div class="schedule" id="schedule">
         <p>You Can Scedhule An Appointment From Now On</p>
         <button>
