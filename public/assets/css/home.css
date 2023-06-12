@@ -182,7 +182,7 @@ body::-webkit-scrollbar-thumb
 
 .pics .two img {
     width: 200px;
-    height: 160px;
+    height: 115px;
     background-color: #0A2647;
     object-fit: cover;
     border-radius: 10px;
@@ -212,7 +212,7 @@ body::-webkit-scrollbar-thumb
 
 .pics .three img {
     width: 280px;
-    height: 170px;
+    height: 120px;
     background-color: #0A2647;
     object-fit: cover;
     border-radius: 10px;
@@ -222,8 +222,8 @@ body::-webkit-scrollbar-thumb
     padding: 15px 10px 0px;
     margin-top: -200px;
     margin-left: 440px;
-    width: 150px;
-    height: 150px;
+    width: 200px;
+    height: 130px;
     background-color: #AACFFB;
     display: flex;
     flex-direction: column;
@@ -236,11 +236,15 @@ body::-webkit-scrollbar-thumb
 }
 
 .pics .four img {
-    width: 140px;
-    height: 140px;
+    width: 160px;
+    height: 90px;
     background-color: #0A2647;
     object-fit: cover;
     border-radius: 10px;
+}
+
+.four p{
+    margin-top: -2px;
 }
 
 .about{
@@ -248,10 +252,12 @@ body::-webkit-scrollbar-thumb
     margin-top: 150px;
 }
 .first-row img{
+    border-radius: 30px;
+    background-color: #AACFFB;
+    padding: 20px;
     width: 520px;
     height: 280px;
-    /* background-color: #0A2647; */
-    border-radius: 15px;
+    object-fit: cover;
     box-shadow: 5px 0px 60px 30px rgba(255, 255, 255, 0.336);
 
 }
@@ -259,6 +265,7 @@ body::-webkit-scrollbar-thumb
 .first-row{
     display: flex;
     gap: 60px;
+
 }
 .first-row-right-top{
     color: white;
@@ -292,7 +299,7 @@ body::-webkit-scrollbar-thumb
     align-items: center;
 }
 .top-img img{
-    width: 80px;
+    width: 70px;
 height: fit-content;
 background-color: none;
 background-color: transparent;
@@ -458,7 +465,7 @@ color: white;
     display: flex;
     align-items: start;
     padding: 40px;
-    gap: 20px;
+    gap: 0px;
     box-shadow: 5px 0px 60px 10px rgba(255, 255, 255, 0.336);
 
 }
@@ -480,6 +487,7 @@ color: white;
     object-fit: cover;
 }
 .teacher-right{
+    margin-left: -100px;
     padding-top: 120px;
     height: 100%;
     width: 650px;
@@ -500,7 +508,7 @@ color: white;
 }
 .teachername{
     margin-top: 0px;
-    font-size: 50px;
+    font-size: 40px;
     font-weight: 700;
 }
 .teacherdesc{
@@ -687,12 +695,18 @@ color: white;
     top: 50%;
     color: #ffffff;
     transform: translateY(-50%);
-    padding: 20px 15px;
+    border-radius:  50%;
+    padding: 15px 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 15px;
+    height: 15px;
     border-top: 2px solid #30A2FF;
     border-right: 2px solid #30A2FF;
     border-bottom: 2px solid #30A2FF;
     border-left: 2px solid #30A2FF;
-    margin-right: -2px;
+    margin-right: -20px;
   }
   .slider-container .slider-right {
     position: absolute;
@@ -702,7 +716,13 @@ color: white;
     top: 50%;
     color: #ffffff;
     transform: translateY(-50%);
-    padding: 20px 15px;
+    border-radius:  50%;
+    padding: 15px 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 15px;
+    height: 15px;
     border-top: 2px solid #30A2FF;
     border-right: 2px solid #30A2FF;
     border-bottom: 2px solid #30A2FF;

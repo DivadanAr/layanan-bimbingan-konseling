@@ -1,6 +1,6 @@
 @extends('users.layout.app')
 @section('css')
-    <link rel="stylesheet" href="assets/css/home.css">
+<link rel="stylesheet" href="assets/css/home.css">
 @endsection
 @section('content')
 
@@ -13,7 +13,7 @@
             </div>
             <div class="tips">
                 <div class="tips-box">
-                    <p>Mental Health Tips For You</p>
+                    <p>Motivation Quotes For You</p>
                     <p>Seek social support: Connect with friends, family, or support groups. Share your feelings and
                         concerns with trusted individuals who can provide a listening ear and offer support. </p>
                 </div>
@@ -29,32 +29,32 @@
         </div>
         <div class="pics">
             <div class="one">
-                <img src="" alt="">
-                <p>Title</p>
+                <img src="assets/img/ldks.JPG" alt="">
+                <p>LDKS 2023</p>
             </div>
             <div class="two">
-                <img src="" alt="">
-                <p>Title</p>
+                <img src="assets/img/kegiatansosial.jpg" alt="">
+                <p>Socialization</p>
             </div>
             <div class="three">
-                <img src="" alt="">
-                <p>Title</p>
+                <img src="assets/img/bimbingankelas.jpg" alt="">
+                <p>Weekly Conseling</p>
             </div>
             <div class="four">
-                <img src="" alt="">
-                <p>Title</p>
+                <img src="assets/img/sharingmateri.jpg" alt="">
+                <p>Sharing Experience</p>
             </div>
         </div>
     </div>
-    <div class="about" id="about">
-
-
+    <div class="about" id="about"  data-aos="fade-up">
         <div class="first-row">
-            <img src="" alt="">
+            <img src="assets/img/kegiatanorganisasi.jpg" alt="">
             <div class="first-row-right">
                 <div class="first-row-right-top">
                     <p>About Us</p>
-                    <p>We are a counseling service that provides people with the direction and assistance they need to succeed. Maximize your potential and our dedicated team's support to get through challenges in school.</p>
+                    <p>We are a counseling service that provides people with the direction and assistance they need to
+                        succeed. Maximize your potential and our dedicated team's support to get through challenges in
+                        school.</p>
                 </div>
                 <div class="first-row-right-bottom">
                     <div class="others">
@@ -67,7 +67,7 @@
                                 <span>
                                     Conseling Program
                                 </span>
-                             </p>
+                            </p>
                         </div>
                         {{-- <button class="others-btn">
                             <span class="label">See Other Pics</span>
@@ -89,8 +89,10 @@
                             <p>Our Vision</p>
                         </div>
                         <p class="visi-desk">
-                            Assisting students to reach their full potential and flourish academically by providing all-encompassing counseling and guidance services.
-provide students with the professional advice and support that is required to make educated decisions concerning their academic and career prospects.
+                            Assisting students to reach their full potential and flourish academically by providing
+                            all-encompassing counseling and guidance services.
+                            provide students with the professional advice and support that is required to make educated
+                            decisions concerning their academic and career prospects.
                         </p>
                     </div>
                 </div>
@@ -105,13 +107,16 @@ provide students with the professional advice and support that is required to ma
                     <p>Our Mision</p>
                 </div>
                 <p class="misi-desk">
-                    To offer inclusive guidance and counseling facilities that respond to each student's specific needs in order to support their achievement and general well-being.
-to work together with parents, teachers, and the rest of the educational environment to build a strong system of support that supports children' academic, social, and emotional development.
+                    To offer inclusive guidance and counseling facilities that respond to each student's specific needs
+                    in order to support their achievement and general well-being.
+                    to work together with parents, teachers, and the rest of the educational environment to build a
+                    strong system of support that supports children' academic, social, and emotional development.
                 </p>
             </div>
             <div class="ones">
                 <p>With 4 Kind Of Conseling</p>
-                <p>We provide 4 kind of conseling, which are Private conseling, Study Conseling, Social Conseling and Career Conseling</p>
+                <p>We provide 4 kind of conseling, which are Private conseling, Study Conseling, Social Conseling and
+                    Career Conseling</p>
             </div>
 
             <div class="lasts">
@@ -125,38 +130,42 @@ to work together with parents, teachers, and the rest of the educational environ
             </div>
         </div>
     </div>
-    @include('users.layout.slider')
+    <div class="" data-aos="fade-up">
+        @include('users.layout.slider')
+    </div>
     
-    <div class="schedule" id="schedule">
+
+    <div class="schedule" id="schedule" >
         <p>You Can Scedhule An Appointment From Now On</p>
 
-        
+
         @if (Auth::check())
         @if (Auth::user()->hasRole('admin')||Auth::user()->hasRole('guru_bk')||Auth::user()->hasRole('wali_kelas'))
         <a href="/">
-        <button disabled>
+            <button disabled>
                 Scedhule For An Appointment
             </button>
         </a>
         @elseif (Auth::user()->hasRole('siswa'))
         <a href="/siswas">
-        <button>
+            <button>
                 Scedhule For An Appointment
             </button>
         </a>
         @endif
-        @else 
+        @else
         <a href="/home">
-        <button>
+            <button>
                 Scedhule For An Appointment
             </button>
         </a>
         @endif
-       
+
     </div>
     <footer>
         <p class="footer-title">Starbhak Konseling</p>
-        <p class="footer-desk">Empowering students with expert guidance and counsel for improvements in the future. We promote their improvement, wellbeing, and success together. </p>
+        <p class="footer-desk">Empowering students with expert guidance and counsel for improvements in the future. We
+            promote their improvement, wellbeing, and success together. </p>
         <ul>
             <li><a href="">Home</a></li>
             <li><a href="">About</a></li>
@@ -211,8 +220,9 @@ to work together with parents, teachers, and the rest of the educational environ
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
         AOS.init();
+
     </script>
 
-    
 
-@endsection
+
+    @endsection

@@ -156,7 +156,7 @@ nav{
   }
   .nav__listitemdrop {
     position: absolute;
-    top: 3rem;
+    top: 0rem;
     left: -7rem;
     box-shadow: 0 0 10px #e1e5ee;
     background-color: white;
