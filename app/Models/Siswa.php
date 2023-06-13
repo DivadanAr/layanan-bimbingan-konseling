@@ -28,6 +28,10 @@ class Siswa extends Model
         return $this->hasMany(KonselingBk::class);
     }
 
+    public function pemanggilan()
+    {
+        return $this->hasMany(pemanggilan::class);
+    }
 
 
 }

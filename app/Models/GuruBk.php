@@ -24,6 +24,10 @@ class GuruBk extends Model
     {
         return $this->hasMany(quotes::class);
     }
+    public function pemanggilan()
+    {
+        return $this->hasMany(pemanggilan::class);
+    }
 
 
 }

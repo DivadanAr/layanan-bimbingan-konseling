@@ -763,7 +763,7 @@ td {
 }
 
 .modal-body {
-    margin-top: 20px;
+    margin-top: 10px;
     margin-bottom: 20px;
     display: flex;
     flex-direction: column;
@@ -786,7 +786,10 @@ td {
     border-radius: 5px;
     border: 1px solid rgba(0, 0, 0, 0.418);
 }
+.time input{
+    width: 215px;
 
+}
 .modal-footer {
     display: flex;
     justify-content: space-between;

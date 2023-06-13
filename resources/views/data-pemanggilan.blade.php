@@ -28,21 +28,12 @@
                             <div class="card mb-4">
                                 <div class="card">
                                     <div style="align-items: center;display: flex; justify-content:space-between">
-                                        <h5 class="card-header">Peta Kerawanan Siswa</h5>
-                                        <div class="" style="width:200px; display:flex;">
-                                            <a href="{{ route('peta-kerawanan.create') }}">
-                                                <button type="button" class="btn btn-primary"
-                                                    style="height: 37px; margin-right:20px">Add</button>
-                                            </a>
-                                                <form action="{{ route('export-pdf') }}" method="GET" target="_blank">
-
-                                                @csrf
-                                                <a href="">
-                                                    <button type="submit" class="btn btn-secondary"
-                                                        style="height: 37px; margin-right:20px">Export</button>
-                                                </a>
-                                            </form>
-                                        </div>
+                                        <h5 class="card-header">Pemanggilan Orang Tua</h5>
+                                        <a href="{{ route('pemanggilan.create') }}">
+                                            <button type="button" class="btn btn-primary"
+                                                style="height: 37px; margin-right:20px">Add</button>
+                                        </a>
+                                        
 
                                     </div>
 
@@ -52,7 +43,6 @@
                                             <thead>
                                                 <tr>
                                                     <th>Nama</th>
-                                                    <th>kelas</th>
                                                     <th>hari</th>
                                                     <th>tanggal</th>
                                                     <th>jam</th>
@@ -61,39 +51,51 @@
                                                     <th>Actions</th>
                                                 </tr>
                                             </thead>
-                                            {{-- <tbody class="table-border-bottom-0">
-                                                @foreach ($data as $key => $item)
+                                            <tbody class="table-border-bottom-0">
+                                                @foreach ($pemanggilan as $key => $item)
                                                 <tr>
                                                     <td><i class="fab fa-angular fa-lg text-danger me-3"></i>
-                                                        <strong>{{ $item->siswa->nama }}</strong></td>
-                                                    <td>{{ $item->kelas->nama }}</td>
-                                                    <td>{{ $item->wali_kelas->nama }}</td>
-                                                    <td>{{ $item->jenis_kerawanan }}</td>
+                                                    {{ $item->siswa->nama }}</td>
+                                                    <td>{{ $item->hari }}</td>
+                                                    <td>{{ $item->tanggal }}</td>
+                                                    <td>{{ $item->jam }}</td>
+                                                    <td>{{ $item->tempat }}</td>
+                                                    <td>{{ $item->acara }}</td>
+                                                    
+                                                    
                                                     <td>
-                                                        <div class="dropdown">
-                                                            <button type="button"
-                                                                class="btn p-0 dropdown-toggle hide-arrow"
-                                                                data-bs-toggle="dropdown">
-                                                                <i class="bx bx-dots-vertical-rounded"></i>
-                                                            </button>
-                                                            <div class="dropdown-menu">
-                                                                <a class="dropdown-item"
-                                                                    href="{{ route('siswa.edit', $item->id) }}"><i
-                                                                        class="bx bx-edit-alt me-1"></i> Edit</a>
-                                                                <form action="{{ route('siswa.destroy', $item->id) }}"
+                                                    
+
+                                                            
+                                                            
+
+
+                                                                <form action="{{ route('export-pdf', ['id' => $item->id]) }} method="GET" target="_blank">
+
+                                                                    @csrf
+                                                                    <a href="">
+                                                                        <button type="submit" class="btn btn-secondary"
+                                                                            style="height: 37px; margin-right:20px">Export</button>
+                                                                    </a>
+                                                                </form>
+
+                                                              
+
+
+                                                                <form action="{{ route('pemanggilan.destroy', $item->id) }}"
                                                                     method="POST" style="display: inline-block">
                                                                     @csrf
                                                                     @method('DELETE')
-                                                                    <button class="dropdown-item" type="submit""><i
+                                                                    <button class="danger" type="submit""><i
                                                                                 class=" bx bx-trash me-1"></i>
                                                                         Delete</button>
                                                                 </form>
-                                                            </div>
+                                                           
                                                         </div>
                                                     </td>
                                                 </tr>
                                                 @endforeach
-                                            </tbody> --}}
+                                            </tbody>
                                         </table>
                                     </div>
                                 </div>
