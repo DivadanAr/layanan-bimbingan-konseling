@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\PetaKerawananExport;
 use App\Models\Kelas;
 use App\Models\Kerawanan;
 use App\Models\PetaKerawanan;
@@ -10,6 +11,8 @@ use App\Models\Walas;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
+use Maatwebsite\Excel\Facades\Excel;
+ 
 
 class PetaKerawananController extends Controller
 {
@@ -112,5 +115,11 @@ class PetaKerawananController extends Controller
     public function destroy(string $id)
     {
         //
+    }
+
+    public function export() 
+    {
+        
+    return Excel::download(new PetaKerawananExport, 'Rekap Peta Kerawanan.xlsx')->deleteFileAfterSend();
     }
 }

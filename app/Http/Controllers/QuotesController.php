@@ -6,6 +6,7 @@ use App\Models\GuruBk;
 use App\Models\quotes;
 use Illuminate\Http\Request;
 
+
 class QuotesController extends Controller
 {
     /**
@@ -75,7 +76,7 @@ class QuotesController extends Controller
     {
         $userId = Auth()->id();
         $guru_bk = GuruBk::where('user_id',$userId)->first();
-        
+
         $this->validate($request, [
             // 'guru_bk_id' => 'required',
             'quotes' => 'required'
@@ -101,4 +102,6 @@ class QuotesController extends Controller
 
         return redirect()->route('quotes.index')->with('success', 'Quotes berhasil dihapus.');
     }
+
+  
 }
