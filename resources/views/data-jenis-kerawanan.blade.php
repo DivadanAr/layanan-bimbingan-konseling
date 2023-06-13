@@ -112,7 +112,7 @@
             </form>
         </div>
     </div>
-    <script>
+    {{-- <script>
         $(document).ready(function () {
             $('#formKerawanan').on('submit', function (event) {
                 event.preventDefault(); // Mencegah form dari pengiriman default
@@ -145,5 +145,5 @@
                 });
             });
         });
-    </script>
+    </script> --}}
 </x-app-layout>

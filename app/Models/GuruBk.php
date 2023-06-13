@@ -19,5 +19,6 @@ class GuruBk extends Model
     {
         return $this->hasOne(Kelas::class);
     }
+    
 
 }
