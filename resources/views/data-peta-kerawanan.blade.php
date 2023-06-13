@@ -34,7 +34,9 @@
                                                 <button type="button" class="btn btn-primary"
                                                     style="height: 37px; margin-right:20px">Add</button>
                                             </a>
-                                            <form action="{{ route('export-excel') }}" method="POST" target="_blank">
+                                            {{-- <form action="{{ route('export-excel') }}" method="POST" target="_blank"> --}}
+                                                <form action="{{ route('export-pdf') }}" method="GET" target="_blank">
+
                                                 @csrf
                                                 <a href="">
                                                     <button type="submit" class="btn btn-secondary"
@@ -72,7 +74,7 @@
                                                                 data-bs-toggle="dropdown">
                                                                 <i class="bx bx-dots-vertical-rounded"></i>
                                                             </button>
-                                                            <div class="dropdown-menu">
+                                                            <div class="dropdown-menu" >
                                                                 <a class="dropdown-item"
                                                                     href="{{ route('siswa.edit', $item->id) }}"><i
                                                                         class="bx bx-edit-alt me-1"></i> Edit</a>
