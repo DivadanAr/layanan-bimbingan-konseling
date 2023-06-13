@@ -126,11 +126,66 @@
       
       @if (Auth::user()->hasRole('guru_bk'))
       <li class="menu-item">
-        <a href="{{route('konseling.index')}}" class="menu-link">
-          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 48 48"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="4"><rect width="40" height="30" x="4" y="10" stroke-linejoin="round" rx="2"/><path d="M14 6v8m11 9H14m20 8H14M34 6v8"/></g></svg>
-          <div style="margin-left: 10px" data-i18n="Layanan BK">Layanan BK</div>
+        <a href="javascript:void(0);" class="menu-link menu-toggle">
+          <i class="menu-icon tf-icons bx bx-dock-top"></i>
+          <div data-i18n="Bimbingan Pribadi">Bimbingan Pribadi</div>
         </a>
-      </li>
+        <ul class="menu-sub">
+          <li class="menu-item">
+            <a href="{{ route('pribadi-addschedule') }}" class="menu-link">
+              <div data-i18n="Teacher">Add Schedule</div>
+            </a>
+          </li>
+          <li class="menu-item">
+            <a href="{{ route('pribadi-pending-index') }}" class="menu-link">
+              <div data-i18n="Teacher">Pending</div>
+            </a>
+          </li>
+          <li class="menu-item">
+            <a href="{{ route('pribadi-accept-index') }}" class="menu-link">
+              <div data-i18n="accept">Accepted</div>
+            </a>
+          </li>
+          <li class="menu-item">
+            <a href="{{ route('pribadi-reschedule-index') }}" class="menu-link">
+              <div data-i18n="Re-Schedule">Re-Scedhule</div>
+            </a>
+          </li>
+          <li class="menu-item">
+            <a href="{{ route('pribadi-cancel-index') }}" class="menu-link">
+              <div data-i18n="cancel">canceled</div>
+            </a>
+          </li>
+        </ul>
+      </li>    
+      <li class="menu-item">
+        <a href="javascript:void(0);" class="menu-link menu-toggle">
+          <i class="menu-icon tf-icons bx bx-dock-top"></i>
+          <div data-i18n="Bimbingan sosial">Bimbingan Sosial</div>
+        </a>
+        <ul class="menu-sub">
+          <li class="menu-item">
+            <a href="{{ route('sosial-pending-index') }}" class="menu-link">
+              <div data-i18n="Teacher">Pending</div>
+            </a>
+          </li>
+          <li class="menu-item">
+            <a href="{{ route('sosial-accept-index') }}" class="menu-link">
+              <div data-i18n="accept">Accepted</div>
+            </a>
+          </li>
+          <li class="menu-item">
+            <a href="{{ route('sosial-reschedule-index') }}" class="menu-link">
+              <div data-i18n="Re-Schedule">Re-Scedhule</div>
+            </a>
+          </li>
+          <li class="menu-item">
+            <a href="{{ route('sosial-cancel-index') }}" class="menu-link">
+              <div data-i18n="cancel">canceled</div>
+            </a>
+          </li>
+        </ul>
+      </li>          
       @endif
       
     </ul>

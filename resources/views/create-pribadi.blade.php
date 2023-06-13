@@ -28,11 +28,6 @@
 
                 <div class="container-xxl flex-grow-1 container-p-y">
                     @if ($errors->any())
-                    {{-- <div class="alert alert-danger">
-                            <ul>
-                                
-                            </ul>
-                        </div> --}}
                     <div class="alert alert-danger alert-dismissible" role="alert">
                         @foreach ($errors->all() as $error)
                         <li>{{ $error }}</li>
@@ -47,30 +42,42 @@
                         <div class="card mb-4">
                             <h5 class="card-header">Buat Jadwal Bimbingan</h5>
                             <div class="card-body demo-vertical-spacing demo-only-element">
-                                <form action="{{ route('walas.store') }}" method="POST" enctype="multipart/form-data">
+                                <form action="{{url('layanan/bimbingan-pribadi/menambah')}}" method="POST">
                                     @csrf
 
-
-                                    <div class="form">
-                                        <label class="form-label" for="selectLayanan">Layanan</label>
-                                        <select class="form-select placement-dropdown" name="Layanan"
-                                            id="selectLayanan">
-                                            <option value="top-0 start-0" hidden>Pilih Layanan</option>
-                                            @foreach ($jenis_layanan as $item)
-                                            <option value="{{ $item->id }}">{{ $item->jenis_layanan }}</option>
-                                            @endforeach
-                                        </select>
+                                    <div class="form" style="display: ">
+                                        <label class="form-label" for="basic-default-password12">layanan</label>
+                                        <div class="input-group">
+                                            <input type="text" value="bimbingan pribadi"  name="layanan" class="form-control" placeholder="layanan"
+                                                aria-label="layanan" aria-describedby="basic-addon13" hidden/>
+                                        </div>
                                     </div>
 
                                     <div class="form">
                                         <label class="form-label" for="selectSiswa">Siswa</label>
-                                        <select class="form-select placement-dropdown" name="Siswa" id="select-state"
-                                            multiple>
+                                        <select class="form-select placement-dropdown" name="siswa[]" id="select-beast"
+                                            >
                                             <option value="" hidden>Pilih Siswa</option>
                                             @foreach ($siswa as $item)
                                             <option value="{{ $item->id }}">{{ $item->nama }}</option>
                                             @endforeach
                                         </select>
+                                    </div>
+
+                                    <div class="form">
+                                        <label class="form-label" for="basic-default-password12">Topik</label>
+                                        <div class="input-group">
+                                            <input type="text" name="topik" class="form-control" placeholder="Topik"
+                                                aria-label="Topik" aria-describedby="basic-addon13" />
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="form">
+                                        <label class="form-label" for="basic-default-password12">Tempat Lokasi</label>
+                                        <div class="input-group">
+                                            <input type="text" name="lokasi" class="form-control" placeholder="Tempat Lokasi"
+                                                aria-label="Tempat Lokasi" aria-describedby="basic-addon13" />
+                                        </div>
                                     </div>
 
                                     <div class="row">
@@ -90,7 +97,7 @@
                                             <div style="display: flex;  justify-content:space-between; gap:20px">
                                                 <div class="mb-3 row" style="width: 50%;">
                                                     <div >
-                                                        <input class="form-control" type="time"
+                                                        <input name="jam_mulai" class="form-control" type="time"
                                                             id="html5-time-input" />
                                                     </div>
                                                 </div>
@@ -99,7 +106,7 @@
                                                 </span>
                                                 <div class="mb-3 row" style="width: 50%">
                                                     <div >
-                                                        <input class="form-control" type="time"
+                                                        <input name="jam_berakhir" class="form-control" type="time"
                                                             id="html5-time-input" />
                                                     </div>
                                                 </div>
@@ -107,52 +114,8 @@
                                         </div>
                                     </div>
 
-                                    <div class="form">
-                                        <label class="form-label" for="selectKelamin">Kelamin</label>
-                                        <select class="form-select placement-dropdown" name="kelamin"
-                                            id="selectKelamin">
-                                            <option value="top-0 start-0" hidden>Pilih Kelamin</option>
-                                            <option value="laki-laki">Laki - Laki</option>
-                                            <option value="perempuan">Perempuan</option>
-                                        </select>
-                                    </div>
-
-
-                                    <div class="row">
-                                        <div class="form">
-                                            <label class="form-label" for="basic-default-password12">Telepon</label>
-                                            <div class="input-group">
-                                                <input type="number" name="telepon" class="form-control"
-                                                    placeholder="Telepon" aria-label="Telepon"
-                                                    aria-describedby="basic-addon11" />
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="form">
-                                        <label class="form-label" for="basic-default-password12">Email</label>
-                                        <div class="input-group">
-                                            <input type="text" name="email" class="form-control" placeholder="Email"
-                                                aria-label="Email" aria-describedby="basic-addon13" />
-                                            <span class="input-group-text" id="basic-addon13">@example.com</span>
-                                        </div>
-                                    </div>
-
-                                    <div class="form">
-                                        <label class="form-label" for="basic-default-password12">Password</label>
-                                        <div class="input-group">
-                                            <input type="password" name="password" class="form-control"
-                                                id="basic-default-password12"
-                                                placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;"
-                                                aria-describedby="basic-default-password2" />
-                                            <span id="basic-default-password2"
-                                                class="input-group-text cursor-pointer"><i
-                                                    class="bx bx-hide"></i></span>
-                                        </div>
-                                    </div>
-
                                     <div class="d-flex" style="justify-content: end; gap:10px; margin-top: 10px">
-                                        <a href="{{ route('siswa.create') }}">
+                                        <a href="layanan/bimbingan-pribadi">
                                             <button type="button" class="btn btn-danger"
                                                 style="height: 35px; padding:  0px 15px">Cancel</button>
                                         </a>
@@ -181,6 +144,7 @@
                     direction: "asc"
                 }
             });
+
         </script>
         <!-- Overlay -->
         <div class="layout-overlay layout-menu-toggle"></div>

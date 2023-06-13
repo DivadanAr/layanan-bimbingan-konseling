@@ -19,5 +19,15 @@ class Siswa extends Model
     {
         return $this->belongsTo(Kelas::class);
     }
+    public function siswaKonseling()
+    {
+        return $this->hasMany(siswaKonseling::class, 'siswa_id');
+    }
+    public function konselingBk()
+    {
+        return $this->hasMany(KonselingBk::class);
+    }
+
+
 
 }

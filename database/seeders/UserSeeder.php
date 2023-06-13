@@ -22,29 +22,29 @@ class UserSeeder extends Seeder
 
         $admin->assignRole('admin');
 
-        $gurubk = User::create([
-            'name' => 'Ricky Sudrajat',
-            'email' => 'ricky@gmail.com',
-            'password' => bcrypt('12345678'),
-        ]);
+        // $gurubk = User::create([
+        //     'name' => 'Ricky Sudrajat',
+        //     'email' => 'ricky@gmail.com',
+        //     'password' => bcrypt('12345678'),
+        // ]);
 
-        $gurubk->assignRole('guru_bk');
+        // $gurubk->assignRole('guru_bk');
 
-        $walas = User::create([
-            'name' => 'Nahla Naufan',
-            'email' => 'nahla@gmail.com',
-            'password' => bcrypt('12345678'),
-        ]);
+        // $walas = User::create([
+        //     'name' => 'Nahla Naufan',
+        //     'email' => 'nahla@gmail.com',
+        //     'password' => bcrypt('12345678'),
+        // ]);
 
-        $walas->assignRole('wali_kelas');
+        // $walas->assignRole('wali_kelas');
 
-        $siswaAcount = User::create([
-            'name' => 'Divadan Arya',
-            'email' => 'divadan@gmail.com',
-            'password' => bcrypt('12345678'),
-        ]);
+        // $siswaAcount = User::create([
+        //     'name' => 'Divadan Arya',
+        //     'email' => 'divadan@gmail.com',
+        //     'password' => bcrypt('12345678'),
+        // ]);
 
-        $siswaAcount->assignRole('siswa');
+        // $siswaAcount->assignRole('siswa');
 
         // $siswa = Siswa::create([
         //     'user_id' => $siswaAcount->id,
