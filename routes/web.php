@@ -123,7 +123,7 @@ Route::middleware([
     Route::get('bimbingan-konseling/study', [KonselingBKController::class, 'indexBimbingan'])->name('study-siswa');
     Route::get('bimbingan-konseling/social', [KonselingBKController::class, 'indexBimbingan'])->name('social-siswa');
     Route::get('bimbingan-konseling/career', [KonselingBKController::class, 'indexBimbingan'])->name('career-siswa');
-    Route::get('bimbingan-konseling/history', [KonselingBKController::class, 'indexBimbingan'])->name('history-siswa');
+    Route::post('bimbingan-konseling/pribadi/add', [KonselingBKController::class, 'storeSiswa'])->name('add-siswa');
 
     Route::get('/home', function () {
         return view('users.siswa');

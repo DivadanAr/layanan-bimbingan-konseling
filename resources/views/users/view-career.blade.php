@@ -1,7 +1,7 @@
 @extends('users.layout.app')
 
 @section('css')
-<link rel="stylesheet" href="{{asset('assets/css/view-study.css')}}">
+<link rel="stylesheet" href="{{asset('assets/css/view-private.css')}}">
 <link rel="stylesheet" href="{{asset('assets/css/tabel-schedule.css')}}">
 
 @endsection
@@ -73,9 +73,6 @@
                 <div class="titles">
                     <p>Career Conseling Schedule</p>
                     <p>Here’s your Career schedule</p>
-                </div>
-                <div class="date-picker">
-                    <input type="date" id="Test_DatetimeLocal">
                 </div>
             </div>
             <div class="schedule-body">

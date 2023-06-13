@@ -45,10 +45,12 @@ class KonselingBKController extends Controller
         if (Auth::user()->hasRole('siswa')) {
             if (Route::is('layanan-siswa')) {
                 $layananBk = LayananBk::all();
-                $siswa = Siswa::where('user_id', Auth()->id())->first();   
+                $siswa = Siswa::where('user_id', Auth()->id())->first();  
+                $siswaAll = Siswa::all();
+  
                 $konselingBk = siswaKonseling::where('siswa_id', $siswa->id)->get();
     
-                return view('users.coba', compact('konselingBk'));    
+                return view('users.coba', compact('konselingBk', 'siswaAll'));    
             }
             if (Route::is('pribadi-siswa')) {
                 $layananBk = LayananBk::all();
@@ -393,22 +395,6 @@ class KonselingBKController extends Controller
         //     return view('layanan-pribadi', compact('data'));
     }
 
-    public function indexBimbinganSosial()
-    {
-        $layananBk = LayananBk::all();
-        $guruBk = GuruBk::where('user_id', Auth()->id())->first(); 
-        $walas = Kelas::where('guru_bk_id', $guruBk->id)->first(); 
-
-        $konselingBk = KonselingBk::where('guru_bk_id', $walas->guru_bk_id)
-            ->where('wali_kelas_id', $walas->wali_kelas_id)
-            ->where('layanan_id', 2)
-            ->get(); 
-
-
-        return view('layanan-sosial', compact('layananBk', 'konselingBk'));
-
-    }
-
     /**
      * Show the form for creating a new resource.
      */
@@ -421,17 +407,6 @@ class KonselingBKController extends Controller
         $siswa = Siswa::where('kelas_id', $kelas->id)->get();
         $jenis_layanan = LayananBk::all();
         return view('create', compact('jenis_layanan', 'siswa'));
-    }
-
-    public function createBimbinganSosial()
-    {
-        
-        $userId = Auth()->id();
-        $guru = GuruBk::where('user_id', $userId)->first();
-        $kelas = Kelas::where('guru_bk_id', $guru->id)->first();
-        $siswa = Siswa::where('kelas_id', $kelas->id)->get();
-        $jenis_layanan = LayananBk::all();
-        return view('create-sosial', compact('jenis_layanan', 'siswa'));
     }
 
     
@@ -464,20 +439,103 @@ class KonselingBKController extends Controller
             return redirect()->back()->withErrors($validator)->withInput();
         }
 
+        if (Auth::user()->hasRole('guru_bk')) {
+            $layanan = LayananBk::where('jenis_layanan', $request->input('layanan'))->first();
+            $guru = GuruBk::where('user_id', Auth()->id())->first();
+            $walas = Kelas::where('guru_bk_id', $guru->id)->first();
+
+            $layanan = KonselingBk::create([
+                'topik' => $request->input('topik'),
+                'guru_bk_id' => $walas->guru_bk_id,
+                'wali_kelas_id' => $walas->wali_kelas_id,
+                'layanan_id' => $layanan->id,
+                'tanggal' => $request->input('tanggal'),
+                'jam_mulai' => $request->input('jam_mulai'),
+                'jam_berakhir' => $request->input('jam_berakhir'),
+                'tempat' => $request->input('lokasi'),
+                'status' => 'accepted'
+            ]);
+
+            foreach ($validated['siswa'] as $siswa) {
+                siswaKonseling::create([
+                    'siswa_id' => $siswa,
+                    'konseling_bk_id' => $layanan->id
+                ]);
+            }
+            return redirect()->route('dashboard.index')->with('success', 'Siswa berhasil ditambahkan.');
+        }
+        
+        if (Auth::user()->hasRole('guru_bk')) {
+            // $guru = GuruBk::where('user_id', Auth()->id())->first();
+            // $walas = Kelas::where('guru_bk_id', $guru->id)->first();
+            $layanan = LayananBk::where('jenis_layanan', $request->input('layanan'))->first();
+            $siswa = Siswa::where('user_id', Auth()->id())->first();
+            $kelas = Kelas::findOrFail($siswa->kelas_id)->first();
+
+            $layanan = KonselingBk::create([
+                'topik' => $request->input('topik'),
+                'guru_bk_id' => $kelas->guru_bk_id,
+                'wali_kelas_id' => $kelas->wali_kelas_id,
+                'layanan_id' => $layanan->id,
+                'tanggal' => $request->input('tanggal'),
+                'jam_mulai' => $request->input('jam_mulai'),
+                'jam_berakhir' => $request->input('jam_berakhir'),
+                'tempat' => $request->input('lokasi'),
+                'status' => 'accepted'
+            ]);
+
+            foreach ($validated['siswa'] as $siswa) {
+                siswaKonseling::create([
+                    'siswa_id' => $siswa,
+                    'konseling_bk_id' => $layanan->id
+                ]);
+            }
+            return redirect()->route('dashboard.index')->with('success', 'Siswa berhasil ditambahkan.');
+
+        }
+
+    }
+
+    function storeSiswa(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'topik' => 'required',
+            'layanan' => 'required',
+            'tanggal' => 'required',
+            'jam_mulai' => 'required',
+            'jam_berakhir' => 'required',
+            'lokasi' => 'required',
+            'siswa' => 'required|array',
+        ]);
+
+        $validated = $request->validate([
+            'topik' => 'required',
+            'layanan' => 'required',
+            'tanggal' => 'required',
+            'jam_mulai' => 'required',
+            'jam_berakhir' => 'required',
+            'lokasi' => 'required',
+            'siswa' => 'required|array',
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()->back()->with('error', 'error');
+        }
+
         $layanan = LayananBk::where('jenis_layanan', $request->input('layanan'))->first();
-        $guru = GuruBk::where('user_id', Auth()->id())->first();
-        $walas = Kelas::where('guru_bk_id', $guru->id)->first();
+        $siswa = Siswa::where('user_id', Auth()->id())->first();
+        $kelas = Kelas::where('id', $siswa->kelas_id)->first();
 
         $layanan = KonselingBk::create([
             'topik' => $request->input('topik'),
-            'guru_bk_id' => $walas->guru_bk_id,
-            'wali_kelas_id' => $walas->wali_kelas_id,
+            'guru_bk_id' => $kelas->guru_bk_id,
+            'wali_kelas_id' => $kelas->wali_kelas_id,
             'layanan_id' => $layanan->id,
             'tanggal' => $request->input('tanggal'),
             'jam_mulai' => $request->input('jam_mulai'),
             'jam_berakhir' => $request->input('jam_berakhir'),
             'tempat' => $request->input('lokasi'),
-            'status' => 'accepted'
+            'status' => 'pending'
         ]);
 
         foreach ($validated['siswa'] as $siswa) {
@@ -486,10 +544,9 @@ class KonselingBKController extends Controller
                 'konseling_bk_id' => $layanan->id
             ]);
         }
+        return redirect()->route('layanan-siswa')->with('success', 'Siswa berhasil ditambahkan.');
 
-        return redirect()->route('dashboard.index')->with('success', 'Siswa berhasil ditambahkan.');
     }
-
     /**
      * Display the specified resource.
      */
