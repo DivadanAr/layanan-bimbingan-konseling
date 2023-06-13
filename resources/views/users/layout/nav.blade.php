@@ -3,7 +3,7 @@
     <div class="navbar">
 
         <div class="logo">
-            <img src="assets/img/logoTb.png" alt="">
+            <img src="{{asset('assets/img/logoTb.png')}}" alt="">
             <p>Starbhak Konseling</p>
         </div>
         <div class="menu">
@@ -30,7 +30,7 @@
                     <div style="margin: 10px 15px"><a style="text-decoration: none; color: black; display: flex; align-items: center; gap: 10px" class="dropdown-item setting" href="{{ url('dashboard') }}">Dashboard 
                     </a></div>
                     @elseif(Auth::user()->hasRole('siswa'))
-                    <div style="margin: 10px 15px"><a style="text-decoration: none; color: black; display: flex; align-items: center; gap: 10px" class="dropdown-item setting" href="{{ url('siswas') }}">Profile <iconify-icon icon="solar:user-bold" style="font-size: 20px; color: grey;"></iconify-icon>
+                    <div style="margin: 10px 15px"><a style="text-decoration: none; color: black; display: flex; align-items: center; gap: 10px" class="dropdown-item setting" href="{{route('layanan-siswa')}}">Profile <iconify-icon icon="solar:user-bold" style="font-size: 20px; color: grey;"></iconify-icon>
                     </a></div>
                     @endif
                   </li>

@@ -47,7 +47,6 @@ body {
 
 .upcoming, .history{
     width: 600px;
-    height: 180px;
     background-color: #AACFFB;
     border-radius: 10px;
 }
@@ -98,6 +97,7 @@ body {
 .right-side p:last-child{
     font-size: 16px;
     font-weight: 600;
+    text-align: right;
 }
 
 .content:last-child{
