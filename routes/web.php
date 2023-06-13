@@ -26,6 +26,9 @@ Route::get('/', function () {
     return view('users.home');
 });
 
+Route::post('export-petakerawanan', [PetaKerawananController::class, 'export'])->name('export-excel');
+
+
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
