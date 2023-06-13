@@ -29,11 +29,25 @@
                                 <div class="card">
                                     <div style="align-items: center;display: flex; justify-content:space-between">
                                         <h5 class="card-header">Peta Kerawanan Siswa</h5>
-                                        <a href="{{ route('peta-kerawanan.create') }}">
-                                            <button type="button" class="btn btn-primary"
-                                                style="height: 37px; margin-right:20px">Add</button>
-                                        </a>
+                                        <div class="" style="width:200px; display:flex;">
+                                            <a href="{{ route('peta-kerawanan.create') }}">
+                                                <button type="button" class="btn btn-primary"
+                                                    style="height: 37px; margin-right:20px">Add</button>
+                                            </a>
+                                            {{-- <form action="{{ route('export-excel') }}" method="POST" target="_blank"> --}}
+                                                <form action="{{ route('export-pdf') }}" method="GET" target="_blank">
+
+                                                @csrf
+                                                <a href="">
+                                                    <button type="submit" class="btn btn-secondary"
+                                                        style="height: 37px; margin-right:20px">Export</button>
+                                                </a>
+                                            </form>
+                                        </div>
+
                                     </div>
+
+
                                     <div class="table-responsive text-nowrap">
                                         <table class="table table-striped">
                                             <thead>
@@ -60,8 +74,9 @@
                                                                 data-bs-toggle="dropdown">
                                                                 <i class="bx bx-dots-vertical-rounded"></i>
                                                             </button>
-                                                            <div class="dropdown-menu">
-                                                                <a class="dropdown-item" href="{{ route('siswa.edit', $item->id) }}"><i
+                                                            <div class="dropdown-menu" >
+                                                                <a class="dropdown-item"
+                                                                    href="{{ route('siswa.edit', $item->id) }}"><i
                                                                         class="bx bx-edit-alt me-1"></i> Edit</a>
                                                                 <form action="{{ route('siswa.destroy', $item->id) }}"
                                                                     method="POST" style="display: inline-block">

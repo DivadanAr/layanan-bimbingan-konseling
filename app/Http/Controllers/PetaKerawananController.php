@@ -2,14 +2,21 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\PetaKerawananExport;
+use App\Models\GuruBk;
 use App\Models\Kelas;
 use App\Models\Kerawanan;
 use App\Models\PetaKerawanan;
 use App\Models\Siswa;
 use App\Models\Walas;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
+// use Barryvdh\DomPDF\Facade as PDF;
 use Illuminate\Support\Facades\Validator;
+use Maatwebsite\Excel\Facades\Excel;
+use Illuminate\Http\Request;
+use Barryvdh\DomPDF\Facade\Pdf;
+use Dompdf\Dompdf;
+use Illuminate\Support\Facades\Auth;
+ 
 
 class PetaKerawananController extends Controller
 {
@@ -18,17 +25,36 @@ class PetaKerawananController extends Controller
      */
     public function index()
     {
-        $userId = Auth()->id();
-        $walasId = Walas::where('user_id', $userId)->first();
-        $kelasId = Kelas::where('wali_kelas_id', $walasId->id)->first();
-        $data = PetaKerawanan::where('kelas_id', $kelasId->id)->get();
-
-        $data = $data->groupBy('siswa_id')->map(function ($item) {
-            $item[0]->jenis_kerawanan = $item->pluck('jenis_kerawanan.jenis_kerawanan')->implode(', ');
-            return $item[0];
-        });
-
-        return view('data-peta-kerawanan', compact('data'));
+        if (Auth::user()->hasRole('wali_kelas')) {
+            $userId = Auth()->id();
+            $walasId = Walas::where('user_id', $userId)->first();
+            $kelasId = Kelas::where('wali_kelas_id', $walasId->id)->first();
+            $data = PetaKerawanan::where('kelas_id', $kelasId->id)->get();
+    
+            $data = $data->groupBy('siswa_id')->map(function ($item) {
+                $item[0]->jenis_kerawanan = $item->pluck('jenis_kerawanan.jenis_kerawanan')->implode(', ');
+                return $item[0];
+            });
+    
+            return view('data-peta-kerawanan', compact('data'));
+    
+        } 
+        
+        if (Auth::user()->hasRole('guru_bk')){
+            $userId = Auth()->id();
+            $walasId = GuruBk::where('user_id', $userId)->first();
+            $kelasId = Kelas::where('wali_kelas_id', $walasId->id)->first();
+            $data = PetaKerawanan::where('kelas_id', $kelasId->id)->get();
+    
+            $data = $data->groupBy('siswa_id')->map(function ($item) {
+                $item[0]->jenis_kerawanan = $item->pluck('jenis_kerawanan.jenis_kerawanan')->implode(', ');
+                return $item[0];
+            });
+    
+            return view('data-peta-kerawanan', compact('data'));
+    
+        }
+        
     }
 
     /**
@@ -36,13 +62,27 @@ class PetaKerawananController extends Controller
      */
     public function create()
     {
-        $userId = Auth()->id();
-        $walas = Walas::where('user_id', $userId)->first();
-        $kelas = Kelas::where('wali_kelas_id', $walas->id)->first();
-        $siswa = Siswa::where('kelas_id', $kelas->id)->get();
-        $jenis_kerawanan = Kerawanan::all();
 
-        return view('create-peta-kerawanan', compact('siswa','jenis_kerawanan'));
+        if (Auth::user()->hasRole('guru_bk')) {
+            $userId = Auth()->id();
+            $GuruBk = GuruBk::where('user_id', $userId)->first();
+            $kelas = Kelas::where('wali_kelas_id', $GuruBk->id)->first();
+            $siswa = Siswa::where('kelas_id', $kelas->id)->get();
+            $jenis_kerawanan = Kerawanan::all();
+    
+            return view('create-peta-kerawanan', compact('siswa','jenis_kerawanan'));
+        } 
+        
+        if(Auth::user()->hasRole('wali_kelas')){
+            $userId = Auth()->id();
+            $walas = Walas::where('user_id', $userId)->first();
+            $kelas = Kelas::where('wali_kelas_id', $walas->id)->first();
+            $siswa = Siswa::where('kelas_id', $kelas->id)->get();
+            $jenis_kerawanan = Kerawanan::all(); 
+
+            return view('create-peta-kerawanan', compact('siswa','jenis_kerawanan'));
+        }
+        
     }
 
     /**
@@ -113,4 +153,12 @@ class PetaKerawananController extends Controller
     {
         //
     }
+
+    public function export() 
+    {
+        
+    return Excel::download(new PetaKerawananExport, 'Rekap Peta Kerawanan.xlsx')->deleteFileAfterSend();
+    }
+
+    
 }

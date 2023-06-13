@@ -5,6 +5,7 @@ use App\Http\Controllers\GuruBkController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\KerawananController;
 use App\Http\Controllers\KonselingBKController;
+use App\Http\Controllers\PemanggilanController;
 use App\Http\Controllers\PetaKerawananController;
 use App\Http\Controllers\QuotesController;
 use App\Http\Controllers\SiswaController;
@@ -25,6 +26,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('users.home');
 });
+
+Route::post('export-petakerawanan', [PetaKerawananController::class, 'export'])->name('export-excel');
+Route::get('create-pdf-file', [PemanggilanController::class, 'exportpdf'])->name('export-pdf');
 
 Route::middleware([
     'auth:sanctum',
