@@ -43,7 +43,7 @@
                     </table>
                 </td>
                 <td>
-                    <p style=" font-size:12pt; margin-left:200px; ">Depok, 05 Mei 2023</p>   
+                    <p style=" font-size:12pt; margin-left:200px; ">Depok, {{ $formattedDate }}</p>   
                 </td>
             </tr>
             <tr>
@@ -64,16 +64,19 @@
             </tr>
         </table>
 
-      
+        
+        {{-- @foreach ($data as $item) --}}
         <div class="content" style="padding-left: 50px; padding-right: 50px;">
             <p style="font-size: 12pt;">Kepada Yth.</p>
             <p style="font-size: 12pt; margin-top:-15px;">Bapak/Ibu Orang Tua/Wali Siswa</p>
-            <p style="font-size: 12pt;  margin-top:-15px;">Khairannail F</p>
-            <p style="font-size: 12pt; margin-top:-15px;">Kelas XI PPLG 2</p>
+            @foreach ($siswa as $item)
+            <p style="font-size: 12pt;  margin-top:-15px;">{{$item->nama}}</p>
+            <p style="font-size: 12pt; margin-top:-15px;">{{$item->kelas->nama}}</p>
+            @endforeach
             <p style="font-size: 12pt; margin-top:-15px;">di tempat</p>            
-          
+            
             <p style="font-size: 12pt; margin-top:40px;"><i>Assalamualaikum Wr. Wb.</i></p>
-          
+            
             <p style="font-size: 12pt;">Dalam rangka kelancaran proses belajar mengajar dan kesinambungan anak didik</p>
             <p style="font-size: 12pt; margin-top:-15px;">antar sekolah dan keluarga, maka kami mengharap kehadiran Bapak/Ibu pada :</p>            
             
@@ -81,46 +84,56 @@
                 <tr>
                     <td style="width:250px; font-size: 12pt">Hari</td>
                     <td style="width:30px; font-size: 12pt">:</td>
-                    <td style="font-size: 12pt">Jumat</td>
+                    <td style="font-size: 12pt">{{$pemanggilan->hari}}</td>
                 </tr>
                 <tr>
                     <td style="font-size: 12pt">Tanggal</td>
                     <td style="font-size: 12pt">:</td>
-                    <td style="font-size: 12pt">24-06-2026</td>
+                    <td style="font-size: 12pt">{{$pemanggilan->tanggal}}</td>
                 </tr>
                 <tr>
                     <td style="font-size: 12pt">Jam</td>
                     <td style="font-size: 12pt">:</td>
-                    <td style="font-size: 12pt">10.00</td>
+                    <td style="font-size: 12pt">{{$pemanggilan->jam}}</td>
                 </tr>
                 <tr>
                     <td style="font-size: 12pt">Tempat</td>
                     <td style="font-size: 12pt">:</td>
-                    <td style="font-size: 12pt">Pendopo SMK Taruna Bhakti</td>
+                    <td style="font-size: 12pt">{{$pemanggilan->tempat}}</td>
                 </tr>
                 <tr>
                     <td style="font-size: 12pt">Acara</td>
                     <td style="font-size: 12pt">:</td>
-                    <td style="font-size: 12pt">Pemanggilan orang tua siswa terkait perilaku siswa di sekolah</td>
+                    <td style="font-size: 12pt">{{$pemanggilan->acara}}</td>
                 </tr>
                 
             </table>
-
+            
             <p style="font-size: 12pt;">Mengingat pentingnya acara tersebut, kehadiran Bapak/Ibu sangat kami harapkan.</p>
             <p style="font-size: 12pt; ">Demikian, terima kasih.</p>
             <p style="font-size: 12pt; "><i>Wassalamu’alaikum Wr.Wb.</i></p>
 
             <div class="footer" style="margin-left: 340px;">
-                <p style="font-size: 12pt; margin-top:-1px;">Depok, 05 Mei 2023</p>
-                <p style="font-size: 12pt; "><b>Kepala SMK Taruna Bhakti</b></p>
+                <p style="font-size: 12pt; margin-top:-1px;">Depok, {{ $formattedDate }}</p>
+                @if (Auth::check())
+                @if (Auth::user()->hasRole('guru_bk'))
+                <p style="font-size: 12pt; "><b>Guru BK</b></p>
                
-                <img src="assets/img/ttd-stempel.png" style="width: 131px; margin-top:-15px; margin-left:-25px;" alt="">
-                <p style="font-size: 12pt; margin-top:-16px;"><b><u>Nursidik, ST</u></b></p>
-                <p style="font-size: 12pt">NIP 19790911200411201</p>
+                <p style="font-size: 12pt; margin-top:120px;"><b><u>{{$guru->nama}}</u></b></p>
+                <p style="font-size: 12pt">NIPD {{$guru->nipd}}</p>
+                @else
+                <p style="font-size: 12pt; "><b>Wali Kelas</b></p>
+               
+                <p style="font-size: 12pt; margin-top:120px;"><b><u>{{$walas->nama}}</u></b></p>
+                <p style="font-size: 12pt">NIPD {{$walas->nipd}}</p>
+                @endif
             </div>
+            @endif
         </div>  
     </div>
 
-    </div>
+    
+    {{-- @endforeach --}}
+</div>
 </body>
 </html>
