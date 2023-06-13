@@ -126,7 +126,7 @@ Route::middleware([
     Route::get('bimbingan-konseling/history', [KonselingBKController::class, 'indexBimbingan'])->name('history-siswa');
 
     Route::get('/home', function () {
-        return view('users.index');
+        return view('users.siswa');
     })->name('home');
     
     Route::get('/signin', function () {
