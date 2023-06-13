@@ -9,6 +9,7 @@ use App\Models\LayananBk;
 use App\Models\Siswa;
 use App\Models\siswaKonseling;
 use App\Models\Walas;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -42,12 +43,43 @@ class KonselingBKController extends Controller
         //     return view('layanan', compact('data'));
         // }
         if (Auth::user()->hasRole('siswa')) {
-            $layananBk = LayananBk::all();
-            $siswa = Siswa::where('user_id', Auth()->id())->first();
+            if (Route::is('layanan-siswa')) {
+                $layananBk = LayananBk::all();
+                $siswa = Siswa::where('user_id', Auth()->id())->first();   
+                $konselingBk = siswaKonseling::where('siswa_id', $siswa->id)->get();
+    
+                return view('users.coba', compact('konselingBk'));    
+            }
+            if (Route::is('pribadi-siswa')) {
+                $layananBk = LayananBk::all();
+                $siswa = Siswa::where('user_id', Auth()->id())->first();   
+                $konselingBk = siswaKonseling::where('siswa_id', $siswa->id)->get();
+    
+                return view('users.view-private', compact('konselingBk'));    
+            }
+            if (Route::is('study-siswa')) {
+                $layananBk = LayananBk::all();
+                $siswa = Siswa::where('user_id', Auth()->id())->first();   
+                $konselingBk = siswaKonseling::where('siswa_id', $siswa->id)->get();
+    
+                return view('users.view-study', compact('konselingBk'));    
+            }
 
-            $konselingBk = siswaKonseling::where('siswa_id', $siswa->id)->get();
+            if (Route::is('social-siswa')) {
+                $layananBk = LayananBk::all();
+                $siswa = Siswa::where('user_id', Auth()->id())->first();   
+                $konselingBk = siswaKonseling::where('siswa_id', $siswa->id)->get();
+    
+                return view('users.view-social', compact('konselingBk'));    
+            }
 
-            return view('users.coba', compact('konselingBk'));
+            if (Route::is('career-siswa')) {
+                $layananBk = LayananBk::all();
+                $siswa = Siswa::where('user_id', Auth()->id())->first();   
+                $konselingBk = siswaKonseling::where('siswa_id', $siswa->id)->get();
+    
+                return view('users.view-career', compact('konselingBk'));    
+            }
         }
 
 

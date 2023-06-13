@@ -1,15 +1,15 @@
 @extends('users.layout.app')
 
 @section('css')
-<link rel="stylesheet" href="assets/css/view-study.css">
-<link rel="stylesheet" href="assets/css/tabel-schedule.css">
+<link rel="stylesheet" href="{{asset('assets/css/view-study.css')}}">
+<link rel="stylesheet" href="{{asset('assets/css/tabel-schedule.css')}}">
 
 @endsection
 
 @section('content')
 <div class="container">
     <div class="back">
-        <a href="/siswas">
+        <a href={{route('layanan-siswa')}}">
             <button>
                 <iconify-icon icon="ion:arrow-back-outline"></iconify-icon>
             </button>
@@ -22,33 +22,23 @@
                 <p>Upcoming Schedule</p>
             </div>
             <div class="body">
+                @foreach ($konselingBk as $konseling)
+                @if ($konseling->konselingBk->status=='accepted' && $konseling->konselingBk->layanan_id==4)
                 <div class="content">
                     <div class="left-side">
-                        <p>Mrs. Sheila Riani P S.Pst</p>
+                        <p>{{$konseling->konselingBk->guruBK->nama}}</p>
                         <p>
                             <iconify-icon icon="zondicons:time"></iconify-icon>
-                            08.00 - 10.00
+                            {{ Carbon\Carbon::parse($konseling->konselingBk->jam_mulai)->format('H:i') }} - {{ Carbon\Carbon::parse($konseling->konselingBk->jam_berakhir)->format('H:i') }}
                         </p>
                     </div>
                     <div class="right-side">
-                        <p>20-2-2024</p>
-                        <p>Ruang BK</p>
+                        <p>{{$konseling->konselingBk->tanggal}}</p>
+                        <p>{{$konseling->konselingBk->tempat}}</p>
                     </div>
                 </div>
-                <div class="content">
-                    <div class="left-side">
-                        <p>Mrs. Sheila Riani P S.Pst</p>
-                        <p>
-                            <iconify-icon icon="zondicons:time"></iconify-icon>
-                            08.00 - 10.00
-                        </p>
-                    </div>
-                    <div class="right-side">
-                        <p>20-2-2024</p>
-                        <p>Ruang BK</p>
-                    </div>
-                </div>
-               
+                @endif
+                @endforeach
             </div>
 
         </div>
@@ -57,33 +47,23 @@
                 <p>History</p>
             </div>
             <div class="body">
+                @foreach ($konselingBk as $konseling)
+                @if ($konseling->konselingBk->status=='done' && $konseling->konselingBk->layanan_id==4)
                 <div class="content">
                     <div class="left-side">
-                        <p>Mrs. Sheila Riani P S.Pst</p>
+                        <p>{{$konseling->konselingBk->guruBK->nama}}</p>
                         <p>
                             <iconify-icon icon="zondicons:time"></iconify-icon>
-                            08.00 - 10.00
+                            {{ Carbon\Carbon::parse($konseling->konselingBk->jam_mulai)->format('H:i') }} - {{ Carbon\Carbon::parse($konseling->konselingBk->jam_berakhir)->format('H:i') }}
                         </p>
                     </div>
                     <div class="right-side">
-                        <p>20-2-2024</p>
-                        <p>Ruang BK</p>
+                        <p>{{$konseling->konselingBk->tanggal}}</p>
+                        <p>{{$konseling->konselingBk->tempat}}</p>
                     </div>
-                </div>
-                <div class="content">
-                    <div class="left-side">
-                        <p>Mrs. Sheila Riani P S.Pst</p>
-                        <p>
-                            <iconify-icon icon="zondicons:time"></iconify-icon>
-                            08.00 - 10.00
-                        </p>
-                    </div>
-                    <div class="right-side">
-                        <p>20-2-2024</p>
-                        <p>Ruang BK</p>
-                    </div>
-                </div>
-               
+                </div>  
+                @endif
+                @endforeach
             </div>
         </div>
     </div>
@@ -92,7 +72,7 @@
             <div class="schedule-header">
                 <div class="titles">
                     <p>Study Conseling Schedule</p>
-                    <p>Here’s your study conseling schedule</p>
+                    <p>Here’s your Study schedule</p>
                 </div>
                 <div class="date-picker">
                     <input type="date" id="Test_DatetimeLocal">
@@ -111,79 +91,166 @@
                         <td>14.00</td>
                         <td>15.00</td>
                     </tr>
+
+                    @foreach ($konselingBk as $konseling)
+                    @if ($konseling->konselingBk->layanan->jenis_layanan == 'bimbingan belajar')
+                    @if ($konseling->konselingBk->status=='accepted')
+                    @if ($konseling->konselingBk->jam_mulai=='08:00:00')
                     <tr class="bbt">
-                        <td>Mon</td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr class="bbt">
-                        <td>Tue</td>
-                        <td></td>
-                        <td colspan="2" style="padding: 0px">
-                            <div class="belajar">
-                            <div class="schedule-book">
-                                <p>Study Conseling</p>
-                                <p>Mrs. Sheila Riani P S.Pst</p>
+                        <td>{{ $konseling->konselingBk->tanggal }}</td>
+                        <td
+                            colspan="{{ Carbon\Carbon::parse($konseling->konselingBk->jam_mulai)->diffInHours(Carbon\Carbon::parse($konseling->konselingBk->jam_berakhir))+1}}">
+                            <div class="belajar"
+                                >
+                                <div class="schedule-book">
+                                    <p>{{ $konseling->konselingBk->guruBK->nama }}</p>
+                                    <p>{{ $konseling->konselingBk->topik }}</p>
                                 </div>
                             </div>
                         </td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
                     </tr>
+                    @endif
+
+                    @if ($konseling->konselingBk->jam_mulai=='09:00:00')
                     <tr class="bbt">
-                        <td>Wed</td>
+                        <td>{{ $konseling->konselingBk->tanggal }}</td>
                         <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
+                        <td
+                            colspan="{{ Carbon\Carbon::parse($konseling->konselingBk->jam_mulai)->diffInHours(Carbon\Carbon::parse($konseling->konselingBk->jam_berakhir))+1}}">
+                            <div class="belajar"
+                                >
+                                <div class="schedule-book">
+                                    <p>{{ $konseling->konselingBk->guruBK->nama }}</p>
+                                    <p>{{ $konseling->konselingBk->topik }}</p>
+                                </div>
+                            </div>
+                        </td>
                     </tr>
+                    @endif
+
+                    @if ($konseling->konselingBk->jam_mulai=='10:00:00')
                     <tr class="bbt">
-                        <td>Thu</td>
+                        <td>{{ $konseling->konselingBk->tanggal }}</td>
                         <td></td>
                         <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
+                        <td
+                            colspan="{{ Carbon\Carbon::parse($konseling->konselingBk->jam_mulai)->diffInHours(Carbon\Carbon::parse($konseling->konselingBk->jam_berakhir))+1}}">
+                            <div class="belajar"
+                                >
+                                <div class="schedule-book">
+                                    <p>{{ $konseling->konselingBk->guruBK->nama }}</p>
+                                    <p>{{ $konseling->konselingBk->topik }}</p>
+                                </div>
+                            </div>
+                        </td>
                     </tr>
+                    @endif
+
+                    @if ($konseling->konselingBk->jam_mulai=='11:00:00')
                     <tr class="bbt">
-                        <td>Fri</td>
+                        <td>{{ $konseling->konselingBk->tanggal }}</td>
                         <td></td>
                         <td></td>
                         <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
+                        <td
+                            colspan="{{ Carbon\Carbon::parse($konseling->konselingBk->jam_mulai)->diffInHours(Carbon\Carbon::parse($konseling->konselingBk->jam_berakhir))+1}}">
+                            <div class="belajar"
+                                >
+                                <div class="schedule-book">
+                                    <p>{{ $konseling->konselingBk->guruBK->nama }}</p>
+                                    <p>{{ $konseling->konselingBk->topik }}</p>
+                                </div>
+                            </div>
+                        </td>
                     </tr>
+                    @endif
+
+
+                    @if ($konseling->konselingBk->jam_mulai=='12:00:00')
                     <tr class="bbt">
-                        <td>Sat</td>
+                        <td>{{ $konseling->konselingBk->tanggal }}</td>
                         <td></td>
                         <td></td>
                         <td></td>
                         <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
+                        <td
+                            colspan="{{ Carbon\Carbon::parse($konseling->konselingBk->jam_mulai)->diffInHours(Carbon\Carbon::parse($konseling->konselingBk->jam_berakhir))+1}}">
+                            <div class="belajar"
+                                >
+                                <div class="schedule-book">
+                                    <p>{{ $konseling->konselingBk->guruBK->nama }}</p>
+                                    <p>{{ $konseling->konselingBk->topik }}</p>
+                                </div>
+                            </div>
+                        </td>
                     </tr>
+                    @endif
+                    @if ($konseling->konselingBk->jam_mulai=='13:00:00')
+                    <tr class="bbt">
+                        <td>{{ $konseling->konselingBk->tanggal }}</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td
+                            colspan="{{ Carbon\Carbon::parse($konseling->konselingBk->jam_mulai)->diffInHours(Carbon\Carbon::parse($konseling->konselingBk->jam_berakhir))+1}}">
+                            <div class="belajar"
+                                >
+                                <div class="schedule-book">
+                                    <p>{{ $konseling->konselingBk->guruBK->nama }}</p>
+                                    <p>{{ $konseling->konselingBk->topik }}</p>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    @endif
+                    @if ($konseling->konselingBk->jam_mulai=='14:00:00')
+                    <tr class="bbt">
+                        <td>{{ $konseling->konselingBk->tanggal }}</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td
+                            colspan="{{ Carbon\Carbon::parse($konseling->konselingBk->jam_mulai)->diffInHours(Carbon\Carbon::parse($konseling->konselingBk->jam_berakhir))+1}}">
+                            <div class="belajar"
+                                >
+                                <div class="schedule-book">
+                                    <p>{{ $konseling->konselingBk->guruBK->nama }}</p>
+                                    <p>{{ $konseling->konselingBk->topik }}</p>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    @endif
+                    @if ($konseling->konselingBk->jam_mulai=='15:00:00')
+                    <tr class="bbt">
+                        <td>{{ $konseling->konselingBk->tanggal }}</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td colspan="0">
+                            <div class="belajar"
+                                >
+                                <div class="schedule-book">
+                                    <p>{{ $konseling->konselingBk->guruBK->nama }}</p>
+                                    <p>{{ $konseling->konselingBk->topik }}</p>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    @endif
+
+                    @endif
+                    @endif
+                    @endforeach
                 </table>
             </div>
         </div>

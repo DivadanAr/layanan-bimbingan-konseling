@@ -3,7 +3,7 @@
     <div class="navbar">
 
         <div class="logo">
-            <img src="assets/img/logoTb.png" alt="">
+            <img src="{{asset('assets/img/logoTb.png')}}" alt="">
             <p>Starbhak Konseling</p>
         </div>
         <div class="menu">
