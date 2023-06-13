@@ -34,8 +34,8 @@
                                                 <button type="button" class="btn btn-primary"
                                                     style="height: 37px; margin-right:20px">Add</button>
                                             </a>
-                                            {{-- <form action="{{ route('export-excel') }}" method="POST" target="_blank"> --}}
-                                                <form action="{{ route('export-pdf') }}" method="GET" target="_blank">
+                                            <form action="{{ route('export-excel') }}" method="POST" target="_blank">
+                                                {{-- <form action="{{ route('export-pdf') }}" method="GET" target="_blank"> --}}
 
                                                 @csrf
                                                 <a href="">

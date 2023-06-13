@@ -42,6 +42,8 @@ Route::middleware([
     Route::resource('dashboard', DashboardController::class);
     Route::resource('kerawanan', KerawananController::class);
 
+    Route::get('layanan/bimbingan-konseling', [KonselingBKController::class, 'indexBimbingan'])->name('layanan-bk');
+    
     // bimbingan pribadi
     Route::get('layanan/bimbingan-pribadi/jadwal', [KonselingBKController::class, 'indexBimbingan'])->name('pribadi-pending-index');
     Route::get('layanan/bimbingan-pribadi/accept', [KonselingBKController::class, 'indexBimbingan'])->name('pribadi-accept-index');
@@ -114,6 +116,8 @@ Route::middleware([
     'verified',
     'role:guru_bk|wali_kelas|siswa'
 ])->group(function () {
+    Route::get('bimbingan-konseling', [KonselingBKController::class, 'indexBimbingan'])->name('layanan-bk');
+
     Route::get('/home', function () {
         return view('users.index');
     })->name('home');

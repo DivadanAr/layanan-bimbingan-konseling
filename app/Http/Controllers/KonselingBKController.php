@@ -21,98 +21,201 @@ class KonselingBKController extends Controller
      */
     public function indexBimbingan()
     {
-        if (Route::is('pribadi-pending-index')) {
-            $data = KonselingBk::where('layanan_id', 1)->where('status', 'pending')->get();
-            return view('layanan', compact('data'));
-        }
-        if (Route::is('pribadi-accept-index')) {
-            $data = KonselingBk::where('layanan_id', 1)->where('status', 'accepted')->get();
-            return view('layanan', compact('data'));
-        }
-        if (Route::is('pribadi-reschedule-index')) {
-            $data = KonselingBk::where('layanan_id', 1)->where('status', 're-schedule')->get();
-            return view('layanan', compact('data'));
-        }
-        if (Route::is('pribadi-cancel-index')) {
-            $data = KonselingBk::where('layanan_id', 1)->where('status', 'canceled')->get();
-            return view('layanan', compact('data'));
-        }
-        if (Route::is('pribadi-done-index')) {
-            $data = KonselingBk::where('layanan_id', 1)->where('status', 'done')->get();
-            return view('layanan', compact('data'));
+        // if (Route::is('pribadi-pending-index')) {
+        //     $data = KonselingBk::where('layanan_id', 1)->where('status', 'pending')->get();
+        //     return view('layanan', compact('data'));
+        // }
+        // if (Route::is('pribadi-accept-index')) {
+        //     $data = KonselingBk::where('layanan_id', 1)->where('status', 'accepted')->get();
+        //     return view('layanan', compact('data'));
+        // }
+        // if (Route::is('pribadi-reschedule-index')) {
+        //     $data = KonselingBk::where('layanan_id', 1)->where('status', 're-schedule')->get();
+        //     return view('layanan', compact('data'));
+        // }
+        // if (Route::is('pribadi-cancel-index')) {
+        //     $data = KonselingBk::where('layanan_id', 1)->where('status', 'canceled')->get();
+        //     return view('layanan', compact('data'));
+        // }
+        // if (Route::is('pribadi-done-index')) {
+        //     $data = KonselingBk::where('layanan_id', 1)->where('status', 'done')->get();
+        //     return view('layanan', compact('data'));
+        // }
+        if (Auth::user()->hasRole('siswa')) {
+            $layananBk = LayananBk::all();
+            $siswa = Siswa::where('user_id', Auth()->id())->first();
+
+            $konselingBk = siswaKonseling::where('siswa_id', $siswa->id)->get();
+
+            return view('users.coba', compact('konselingBk'));
         }
 
 
-        // sosial
-        if (Route::is('sosial-pending-index')) {
-            $layananBk = LayananBk::all();
-            $guruBk = GuruBk::where('user_id', Auth()->id())->first(); 
-            $walas = Kelas::where('guru_bk_id', $guruBk->id)->first(); 
-    
-            $konselingBk = KonselingBk::where('guru_bk_id', $walas->guru_bk_id)
-                ->where('wali_kelas_id', $walas->wali_kelas_id)
-                ->where('layanan_id', 2)
-                ->where('status', 'pending')
-                ->get(); 
-    
-            return view('layanan', compact('layananBk', 'konselingBk'));
-         }
-        if (Route::is('sosial-accept-index')) {
-            $layananBk = LayananBk::all();
-            $guruBk = GuruBk::where('user_id', Auth()->id())->first(); 
-            $walas = Kelas::where('guru_bk_id', $guruBk->id)->first(); 
-    
-            $konselingBk = KonselingBk::where('guru_bk_id', $walas->guru_bk_id)
-                ->where('wali_kelas_id', $walas->wali_kelas_id)
-                ->where('layanan_id', 2)
-                ->where('status', 'accepted')
-                ->get(); 
-    
-            return view('layanan', compact('layananBk', 'konselingBk'));
-         }
-         if (Route::is('sosial-reschedule-index')) {
-            $layananBk = LayananBk::all();
-            $guruBk = GuruBk::where('user_id', Auth()->id())->first(); 
-            $walas = Kelas::where('guru_bk_id', $guruBk->id)->first(); 
-    
-            $konselingBk = KonselingBk::where('guru_bk_id', $walas->guru_bk_id)
-                ->where('wali_kelas_id', $walas->wali_kelas_id)
-                ->where('layanan_id', 2)
-                ->where('status', 're-schedule')
-                ->get(); 
-    
-            return view('layanan', compact('layananBk', 'konselingBk'));  
-         }
-         if (Route::is('sosial-cancel-index')) {
-            $layananBk = LayananBk::all();
-            $guruBk = GuruBk::where('user_id', Auth()->id())->first(); 
-            $walas = Kelas::where('guru_bk_id', $guruBk->id)->first(); 
-    
-            $konselingBk = KonselingBk::where('guru_bk_id', $walas->guru_bk_id)
-                ->where('wali_kelas_id', $walas->wali_kelas_id)
-                ->where('layanan_id', 2)
-                ->where('status', 'canceled')
-                ->get(); 
-    
-            return view('layanan', compact('layananBk', 'konselingBk'));
+        if (Auth::user()->hasRole('guru_bk')||Auth::user()->hasRole('wali_kelas')) {
+            if (Route::is('layanan-bk')) {
+                if (Auth::user()->hasRole('guru_bk')) {
+                    $layananBk = LayananBk::all();
+                    $guruBk = GuruBk::where('user_id', Auth()->id())->first(); 
+                    $walas = Kelas::where('guru_bk_id', $guruBk->id)->first(); 
             
-         }
-         if (Route::is('sosial-done-index')) {
-            $layananBk = LayananBk::all();
-            $guruBk = GuruBk::where('user_id', Auth()->id())->first(); 
-            $walas = Kelas::where('guru_bk_id', $guruBk->id)->first(); 
-    
-            $konselingBk = KonselingBk::where('guru_bk_id', $walas->guru_bk_id)
-                ->where('wali_kelas_id', $walas->wali_kelas_id)
-                ->where('layanan_id', 2)
-                ->where('status', 'done')
-                ->get(); 
-    
-            return view('layanan', compact('layananBk', 'konselingBk'));
+                    $konselingBk = KonselingBk::where('guru_bk_id', $walas->guru_bk_id)
+                        ->where('wali_kelas_id', $walas->wali_kelas_id)
+                        ->get(); 
             
-         }
-         
-
+                    return view('layanan', compact('layananBk', 'konselingBk'));
+                }
+                if (Auth::user()->hasRole('wali_kelas')) {
+                    $layananBk = LayananBk::all();
+                    $walas = Walas::where('user_id', Auth()->id())->first(); 
+                    $walas = Kelas::where('guru_bk_id', $walas->id)->first(); 
+            
+                    $konselingBk = KonselingBk::where('guru_bk_id', $walas->guru_bk_id)
+                        ->where('wali_kelas_id', $walas->wali_kelas_id)
+                        ->get(); 
+            
+                    return view('layanan', compact('layananBk', 'konselingBk'));
+                }
+             }
+    
+            // pribadi
+            if (Route::is('pribadi-pending-index')) {
+                $layananBk = LayananBk::all();
+                $guruBk = GuruBk::where('user_id', Auth()->id())->first(); 
+                $walas = Kelas::where('guru_bk_id', $guruBk->id)->first(); 
+        
+                $konselingBk = KonselingBk::where('guru_bk_id', $walas->guru_bk_id)
+                    ->where('wali_kelas_id', $walas->wali_kelas_id)
+                    ->where('layanan_id', 1)
+                    ->where('status', 'pending')
+                    ->get(); 
+        
+                return view('layanan', compact('layananBk', 'konselingBk'));
+             }
+            if (Route::is('pribadi-accept-index')) {
+                $layananBk = LayananBk::all();
+                $guruBk = GuruBk::where('user_id', Auth()->id())->first(); 
+                $walas = Kelas::where('guru_bk_id', $guruBk->id)->first(); 
+        
+                $konselingBk = KonselingBk::where('guru_bk_id', $walas->guru_bk_id)
+                    ->where('wali_kelas_id', $walas->wali_kelas_id)
+                    ->where('layanan_id', 1)
+                    ->where('status', 'accepted')
+                    ->get(); 
+        
+                return view('layanan', compact('layananBk', 'konselingBk'));
+             }
+             if (Route::is('pribadi-reschedule-index')) {
+                $layananBk = LayananBk::all();
+                $guruBk = GuruBk::where('user_id', Auth()->id())->first(); 
+                $walas = Kelas::where('guru_bk_id', $guruBk->id)->first(); 
+        
+                $konselingBk = KonselingBk::where('guru_bk_id', $walas->guru_bk_id)
+                    ->where('wali_kelas_id', $walas->wali_kelas_id)
+                    ->where('layanan_id', 1)
+                    ->where('status', 're-schedule')
+                    ->get(); 
+        
+                return view('layanan', compact('layananBk', 'konselingBk'));  
+             }
+             if (Route::is('pribadi-cancel-index')) {
+                $layananBk = LayananBk::all();
+                $guruBk = GuruBk::where('user_id', Auth()->id())->first(); 
+                $walas = Kelas::where('guru_bk_id', $guruBk->id)->first(); 
+        
+                $konselingBk = KonselingBk::where('guru_bk_id', $walas->guru_bk_id)
+                    ->where('wali_kelas_id', $walas->wali_kelas_id)
+                    ->where('layanan_id', 1)
+                    ->where('status', 'canceled')
+                    ->get(); 
+        
+                return view('layanan', compact('layananBk', 'konselingBk'));
+                
+             }
+             if (Route::is('pribadi-done-index')) {
+                $layananBk = LayananBk::all();
+                $guruBk = GuruBk::where('user_id', Auth()->id())->first(); 
+                $walas = Kelas::where('guru_bk_id', $guruBk->id)->first(); 
+        
+                $konselingBk = KonselingBk::where('guru_bk_id', $walas->guru_bk_id)
+                    ->where('wali_kelas_id', $walas->wali_kelas_id)
+                    ->where('layanan_id', 1)
+                    ->where('status', 'done')
+                    ->get(); 
+        
+                return view('layanan', compact('layananBk', 'konselingBk'));
+                
+             }
+    
+            // sosial
+            if (Route::is('sosial-pending-index')) {
+                $layananBk = LayananBk::all();
+                $guruBk = GuruBk::where('user_id', Auth()->id())->first(); 
+                $walas = Kelas::where('guru_bk_id', $guruBk->id)->first(); 
+        
+                $konselingBk = KonselingBk::where('guru_bk_id', $walas->guru_bk_id)
+                    ->where('wali_kelas_id', $walas->wali_kelas_id)
+                    ->where('layanan_id', 2)
+                    ->where('status', 'pending')
+                    ->get(); 
+        
+                return view('layanan', compact('layananBk', 'konselingBk'));
+             }
+            if (Route::is('sosial-accept-index')) {
+                $layananBk = LayananBk::all();
+                $guruBk = GuruBk::where('user_id', Auth()->id())->first(); 
+                $walas = Kelas::where('guru_bk_id', $guruBk->id)->first(); 
+        
+                $konselingBk = KonselingBk::where('guru_bk_id', $walas->guru_bk_id)
+                    ->where('wali_kelas_id', $walas->wali_kelas_id)
+                    ->where('layanan_id', 2)
+                    ->where('status', 'accepted')
+                    ->get(); 
+        
+                return view('layanan', compact('layananBk', 'konselingBk'));
+             }
+             if (Route::is('sosial-reschedule-index')) {
+                $layananBk = LayananBk::all();
+                $guruBk = GuruBk::where('user_id', Auth()->id())->first(); 
+                $walas = Kelas::where('guru_bk_id', $guruBk->id)->first(); 
+        
+                $konselingBk = KonselingBk::where('guru_bk_id', $walas->guru_bk_id)
+                    ->where('wali_kelas_id', $walas->wali_kelas_id)
+                    ->where('layanan_id', 2)
+                    ->where('status', 're-schedule')
+                    ->get(); 
+        
+                return view('layanan', compact('layananBk', 'konselingBk'));  
+             }
+             if (Route::is('sosial-cancel-index')) {
+                $layananBk = LayananBk::all();
+                $guruBk = GuruBk::where('user_id', Auth()->id())->first(); 
+                $walas = Kelas::where('guru_bk_id', $guruBk->id)->first(); 
+        
+                $konselingBk = KonselingBk::where('guru_bk_id', $walas->guru_bk_id)
+                    ->where('wali_kelas_id', $walas->wali_kelas_id)
+                    ->where('layanan_id', 2)
+                    ->where('status', 'canceled')
+                    ->get(); 
+        
+                return view('layanan', compact('layananBk', 'konselingBk'));
+                
+             }
+             if (Route::is('sosial-done-index')) {
+                $layananBk = LayananBk::all();
+                $guruBk = GuruBk::where('user_id', Auth()->id())->first(); 
+                $walas = Kelas::where('guru_bk_id', $guruBk->id)->first(); 
+        
+                $konselingBk = KonselingBk::where('guru_bk_id', $walas->guru_bk_id)
+                    ->where('wali_kelas_id', $walas->wali_kelas_id)
+                    ->where('layanan_id', 2)
+                    ->where('status', 'done')
+                    ->get(); 
+        
+                return view('layanan', compact('layananBk', 'konselingBk'));
+                
+             }
+                 
+        }
 
         //  karir
         if (Route::is('karir-pending-index')) {
