@@ -24,19 +24,10 @@
                             style="border-radius: 100%; width: 42px; border: 5px solid #72a9e9" />
                     </div>
                 </button>
-                {{-- @else
-                <button class="dropdown-toggle" id="dropdownButton">
-                    <div class="avatar" style="border-radius: 100%">
-                        <img src="{{ asset('storage/profile-photos') }}/{{ Auth::user()->profile_photo_path }}" alt class="w-px-40 h-auto rounded-circle"
-                            style="border-radius: 100%; width: 42px; border: 5px solid #72a9e9" />
-                    </div>
-                </button>
-                @endif --}}
                 <ul class="nav__listitemdrop">
                   <li>
                     @if (Auth::user()->hasRole('admin')||Auth::user()->hasRole('guru_bk')||Auth::user()->hasRole('wali_kelas'))
                     <div style="margin: 10px 15px"><a style="text-decoration: none; color: black; display: flex; align-items: center; gap: 10px" class="dropdown-item setting" href="{{ url('dashboard') }}">Dashboard 
-                        {{-- <iconify-icon icon="solar:user-bold" style="font-size: 20px; color: grey;"></iconify-icon> --}}
                     </a></div>
                     @elseif(Auth::user()->hasRole('siswa'))
                     <div style="margin: 10px 15px"><a style="text-decoration: none; color: black; display: flex; align-items: center; gap: 10px" class="dropdown-item setting" href="{{ url('siswas') }}">Profile <iconify-icon icon="solar:user-bold" style="font-size: 20px; color: grey;"></iconify-icon>
