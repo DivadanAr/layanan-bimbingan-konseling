@@ -1,0 +1,99 @@
+
+.schedule-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.schedule .titles p:first-child {
+    font-size: 25px;
+    color: #0A2647;
+    font-weight: 700;
+}
+
+.schedule .titles p:last-child {
+    font-size: 15px;
+    color: #0A2647;
+    font-weight: 500;
+    margin-top: -30px;
+}
+
+.date-picker input {
+    background-color: #0A2647;
+    color: white;
+    font-weight: 500;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 15px;
+}
+
+.date-picker input::-webkit-calendar-picker-indicator {
+    filter: invert(100%);
+
+}
+
+
+
+table {
+    border-collapse: collapse;
+}
+
+.bbt {
+    border-bottom: 1px solid black;
+}
+
+td:first-child {
+    opacity: 0.6;
+    font-weight: 600;
+}
+
+tr:first-child {
+    opacity: 0.6;
+    font-weight: 600;
+}
+
+.schedule-book{
+    width: 100%;
+    height: 45px;   
+    color: white;
+    line-height: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: start;
+    padding-left: 10px;
+
+}
+.schedule p:first-child{
+    font-size: 12px;
+    font-weight: 500;
+}
+.schedule p:last-child{
+    font-size: 14px;
+    font-weight: 700;
+    margin-top: 5px;
+}
+
+.belajar{
+    background-color: #0A2647;
+    border-radius: 10px;
+}
+
+.karir{
+    background-color: #394867;
+    border-radius: 10px;
+}
+
+.sosial{
+    background-color: white;
+    border-radius: 10px;
+}
+
+.sosial .schedule-book{
+    color: #0A2647;
+}
+
+.pribadi{
+    background-color: #537188;
+    border-radius: 10px;
+}

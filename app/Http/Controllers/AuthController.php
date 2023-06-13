@@ -36,26 +36,18 @@ class AuthController extends Controller
         return response()->json($response, 200);
     }    
 
-    public function login(Request $req)
+    function Login(Request $R)
     {
-        $rules=[
-            'email'=> 'required',
-            'password'=> 'required',
-        ];
-        
-        $req->validate($rules);
+        $user = User::where('name', $R->name)->first();
 
-        $user = User::where('email', $req->email)->first();
-
-        if ($user && Hash::check    ($req->password, $user->password)) {
-            $token = $user->createToken('Personal Acces Token')->plainTextToken;
-            $response = ['user'=>$user, 'token'=>$token];
-
-            return response()->json($response, 200);
+        if ($user != '[]' && Hash::check($R->password, $user->password)) {
+            $token = $user->createToken('Personal Access Token')->plainTextToken;
+            $response = ['status' => 200, 'token' => $token, 'user' => $user, 'message' => 'Login Successfully!'];
+            return response()->json($response);
+        } else if ($user == '[]') {
+            $response = ['status' => 500, 'message' => 'No account found with this username'];
+        } else {
+            $response = ['status' => 500, 'message' => 'Wrong username or password! please try again'];
         }
-
-        $response = ['message'=>'Incorrect Email or Password'];
-
-        return response()->json($response, 400);
-    }    
+    }
 }

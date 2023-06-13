@@ -2,6 +2,7 @@
 
 @section('css')
 <link rel="stylesheet" href="assets/css/siswa.css">
+<link rel="stylesheet" href="assets/css/tabel-schedule.css">
 @endsection
 
 @section('content')
@@ -21,46 +22,50 @@
             <div class="card">
                 <div class="first-content">
                     <div class="pp">
-                        <img src="{{ Auth::user()->profile_photo_url }}" alt="">
+                        <img src="" alt="">
                     </div>
-                    <p class="nama">{{Auth::user()->name}}</p>
-                    <p class="kelas">{{Auth::user()->siswa->kelas->nama}}</p>
+                    <p class="nama">Divadan Arya Putrama</p>
+                    <p class="kelas">XI PPLG 2</p>
                 </div>
                 <div class="second-content">
                     <div class="nisn">
                         <p>NISN</p>
-                        <p>{{Auth::user()->siswa->nisn}}</p>
+                        <p>987654321</p>
                     </div>
                     <div class="name">
                         <p>Name</p>
-                        <p>{{Auth::user()->name}}</p>
+                        <p>Divadan Arya Putrama</p>
                     </div>
                     <div class="class">
                         <p>Class</p>
-                        <p>{{Auth::user()->siswa->kelas->nama}}</p>
+                        <p>XI PPLG 2</p>
                     </div>
                     <div class="gender">
                         <p>Gender</p>
-                        <p>{{Auth::user()->siswa->kelamin}}</p>
+                        <p>Male</p>
                     </div>
                     <div class="birth-date">
                         <p>Birth Date</p>
-                        <p>{{Auth::user()->siswa->tanggal_lahir}}</p>
+                        <p>22 - 12 - 2005</p>
                     </div>
                     <div class="phone-nmbr">
                         <p>Phone Number</p>
-                        <p>{{Auth::user()->siswa->telepon}}</p>
+                        <p>081234567</p>
                     </div>
                     <div class="email">
                         <p>Email</p>
-                        <p>{{Auth::user()->email}}</p>
+                        <p>Divadanarya@gmail.com</p>
                     </div>
                 </div>
 
             </div>
+
+            
             <button class="edit-profile">
-                Edit Profile
+               <a href="#modal-picture">Change Picture</a>
             </button>
+
+           
 
         </div>
 
@@ -91,8 +96,15 @@
                     </tr>
                     <tr class="bbt">
                         <td>Mon</td>
-                        <td></td>
-                        <td></td>
+                        <td colspan="2" style="padding: 0px">
+                            <div class="belajar">
+                            <div class="schedule-book">
+                                <p>Study Conseling</p>
+                                <p>Mrs. Sheila Riani P S.Pst</p>
+                                </div>
+                            </div>
+                        </td>
+                        {{-- <td></td> --}}
                         <td></td>
                         <td></td>
                         <td></td>
@@ -105,9 +117,18 @@
                         <td></td>
                         <td></td>
                         <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
+                        <td colspan="3" style="padding: 0px">
+                            <div class="karir">
+                                <div class="schedule-book">
+                                    <p>Career Counseling</p>
+                                    <p>Mrs. Sheila Riani P S.Pst</p>
+                                </div>
+                            </div>
+                         
+                        </td>
+                        {{-- <td></td>
+                        <td></td> --}}
+                    
                         <td></td>
                         <td></td>
                     </tr>
@@ -130,8 +151,17 @@
                         <td></td>
                         <td></td>
                         <td></td>
-                        <td></td>
-                        <td></td>
+
+                        <td colspan="2" style="padding: 0px">
+                            <div class="sosial">
+                                <div class="schedule-book">
+                                    <p>Social Conseling</p>
+                                    <p>Mrs. Sheila Riani P S.Pst</p>
+                                </div>
+                            </div>
+                         
+                        </td>
+                        {{-- <td></td> --}}
                     </tr>
                     <tr class="bbt">
                         <td>Fri</td>
@@ -147,8 +177,17 @@
                     <tr class="bbt">
                         <td>Sat</td>
                         <td></td>
-                        <td></td>
-                        <td></td>
+                        
+                        <td colspan="2" style="padding: 0px">
+                            <div class="pribadi">
+                                <div class="schedule-book">
+                                    <p>Private Conseling</p>
+                                    <p>Mrs. Sheila Riani P S.Pst</p>
+                                </div>
+                            </div>
+                         
+                        </td>
+                        {{-- <td></td> --}}
                         <td></td>
                         <td></td>
                         <td></td>
@@ -196,13 +235,10 @@
                     </div>
                     <div class="modal-body">
                         <div class="title">
-                            <p>Conseling Title</p>
+                            <p>Conseling Topic</p>
                             <input type="text" placeholder="What do you want to talk about?">
                         </div>
-                        <div class="topic">
-                            <p>Conseling Topic</p>
-                            <textarea name=""  placeholder="A simple description of what do you want to talk about?" id="" cols="70" rows="5"> </textarea>
-                        </div>
+                        
                     </div>
                     <div class="modal-footer">
                         <a href="#" class="Cancle">
@@ -256,13 +292,10 @@
                         </div>
                         <div class="modal-body">
                             <div class="title">
-                                <p>Conseling Title</p>
+                                <p>Conseling Topic</p>
                                 <input type="text" placeholder="What do you want to talk about?">
                             </div>
-                            <div class="topic">
-                                <p>Conseling Topic</p>
-                                <textarea name=""  placeholder="A simple description of what do you want to talk about?" id="" cols="70" rows="5"> </textarea>
-                            </div>
+                            
                         </div>
                         <div class="modal-footer">
                             <a href="#" class="Cancle">
@@ -318,9 +351,9 @@
                                 <p>Conseling Title</p>
                                 <input type="text" placeholder="What do you want to talk about?">
                             </div>
-                            <div class="topic">
-                                <p>Conseling Topic</p>
-                                <textarea name=""  placeholder="A simple description of what do you want to talk about?" id="" cols="70" rows="5"> </textarea>
+                            <div class="title">
+                                <p>Conseling Friends</p>
+                                <input type="text" placeholder="">
                             </div>
                         </div>
                         <div class="modal-footer">
@@ -373,13 +406,10 @@
                         </div>
                         <div class="modal-body">
                             <div class="title">
-                                <p>Conseling Title</p>
+                                <p>Conseling Topic</p>
                                 <input type="text" placeholder="What do you want to talk about?">
                             </div>
-                            <div class="topic">
-                                <p>Conseling Topic</p>
-                                <textarea name=""  placeholder="A simple description of what do you want to talk about?" id="" cols="70" rows="5"> </textarea>
-                            </div>
+                           
                         </div>
                         <div class="modal-footer">
                             <a href="#" class="cancle">
@@ -397,4 +427,39 @@
     </div>
 
 </div>
+
+<div id="modal-picture" class="modal">
+    <div class="modal__content">
+        <div class="modal-header">
+            <p>Change Profile Picture</p>
+            <p>Change your profile picture here</p>
+        </div>
+        <div class="modal-body">
+            <div class="drag-area">
+                <div class="icon">
+                    <i class="fa fa-files-o" aria-hidden="true"></i>
+                </div>
+                <div class="image-preview"></div>
+                <div class="fileinfo">
+                    <p></p>
+                </div>
+                <span class="header">Drag & Drop</span>
+                <span class="header">or <span class="button">browse</span></span>
+                <input type="file" name="file" id="file-input" hidden>
+
+            </div>
+        </div>
+        <div class="modal-footer">
+            <a href="#" class="Cancle">
+                Cancel
+            </a>
+            <a href="">
+                Change Picture
+            </a>
+        </div>
+    </div>
+</div>
+</div>
+
+<script src="assets/js/siswa.js"></script>
 @endsection
