@@ -28,7 +28,7 @@ Route::get('/', function () {
 });
 
 Route::post('export-petakerawanan', [PetaKerawananController::class, 'export'])->name('export-excel');
-Route::get('create-pdf-file', [PemanggilanController::class, 'exportpdf'])->name('export-pdf');
+Route::get('create-pdf-file/{id}', [PemanggilanController::class, 'exportpdf'])->name('export-pdf');
 
 Route::middleware([
     'auth:sanctum',
@@ -41,6 +41,8 @@ Route::middleware([
     Route::resource('walas', WalasController::class);
     Route::resource('dashboard', DashboardController::class);
     Route::resource('kerawanan', KerawananController::class);
+    Route::resource('pemanggilan', PemanggilanController::class);
+
 
     // bimbingan pribadi
     Route::get('layanan/bimbingan-pribadi/jadwal', [KonselingBKController::class, 'indexBimbinganPribadi'])->name('pribadi-pending-index');

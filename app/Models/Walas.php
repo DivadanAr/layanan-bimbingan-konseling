@@ -19,5 +19,9 @@ class Walas extends Model
     {
         return $this->belongsTo(Kelas::class);
     }
+    public function pemanggilan()
+    {
+        return $this->hasMany(pemanggilan::class);
+    }
 
 }

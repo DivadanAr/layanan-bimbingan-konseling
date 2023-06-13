@@ -7,7 +7,7 @@
 
 @section('content')
 <div class="container">
-    
+
     <div class="left-side">
         <div class="back">
             <a href="/">
@@ -15,7 +15,7 @@
                     <iconify-icon icon="ion:arrow-back-outline"></iconify-icon>
                 </button>
             </a>
-          
+
             <p>Profile</p>
         </div>
         <div class="profile">
@@ -60,12 +60,12 @@
 
             </div>
 
-            
+
             <button class="edit-profile">
-               <a href="#modal-picture">Change Picture</a>
+                <a href="#modal-picture">Change Picture</a>
             </button>
 
-           
+
 
         </div>
 
@@ -98,9 +98,9 @@
                         <td>Mon</td>
                         <td colspan="2" style="padding: 0px">
                             <div class="belajar">
-                            <div class="schedule-book">
-                                <p>Study Conseling</p>
-                                <p>Mrs. Sheila Riani P S.Pst</p>
+                                <div class="schedule-book">
+                                    <p>Study Conseling</p>
+                                    <p>Mrs. Sheila Riani P S.Pst</p>
                                 </div>
                             </div>
                         </td>
@@ -124,11 +124,11 @@
                                     <p>Mrs. Sheila Riani P S.Pst</p>
                                 </div>
                             </div>
-                         
+
                         </td>
                         {{-- <td></td>
                         <td></td> --}}
-                    
+
                         <td></td>
                         <td></td>
                     </tr>
@@ -159,7 +159,7 @@
                                     <p>Mrs. Sheila Riani P S.Pst</p>
                                 </div>
                             </div>
-                         
+
                         </td>
                         {{-- <td></td> --}}
                     </tr>
@@ -177,7 +177,7 @@
                     <tr class="bbt">
                         <td>Sat</td>
                         <td></td>
-                        
+
                         <td colspan="2" style="padding: 0px">
                             <div class="pribadi">
                                 <div class="schedule-book">
@@ -185,7 +185,7 @@
                                     <p>Mrs. Sheila Riani P S.Pst</p>
                                 </div>
                             </div>
-                         
+
                         </td>
                         {{-- <td></td> --}}
                         <td></td>
@@ -236,9 +236,21 @@
                     <div class="modal-body">
                         <div class="title">
                             <p>Conseling Topic</p>
-                            <input type="text" placeholder="What do you want to talk about?">
+                            <input type="text" name="topik" placeholder="What do you want to talk about?">
+                            <div class="place">
+                                <p>Conseling Place</p>
+                                <input type="text" name="tempat" placeholder="place">
+                            </div>
+                            <p>Conseling Date</p>
+                            <input type="date" name="tanggal" placeholder="Date">
+                            <div class="time">
+                                <p>Conseling Time</p>
+                                <input type="time" name="jam_mulai" placeholder="Date">
+                                <input type="time" name="jam_berakhir" placeholder="Date">
+
+                            </div>
                         </div>
-                        
+
                     </div>
                     <div class="modal-footer">
                         <a href="#" class="Cancle">
@@ -252,7 +264,7 @@
             </div>
         </div>
 
-        
+
 
         <div class="study-conseling">
             <div class="study-header">
@@ -293,9 +305,21 @@
                         <div class="modal-body">
                             <div class="title">
                                 <p>Conseling Topic</p>
-                                <input type="text" placeholder="What do you want to talk about?">
+                                <input type="text" name="topik" placeholder="What do you want to talk about?">
+                                <div class="place">
+                                    <p>Conseling Place</p>
+                                    <input type="text" name="tempat" placeholder="place">
+                                </div>
+                                <p>Conseling Date</p>
+                                <input type="date" name="tanggal" placeholder="Date">
+                                <div class="time">
+                                    <p>Conseling Time</p>
+                                    <input type="time" name="jam_mulai" placeholder="Date">
+                                    <input type="time" name="jam_berakhir" placeholder="Date">
+    
+                                </div>
                             </div>
-                            
+    
                         </div>
                         <div class="modal-footer">
                             <a href="#" class="Cancle">
@@ -348,20 +372,29 @@
                         </div>
                         <div class="modal-body">
                             <div class="title">
-                                <p>Conseling Title</p>
-                                <input type="text" placeholder="What do you want to talk about?">
+                                <p>Conseling Topic</p>
+                                <input type="text" name="topik" placeholder="What do you want to talk about?">
+                                <div class="place">
+                                    <p>Conseling Place</p>
+                                    <input type="text" name="tempat" placeholder="place">
+                                </div>
+                                <p>Conseling Date</p>
+                                <input type="date" name="tanggal" placeholder="Date">
+                                <div class="time">
+                                    <p>Conseling Time</p>
+                                    <input type="time" name="jam_mulai" placeholder="Date">
+                                    <input type="time" name="jam_berakhir" placeholder="Date">
+    
+                                </div>
                             </div>
-                            <div class="title">
-                                <p>Conseling Friends</p>
-                                <input type="text" placeholder="">
-                            </div>
+    
                         </div>
                         <div class="modal-footer">
                             <a href="#" class="Cancle">
                                 Cancel
                             </a>
                             <a href="">
-                                Send Request
+                                Change Picture
                             </a>
                         </div>
                     </div>
@@ -407,9 +440,21 @@
                         <div class="modal-body">
                             <div class="title">
                                 <p>Conseling Topic</p>
-                                <input type="text" placeholder="What do you want to talk about?">
+                                <input type="text" name="topik" placeholder="What do you want to talk about?">
+                                <div class="place">
+                                    <p>Conseling Place</p>
+                                    <input type="text" name="tempat" placeholder="place">
+                                </div>
+                                <p>Conseling Date</p>
+                                <input type="date" name="tanggal" placeholder="Date">
+                                <div class="time">
+                                    <p>Conseling Time</p>
+                                    <input type="time" name="jam_mulai" placeholder="Date">
+                                    <input type="time" name="jam_berakhir" placeholder="Date">
+    
+                                </div>
                             </div>
-                           
+    
                         </div>
                         <div class="modal-footer">
                             <a href="#" class="cancle">
