@@ -1,6 +1,6 @@
 <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
     <div class="app-brand demo">
-      <a href="index.html" class="app-brand-link">
+      <a href="/dashboard" class="app-brand-link">
         <span class="app-brand-logo demo">
           <svg
             width="25"
@@ -56,7 +56,7 @@
             </g>
           </svg>
         </span>
-        <span class="app-brand-text demo menu-text fw-bolder ms-2">Sneat</span>
+        <span class=" menu-text fw-bolder ms-2" style="font-size: 24px">StarDash</span>
       </a>
 
       <a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-auto d-block d-xl-none">
@@ -69,7 +69,7 @@
     <ul class="menu-inner py-1">
       <!-- Dashboard -->
       <li class="menu-item active">
-        <a href="index.html" class="menu-link">
+        <a href="/dashboard" class="menu-link">
           <i class="menu-icon tf-icons bx bx-home-circle"></i>
           <div data-i18n="Analytics">Dashboard</div>
         </a>
@@ -156,6 +156,11 @@
               <div data-i18n="cancel">canceled</div>
             </a>
           </li>
+          <li class="menu-item">
+            <a href="{{ route('pribadi-done-index') }}" class="menu-link">
+              <div data-i18n="done">Done</div>
+            </a>
+          </li>
         </ul>
       </li>    
       <li class="menu-item">
@@ -164,6 +169,11 @@
           <div data-i18n="Bimbingan sosial">Bimbingan Sosial</div>
         </a>
         <ul class="menu-sub">
+          <li class="menu-item">
+            <a href="{{ route('sosial-addschedule') }}" class="menu-link">
+              <div data-i18n="Teacher">Add Schedule</div>
+            </a>
+          </li>
           <li class="menu-item">
             <a href="{{ route('sosial-pending-index') }}" class="menu-link">
               <div data-i18n="Teacher">Pending</div>
@@ -184,8 +194,90 @@
               <div data-i18n="cancel">canceled</div>
             </a>
           </li>
+          <li class="menu-item">
+            <a href="{{ route('sosial-done-index') }}" class="menu-link">
+              <div data-i18n="done">done</div>
+            </a>
+          </li>
         </ul>
       </li>          
+      <li class="menu-item">
+        <a href="javascript:void(0);" class="menu-link menu-toggle">
+          <i class="menu-icon tf-icons bx bx-dock-top"></i>
+          <div data-i18n="Bimbingan karir">Bimbingan karir</div>
+        </a>
+        <ul class="menu-sub">
+          <li class="menu-item">
+            <a href="{{ route('karir-addschedule') }}" class="menu-link">
+              <div data-i18n="Teacher">Add Schedule</div>
+            </a>
+          </li>
+          <li class="menu-item">
+            <a href="{{ route('karir-pending-index') }}" class="menu-link">
+              <div data-i18n="Teacher">Pending</div>
+            </a>
+          </li>
+          <li class="menu-item">
+            <a href="{{ route('karir-accept-index') }}" class="menu-link">
+              <div data-i18n="accept">Accepted</div>
+            </a>
+          </li>
+          <li class="menu-item">
+            <a href="{{ route('karir-reschedule-index') }}" class="menu-link">
+              <div data-i18n="Re-Schedule">Re-Scedhule</div>
+            </a>
+          </li>
+          <li class="menu-item">
+            <a href="{{ route('karir-cancel-index') }}" class="menu-link">
+              <div data-i18n="cancel">canceled</div>
+            </a>
+          </li>
+          <li class="menu-item">
+            <a href="{{ route('karir-done-index') }}" class="menu-link">
+              <div data-i18n="done">done</div>
+            </a>
+          </li>
+        </ul>
+      </li>          
+      <li class="menu-item">
+        <a href="javascript:void(0);" class="menu-link menu-toggle">
+          <i class="menu-icon tf-icons bx bx-dock-top"></i>
+          <div data-i18n="Bimbingan belajar">Bimbingan belajar</div>
+        </a>
+        <ul class="menu-sub">
+          <li class="menu-item">
+            <a href="{{ route('belajar-addschedule') }}" class="menu-link">
+              <div data-i18n="Teacher">Add Schedule</div>
+            </a>
+          </li>
+          <li class="menu-item">
+            <a href="{{ route('belajar-pending-index') }}" class="menu-link">
+              <div data-i18n="Teacher">Pending</div>
+            </a>
+          </li>
+          <li class="menu-item">
+            <a href="{{ route('belajar-accept-index') }}" class="menu-link">
+              <div data-i18n="accept">Accepted</div>
+            </a>
+          </li>
+          <li class="menu-item">
+            <a href="{{ route('belajar-reschedule-index') }}" class="menu-link">
+              <div data-i18n="Re-Schedule">Re-Scedhule</div>
+            </a>
+          </li>
+          <li class="menu-item">
+            <a href="{{ route('belajar-cancel-index') }}" class="menu-link">
+              <div data-i18n="cancel">canceled</div>
+            </a>
+          </li>
+          <li class="menu-item">
+            <a href="{{ route('belajar-done-index') }}" class="menu-link">
+              <div data-i18n="done">done</div>
+            </a>
+          </li>
+        </ul>
+      </li>          
+
       @endif
       
     </ul>

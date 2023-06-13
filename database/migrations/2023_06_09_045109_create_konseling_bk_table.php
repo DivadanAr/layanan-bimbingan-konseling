@@ -24,7 +24,7 @@ return new class extends Migration
             $table->time('jam_mulai')->nullable();
             $table->time('jam_berakhir')->nullable();
             $table->string('tempat')->nullable();
-            $table->text('hasi_konseling')->nullable();
+            $table->text('hasil_konseling')->nullable();
             $table->string('status');
             $table->timestamps();
         });
