@@ -10,6 +10,7 @@ use App\Http\Controllers\PetaKerawananController;
 use App\Http\Controllers\QuotesController;
 use App\Http\Controllers\SiswaController;
 use App\Http\Controllers\WalasController;
+use App\Models\quotes;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -23,9 +24,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('users.home');
-});
+Route::get('/', [QuotesController::class, 'show'])->name('home.show');
+
 
 Route::post('export-petakerawanan', [PetaKerawananController::class, 'export'])->name('export-excel');
 Route::get('create-pdf-file/{id}', [PemanggilanController::class, 'exportpdf'])->name('export-pdf');

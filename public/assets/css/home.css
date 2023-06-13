@@ -84,6 +84,7 @@ body::-webkit-scrollbar-thumb
 .tips-box {
     background-color: #AACFFB;
     width: 35vw;
+    min-height: 20vh;
     border-radius: 20px;
     padding: 1px 20px;
     margin-left: 45px;
@@ -124,12 +125,16 @@ body::-webkit-scrollbar-thumb
 }
 
 .teacher-frame img {
-    width: 60px;
-    height: 60px;
+    width: 80px;
+    height: 80px;
     object-fit: cover;
     border-radius: 50%;
 }
 
+.teacher-frame p{
+    font-size: 45px;
+    font-weight: 700;
+}
 .right-side img {
     position: absolute;
     width: 15vw;

@@ -53,9 +53,14 @@ class QuotesController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(quotes $quotes)
+    public function show(quotes $id)
     {
-        //
+
+
+        $quotes = quotes::latest()->first(); 
+        $guru_bk = GuruBk::latest()->first();
+
+        return view('users.home', compact('quotes','guru_bk'));
     }
 
     /**
