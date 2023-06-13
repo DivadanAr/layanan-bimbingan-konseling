@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use League\CommonMark\Extension\SmartPunct\Quote;
 
 class GuruBk extends Model
 {
@@ -19,5 +20,10 @@ class GuruBk extends Model
     {
         return $this->hasOne(Kelas::class);
     }
+    public function quotes()
+    {
+        return $this->hasMany(quotes::class);
+    }
+
 
 }

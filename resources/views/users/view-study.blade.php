@@ -2,6 +2,8 @@
 
 @section('css')
 <link rel="stylesheet" href="assets/css/view-study.css">
+<link rel="stylesheet" href="assets/css/tabel-schedule.css">
+
 @endsection
 
 @section('content')
@@ -123,7 +125,14 @@
                     <tr class="bbt">
                         <td>Tue</td>
                         <td></td>
-                        <td></td>
+                        <td colspan="2" style="padding: 0px">
+                            <div class="belajar">
+                            <div class="schedule-book">
+                                <p>Study Conseling</p>
+                                <p>Mrs. Sheila Riani P S.Pst</p>
+                                </div>
+                            </div>
+                        </td>
                         <td></td>
                         <td></td>
                         <td></td>

@@ -1,48 +1,96 @@
-<x-guest-layout>
-    <x-authentication-card>
-        <x-slot name="logo">
-            <x-authentication-card-logo />
-        </x-slot>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
 
-        <x-validation-errors class="mb-4" />
+    <link rel="stylesheet" href="assets/css/signin.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-        @if (session('status'))
-            <div class="mb-4 font-medium text-sm text-green-600">
-                {{ session('status') }}
+    <link href='https://fonts.googleapis.com/css?family=Karla' rel='stylesheet' type='text/css'>
+    <link rel='stylesheet' href='https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css'>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
+
+    {{-- iconify --}}
+    <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+</head>
+<body>
+    <div class="container">
+  <div class="left-side">
+    <div class="carousell">
+        <div class="wrapper">
+            <img src="assets/img/slide1.png" alt="">
+            <img src="assets/img/slide2.png" alt="">
+            <img src="assets/img/slide3.png" alt="">
+            <img src="assets/img/slide1.png" alt="">
+
+
+        </div>
+    </div>
+        
+    </div>
+<div class="right-side">
+    <form method="POST" action="{{ route('login') }}">
+@csrf
+<div class="signin-box">
+    <div class="signin-header">
+        <p>Sign In</p>
+        <p>Sign in to your account now !</p>
+    </div>
+    <div class="signin-content">
+        <div class="id">
+            <p>Email/Name/NISN</p>
+            <div class="id-input">
+                <iconify-icon icon="mdi:person"></iconify-icon>
+                <input type="text" id="auth" placeholder="Input your email/name/NISN" name="auth" :value="old('auth')" required autofocus autocomplete="username">
             </div>
-        @endif
+        </div>
+        <div class="password">
+            <p>Password</p>
+            <div class="password-input">
+                <iconify-icon icon="mdi:password"></iconify-icon>
+                <input type="password" id="password" placeholder="Input your password" type="password" name="password" required autocomplete="current-password">
 
-        <form method="POST" action="{{ route('login') }}">
-            @csrf
-
-            <div>
-                <x-label for="auth" value="{{ __('Email/Nama') }}" />
-                <x-input id="auth" class="block mt-1 w-full" type="text" name="auth" :value="old('auth')" required autofocus autocomplete="username" />
-            </div>
-
-            <div class="mt-4">
-                <x-label for="password" value="{{ __('Password') }}" />
-                <x-input id="password" class="block mt-1 w-full" type="password" name="password" required autocomplete="current-password" />
-            </div>
-
-            <div class="block mt-4">
-                <label for="remember_me" class="flex items-center">
-                    <x-checkbox id="remember_me" name="remember" />
-                    <span class="ml-2 text-sm text-gray-600">{{ __('Remember me') }}</span>
+                <label for="visible">
+                    <input hidden class="visibility" type="checkbox" onclick="myFunction()"id="visible">
+                    <iconify-icon id="kebuka" style="display: none" icon="material-symbols:visibility"></iconify-icon>  
+                    <iconify-icon id="ketutup" style="display: block" icon="ic:sharp-visibility-off"></iconify-icon>
                 </label>
             </div>
+        </div>
+    </div>
+    <button> {{ __('Log in') }}</button>
+</div>
+    </form>
+</div>
+    </div>
+    <script>
+        function myFunction() {
+          var x = document.getElementById("pass");
+          let kebuka = document.getElementById('kebuka');
+          let ketutup = document.getElementById('ketutup');
 
-            <div class="flex items-center justify-end mt-4">
-                @if (Route::has('password.request'))
-                    <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('password.request') }}">
-                        {{ __('Forgot your password?') }}
-                    </a>
-                @endif
 
-                <x-button class="ml-4">
-                    {{ __('Log in') }}
-                </x-button>
-            </div>
-        </form>
-    </x-authentication-card>
-</x-guest-layout>
+          if (x.type === "password") {
+            x.type = "text";
+            kebuka.style = 'display: block'
+            ketutup.style = 'display: none'
+          } else {
+            x.type = "password";
+            kebuka.style = 'display: none'
+            ketutup.style = 'display: block'
+          }
+        }
+        </script>
+    
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+</body>
+</html>
+

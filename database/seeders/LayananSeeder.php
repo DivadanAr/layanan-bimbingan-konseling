@@ -14,7 +14,7 @@ class LayananSeeder extends Seeder
     public function run(): void
     {
         LayananBk::create([
-            'jenis_layanan' => 'bimbingan pirbadi',
+            'jenis_layanan' => 'bimbingan pribadi',
         ]);
         LayananBk::create([
             'jenis_layanan' => 'bimbingan sosial',
