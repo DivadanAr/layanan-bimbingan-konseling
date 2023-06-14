@@ -2,6 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\GuruBk;
+use App\Models\Kelas;
+use App\Models\KonselingBk;
+use App\Models\Siswa;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
@@ -32,7 +36,11 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        return view('dashboard');
+       $siswa = Siswa::all()->count();
+       $gurubk = GuruBk::all()->count();
+       $kelas = Kelas::all()->count();
+       $konseling = KonselingBk::all()->count();
+        return view('dashboard', compact('siswa', 'gurubk', 'kelas', 'konseling'));
     }
 
     /**

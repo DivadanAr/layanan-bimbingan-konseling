@@ -49,8 +49,8 @@
                                         <label class="form-label" for="selectSiswa">Siswa</label>
                                         <select class="form-select placement-dropdown" name="siswa_id" id="selectSiswa">
                                             <option value="" hidden>Pilih Siswa</option>
-                                            @foreach ($pemanggilan as $item)
-                                                <option value="{{ $item->siswa->id }}">{{ $item->siswa->nama }}</option>
+                                            @foreach ($siswa as $item)
+                                                <option value="{{ $item->id }}">{{ $item->nama }}</option>
                                             @endforeach
                                         </select>
                                     </div>

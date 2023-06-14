@@ -54,7 +54,6 @@
                                                     {{-- <th>kelas</th> --}}
                                                     <th>kelamin</th>
                                                     <th>Telepon</th>
-                                                    <th>Status</th>
                                                     <th>Actions</th>
                                                 </tr>
                                             </thead>
@@ -64,11 +63,8 @@
                                                     <td><i class="fab fa-angular fa-lg text-danger me-3"></i>
                                                         <strong>{{ $item->nama }}</strong></td>
                                                     <td>{{ $item->user->email }}</td>
-                                                    {{-- <td>{{ $item->kelas->nama }}</td> --}}
                                                     <td>{{ $item->kelamin }}</td>
                                                     <td>{{ $item->telepon }}</td>
-
-                                                    <td><span class="badge bg-label-primary me-1">Active</span></td>
                                                     <td>
                                                         <div class="dropdown">
                                                             <button type="button"

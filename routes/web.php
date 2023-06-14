@@ -124,6 +124,8 @@ Route::middleware([
     Route::get('bimbingan-konseling/social', [KonselingBKController::class, 'indexBimbingan'])->name('social-siswa');
     Route::get('bimbingan-konseling/career', [KonselingBKController::class, 'indexBimbingan'])->name('career-siswa');
     Route::post('bimbingan-konseling/pribadi/add', [KonselingBKController::class, 'storeSiswa'])->name('add-siswa');
+    Route::resource('quotes', QuotesController::class);
+    Route::resource('surat-pemanggilan', PemanggilanController::class);
 
     Route::get('/home', function () {
         return view('users.siswa');

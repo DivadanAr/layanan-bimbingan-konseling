@@ -11,15 +11,16 @@
                 <p class="title">Our Quality Ask To Be Different</p>
                 <p class="desk">We Serve Solutions to all your problems </p>
             </div>
-            <div class="tips">
+            @if (Auth::check())
+                <div class="tips">
                 <div class="tips-box">
                     <p>Motivation Quotes For You</p>
-                    <p>{{$quotes->quotes}}</p>
+                    <p>Keberanian adalah kuncimu untuk membuka pintu kebebasan dan kemungkinan</p>
                 </div>
                 <div class="tips-teacher">
                     <div class="teacher-frame">
                         {{-- <p>{{$quotes->guru_bk->nama}}</p> --}}
-                        @if (strcmp($quotes->guru_bk->nama, 'Kasandra Fitriyani') === 0)
+                        {{-- @if (strcmp($quotes->guru_bk->nama, 'Kasandra Fitriyani') === 0)
                         <img src="assets/img/guruBK/kasandra.png" alt="">
                         @elseif (strcmp($quotes->guru_bk->nama, 'Sheila Riani Putri') === 0)
                         <img src="assets/img/guruBK/sheila.png" alt="">
@@ -31,13 +32,15 @@
                         <img src="assets/img/guruBK/nadia.png" alt="">
                         @elseif (strcmp($quotes->guru_bk->nama, 'Heni Siswanti') === 0)
                         <img src="assets/img/guruBK/heni.jpg" alt="">
-                        @else
-                        <img src="assets/img/user.png" alt="">
-                        @endif
+                        @else --}}
+                        {{-- <img src="assets/img/user.png" alt=""> --}}
+                        {{-- @endif --}}
+                        <img src="assets/img/guruBK/kasandra.png" alt="">
 
                     </div>
                 </div>
             </div>
+            @endif
         </div>
         <div class="right-side">
             <img src="assets/img/hero.png" alt="">

@@ -88,7 +88,8 @@
                                                                     @method('DELETE')
                                                                     <button class="danger" type="submit""><i
                                                                                 class=" bx bx-trash me-1"></i>
-                                                                        Delete</button>
+                                                     
+                                                                                Delete</button>
                                                                 </form>
                                                            
                                                         </div>

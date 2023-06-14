@@ -43,7 +43,7 @@ class PetaKerawananController extends Controller
         if (Auth::user()->hasRole('guru_bk')){
             $userId = Auth()->id();
             $walasId = GuruBk::where('user_id', $userId)->first();
-            $kelasId = Kelas::where('wali_kelas_id', $walasId->id)->first();
+            $kelasId = Kelas::where('guru_bk_id', $walasId->id)->first();
             $data = PetaKerawanan::where('kelas_id', $kelasId->id)->get();
     
             $data = $data->groupBy('siswa_id')->map(function ($item) {
@@ -66,7 +66,7 @@ class PetaKerawananController extends Controller
         if (Auth::user()->hasRole('guru_bk')) {
             $userId = Auth()->id();
             $GuruBk = GuruBk::where('user_id', $userId)->first();
-            $kelas = Kelas::where('wali_kelas_id', $GuruBk->id)->first();
+            $kelas = Kelas::where('guru_bk_id', $GuruBk->id)->first();
             $siswa = Siswa::where('kelas_id', $kelas->id)->get();
             $jenis_kerawanan = Kerawanan::all();
     
@@ -77,7 +77,8 @@ class PetaKerawananController extends Controller
             $userId = Auth()->id();
             $walas = Walas::where('user_id', $userId)->first();
             $kelas = Kelas::where('wali_kelas_id', $walas->id)->first();
-            $siswa = Siswa::where('kelas_id', $kelas->id)->get();
+            // $siswa = Siswa::where('kelas_id', $kelas->id)->get();
+            $siswa = $walas->kelas->siswa()->whereDoesntHave('peta_kerawanan')->get();
             $jenis_kerawanan = Kerawanan::all(); 
 
             return view('create-peta-kerawanan', compact('siswa','jenis_kerawanan'));
@@ -90,36 +91,73 @@ class PetaKerawananController extends Controller
      */
     public function store(Request $request)
     {
-        $userId = Auth()->id();
-        $walas = Walas::where('user_id', $userId)->first();
-        $kelas = Kelas::where('wali_kelas_id', $walas->id)->first();
-        $validator = Validator::make($request->all(), [
-            'siswa_id' => 'required',
-            'jenis_kerawanan_id' => 'required',
-        ]);
-
-        if ($validator->fails()) {
-            return redirect()->back()->withErrors($validator)->withInput();
+        if (Auth::user()->hasRole('wali_kelas')) {
+            $userId = Auth()->id();
+            $walas = Walas::where('user_id', $userId)->first();
+            $kelas = Kelas::where('wali_kelas_id', $walas->id)->first();
+            $validator = Validator::make($request->all(), [
+                'siswa_id' => 'required',
+                'jenis_kerawanan_id' => 'required',
+            ]);
+    
+            if ($validator->fails()) {
+                return redirect()->back()->withErrors($validator)->withInput();
+            }
+    
+            $request->validate([
+                'siswa_id' => 'required',
+            ]);
+    
+            $validated = $request->validate([
+                'jenis_kerawanan_id' => 'required|array',
+            ]);
+    
+                foreach ($validated['jenis_kerawanan_id'] as $jenisKerawananId) {
+                    PetaKerawanan::create([
+                        'siswa_id' => $request->input('siswa_id'),
+                        'kelas_id' => $kelas->id,
+                        'wali_kelas_id' => $walas->id,    
+                        'jenis_kerawanan_id' => $jenisKerawananId,
+                    ]);
+                }
+            
+            return redirect()->route('peta-kerawanan.index')->with('succes', 'Kerawanan siswa '.$request->input('nama').', berhasil ditambahkamn');
+    
         }
 
-        $request->validate([
-            'siswa_id' => 'required',
-        ]);
-
-        $validated = $request->validate([
-            'jenis_kerawanan_id' => 'required|array',
-        ]);
-
-            foreach ($validated['jenis_kerawanan_id'] as $jenisKerawananId) {
-                PetaKerawanan::create([
-                    'siswa_id' => $request->input('siswa_id'),
-                    'kelas_id' => $kelas->id,
-                    'wali_kelas_id' => $walas->id,    
-                    'jenis_kerawanan_id' => $jenisKerawananId,
-                ]);
+        if (Auth::user()->hasRole('guru_bk')) {
+            $userId = Auth()->id();
+            $wguru = GuruBk::where('user_id', $userId)->first();
+            $kelas = Kelas::where('guru_bk_id', $wguru->id)->first();
+            $validator = Validator::make($request->all(), [
+                'siswa_id' => 'required',
+                'jenis_kerawanan_id' => 'required',
+            ]);
+    
+            if ($validator->fails()) {
+                return redirect()->back()->withErrors($validator)->withInput();
             }
-        
-        return redirect()->route('peta-kerawanan.index')->with('succes', 'Kerawanan siswa '.$request->input('nama').', berhasil ditambahkamn');
+    
+            $request->validate([
+                'siswa_id' => 'required',
+            ]);
+    
+            $validated = $request->validate([
+                'jenis_kerawanan_id' => 'required|array',
+            ]);
+    
+                foreach ($validated['jenis_kerawanan_id'] as $jenisKerawananId) {
+                    PetaKerawanan::create([
+                        'siswa_id' => $request->input('siswa_id'),
+                        'kelas_id' => $kelas->id,
+                        'wali_kelas_id' => $kelas->wali_kelas_id,    
+                        'jenis_kerawanan_id' => $jenisKerawananId,
+                    ]);
+                }
+            
+            return redirect()->route('peta-kerawanan.index')->with('succes', 'Kerawanan siswa '.$request->input('nama').', berhasil ditambahkamn');
+    
+        }
     }
 
     /**

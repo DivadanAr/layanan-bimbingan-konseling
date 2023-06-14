@@ -53,9 +53,9 @@
 
                                                 </div>
                                                 <span class="fw-semibold d-block mb-1">Student Data</span>
-                                                <h3 class="card-title mb-2">20</h3>
+                                                <h3 class="card-title mb-2">{{$siswa}}</h3>
                                                 <small class="text-success fw-semibold" style="margin-left:125px;"><i
-                                                        class=""></i>20 students</small>
+                                                        class=""></i>{{$siswa}} students</small>
                                             </div>
                                         </div>
                                     </div>
@@ -71,9 +71,9 @@
 
                                                 </div>
                                                 <span class="fw-semibold d-block mb-1">Guidance Counselor</span>
-                                                <h3 class="card-title mb-2">6</h3>
+                                                <h3 class="card-title mb-2">{{$gurubk}}</h3>
                                                 <small class="text-success fw-semibold" style="margin-left:125px;"><i
-                                                        class=""></i>6 Counselor</small>
+                                                        class=""></i>{{$gurubk}} Counselor</small>
                                             </div>
                                         </div>
                                     </div>
@@ -91,9 +91,9 @@
 
                                                 </div>
                                                 <span class="fw-semibold d-block mb-1">Class Data</span>
-                                                <h3 class="card-title mb-2">22</h3>
+                                                <h3 class="card-title mb-2">{{$kelas}}</h3>
                                                 <small class="text-success fw-semibold" style="margin-left:125px;"><i
-                                                        class=""></i>22 classes</small>
+                                                        class=""></i>{{$kelas}} classes</small>
                                             </div>
                                         </div>
                                     </div>
@@ -109,9 +109,9 @@
 
                                                 </div>
                                                 <span class="fw-semibold d-block mb-1">Counseling Data</span>
-                                                <h3 class="card-title mb-2">23</h3>
+                                                <h3 class="card-title mb-2">{{$konseling}}</h3>
                                                 <small class="text-success fw-semibold"><i
-                                                        style="margin-left:110px;"></i>23 Counseling</small>
+                                                        style="margin-left:110px;"></i>{{$konseling}} Counseling</small>
                                             </div>
                                         </div>
                                     </div>

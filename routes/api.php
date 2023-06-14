@@ -19,6 +19,12 @@ Route::post('auth/register', [AuthController::class, 'register']);
 
 Route::post('auth/login', [AuthController::class, 'Login']);
 
+Route::get('/siswa', [AuthController::class, 'index']);
+
+Route::get('/history/{id}', [AuthController::class, 'history']);
+
+Route::get('/siswa/{id}', [AuthController::class, 'show']);
+
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
