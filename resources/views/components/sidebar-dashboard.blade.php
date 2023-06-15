@@ -95,19 +95,19 @@
           </li>
           <li class="menu-item">
             <a href="{{ route('siswa.index') }}" class="menu-link">
-              <div data-i18n="siswa">Siswa Accounts</div>
+              <div data-i18n="siswa">Students Accounts</div>
             </a>
           </li>
         </ul>
       </li>          
       @endif
 
-      <li class="menu-item">
+      {{-- <li class="menu-item">
         <a href="{{ route('siswa.index') }}" class="menu-link">
           <i class="menu-icon tf-icons bx bx-dock-top"></i>
           <div data-i18n="Account Settings">Siswa Account</div>
         </a>
-      </li>          
+      </li>           --}}
 
       <li class="menu-header small text-uppercase">
         <span class="menu-header-text">Layanan</span>
@@ -292,6 +292,30 @@
           </li>
         </ul>
       </li>          
+
+      @if (Auth::user()->hasRole('wali_kelas')||Auth::user()->hasRole('guru_bk'))
+      <li class="menu-header small text-uppercase">
+        <span class="menu-header-text">Lainnya</span>
+      </li>
+      <li class="menu-item">
+        <a href="{{route('pemanggilan.index')}}" class="menu-link">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20"><g fill="currentColor"><path d="M6.5 6a1.5 1.5 0 1 1-3 0a1.5 1.5 0 0 1 3 0Zm0 4a1.5 1.5 0 1 1-3 0a1.5 1.5 0 0 1 3 0Zm0 4a1.5 1.5 0 1 1-3 0a1.5 1.5 0 0 1 3 0Z"/><path fill-rule="evenodd" d="M7.5 6a1 1 0 0 1 1-1h7a1 1 0 1 1 0 2h-7a1 1 0 0 1-1-1Zm0 4a1 1 0 0 1 1-1h7a1 1 0 1 1 0 2h-7a1 1 0 0 1-1-1Zm0 4a1 1 0 0 1 1-1h7a1 1 0 1 1 0 2h-7a1 1 0 0 1-1-1Z" clip-rule="evenodd"/></g></svg>
+          <div style="margin-left: 10px" data-i18n="Jenis Kerawanan">Pemanggilan Orang Tua</div>
+        </a>
+      </li>
+      @endif
+
+      @if (Auth::user()->hasRole('guru_bk'))
+      <li class="menu-header small text-uppercase">
+        <span class="menu-header-text">Sosial</span>
+      </li>
+      <li class="menu-item">
+        <a href="{{route('quotes.index')}}" class="menu-link">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20"><g fill="currentColor"><path d="M6.5 6a1.5 1.5 0 1 1-3 0a1.5 1.5 0 0 1 3 0Zm0 4a1.5 1.5 0 1 1-3 0a1.5 1.5 0 0 1 3 0Zm0 4a1.5 1.5 0 1 1-3 0a1.5 1.5 0 0 1 3 0Z"/><path fill-rule="evenodd" d="M7.5 6a1 1 0 0 1 1-1h7a1 1 0 1 1 0 2h-7a1 1 0 0 1-1-1Zm0 4a1 1 0 0 1 1-1h7a1 1 0 1 1 0 2h-7a1 1 0 0 1-1-1Zm0 4a1 1 0 0 1 1-1h7a1 1 0 1 1 0 2h-7a1 1 0 0 1-1-1Z" clip-rule="evenodd"/></g></svg>
+          <div style="margin-left: 10px" data-i18n="Jenis Kerawanan">Quotes Motivasi</div>
+        </a>
+      </li>
+      @endif
 
       @endif
       

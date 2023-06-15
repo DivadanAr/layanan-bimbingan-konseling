@@ -28,7 +28,7 @@
                             <div class="card mb-4">
                                 <div class="card">
                                     <div style="align-items: center;display: flex; justify-content:space-between">
-                                        <h5 class="card-header">User Account</h5>
+                                        <h5 class="card-header">Students User</h5>
                                         @if (Auth::user()->hasRole('admin'))
                                         <a href="{{ route('siswa.create') }}">
                                             <button type="button" class="btn btn-primary"

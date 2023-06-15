@@ -40,7 +40,7 @@
                             <div class="card mb-4">
                                 <div class="card">
                                     <div style="align-items: center;display: flex; justify-content:space-between">
-                                        <h5 class="card-header">User Account</h5>
+                                        <h5 class="card-header">Counseling Teacher User</h5>
                                         <a href="{{ route('guru.create') }}">
                                             <button type="button" class="btn btn-primary" style="height: 37px; margin-right:20px">Add</button>
                                         </a>
