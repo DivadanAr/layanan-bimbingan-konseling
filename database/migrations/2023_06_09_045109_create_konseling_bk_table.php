@@ -13,13 +13,13 @@ return new class extends Migration
     {
         Schema::create('konseling_bk', function (Blueprint $table) {
             $table->id();
-            $table->string('topik')->nullable();
             $table->unsignedBigInteger('layanan_id');
             $table->foreign('layanan_id')->references('id')->on('layanan_bk')->onDelete('cascade');
             $table->unsignedBigInteger('guru_bk_id');
             $table->foreign('guru_bk_id')->references('id')->on('guru_bk')->onDelete('cascade');
             $table->unsignedBigInteger('wali_kelas_id');
             $table->foreign('wali_kelas_id')->references('id')->on('wali_kelas')->onDelete('cascade');
+            $table->string('topik')->nullable();
             $table->date('tanggal')->nullable();
             $table->time('jam_mulai')->nullable();
             $table->time('jam_berakhir')->nullable();

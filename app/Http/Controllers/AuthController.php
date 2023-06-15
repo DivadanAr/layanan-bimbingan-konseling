@@ -2,10 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\KonselingBk;
+use App\Models\Siswa;
+use App\Models\siswaKonseling;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Spatie\Permission\Models\Role;
+
 
 class AuthController extends Controller
 {
@@ -49,5 +54,44 @@ class AuthController extends Controller
         } else {
             $response = ['status' => 500, 'message' => 'Wrong username or password! please try again'];
         }
+    }
+
+    public function index()
+    {
+
+        $siswa = Siswa::all();
+
+        return response()->json($siswa);
+    }
+
+    public function show(string $id)
+    {
+        $siswa = Siswa::findOrFail($id);
+        return response()->json($siswa);
+    }
+    public function history($id)
+    {
+        $user = User::find($id);
+        $konselingBk = siswaKonseling::where('siswa_id', $user->siswa->id)->get();
+        $array = [];
+
+        foreach ($konselingBk as $item) {
+            array_push($array, [
+                "guru_bk" => $item->konselingBK->guruBK->nama,
+                "wali_kelas" => $item->konselingBK->waliKelas->nama,
+                "jenis_layanan" => $item->konselingBK->layanan->jenis_layanan,
+                "siswa_konseling" => $item->siswa->nama,
+                "topik" => $item->konselingBk->topik,
+                "tanggal" => $item->konselingBk->tanggal,
+                "jam_mulai" => $item->konselingBk->jam_mulai,
+                "jam_berakhir" => $item->konselingBk->jam_berakhir,
+                "tempat" => $item->konselingBk->tempat,
+                "hasil" => $item->konselingBk->hasil_konseling,
+                "status" => $item->konselingBk->status,
+            ]);
+        }
+        return response()->json(
+            $array,
+        );
     }
 }

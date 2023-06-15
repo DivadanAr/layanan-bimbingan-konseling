@@ -210,9 +210,9 @@ class GuruBkController extends Controller
         $guru->telepon = $request->input('telepon');
         $guru->save();
 
-        $guruBk = GuruBk::findOrFail($id);
-        $guruBk->kelas1->guru_bk_id = null;
-        $guruBk->save();
+        // $guruBk = GuruBk::findOrFail($id);
+        // $guruBk->kelas1->guru_bk_id = null;
+        // $guruBk->save();
 
         Kelas::where('guru_bk_id', $id)->update([
             'guru_bk_id' => null,
