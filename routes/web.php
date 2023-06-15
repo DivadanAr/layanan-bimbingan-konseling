@@ -10,6 +10,7 @@ use App\Http\Controllers\PetaKerawananController;
 use App\Http\Controllers\QuotesController;
 use App\Http\Controllers\SiswaController;
 use App\Http\Controllers\WalasController;
+use App\Models\quotes;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -23,9 +24,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('users.home');
-});
+Route::get('/', [QuotesController::class, 'show'])->name('home.show');
+
 
 Route::post('export-petakerawanan', [PetaKerawananController::class, 'export'])->name('export-excel');
 Route::get('create-pdf-file/{id}', [PemanggilanController::class, 'exportpdf'])->name('export-pdf');
@@ -123,7 +123,9 @@ Route::middleware([
     Route::get('bimbingan-konseling/study', [KonselingBKController::class, 'indexBimbingan'])->name('study-siswa');
     Route::get('bimbingan-konseling/social', [KonselingBKController::class, 'indexBimbingan'])->name('social-siswa');
     Route::get('bimbingan-konseling/career', [KonselingBKController::class, 'indexBimbingan'])->name('career-siswa');
-    Route::get('bimbingan-konseling/history', [KonselingBKController::class, 'indexBimbingan'])->name('history-siswa');
+    Route::post('bimbingan-konseling/pribadi/add', [KonselingBKController::class, 'storeSiswa'])->name('add-siswa');
+    Route::resource('quotes', QuotesController::class);
+    Route::resource('surat-pemanggilan', PemanggilanController::class);
 
     Route::get('/home', function () {
         return view('users.siswa');

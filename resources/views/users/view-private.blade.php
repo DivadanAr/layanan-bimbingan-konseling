@@ -74,9 +74,6 @@
                     <p>Private Conseling Schedule</p>
                     <p>Here’s your private schedule</p>
                 </div>
-                <div class="date-picker">
-                    <input type="date" id="Test_DatetimeLocal">
-                </div>
             </div>
             <div class="schedule-body">
                 <table>

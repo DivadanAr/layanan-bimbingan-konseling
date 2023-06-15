@@ -29,10 +29,12 @@
                                 <div class="card">
                                     <div style="align-items: center;display: flex; justify-content:space-between">
                                         <h5 class="card-header">User Account</h5>
+                                        @if (Auth::user()->hasRole('admin'))
                                         <a href="{{ route('siswa.create') }}">
                                             <button type="button" class="btn btn-primary"
                                                 style="height: 37px; margin-right:20px">Add</button>
                                         </a>
+                                        @endif
                                     </div>
                                     <div class="table-responsive text-nowrap">
                                         <table class="table table-striped">
@@ -44,7 +46,9 @@
                                                     <th>kelamin</th>
                                                     <th>Telepon</th>
                                                     <th>Status</th>
+                                                    @if (Auth::user()->hasRole('admin'))
                                                     <th>Actions</th>
+                                                    @endif
                                                 </tr>
                                             </thead>
                                             <tbody class="table-border-bottom-0">
@@ -58,6 +62,7 @@
                                                     <td>{{ $item->telepon }}</td>
 
                                                     <td><span class="badge bg-label-primary me-1">Active</span></td>
+                                                    @if (Auth::user()->hasRole('admin'))
                                                     <td>
                                                         <div class="dropdown">
                                                             <button type="button"
@@ -79,6 +84,7 @@
                                                             </div>
                                                         </div>
                                                     </td>
+                                                    @endif
                                                 </tr>
                                                 @endforeach
                                             </tbody>

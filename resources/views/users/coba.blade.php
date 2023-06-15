@@ -22,39 +22,39 @@
             <div class="card">
                 <div class="first-content">
                     <div class="pp">
-                        <img src="" alt="">
+                        <img src="{{ Auth::user()->profile_photo_url }}" alt="">
                     </div>
-                    <p class="nama">Divadan Arya Putrama</p>
-                    <p class="kelas">XI PPLG 2</p>
+                    <p class="nama">{{Auth()->user()->siswa->nama}}</p>
+                    <p class="kelas">{{Auth()->user()->siswa->kelas->nama}}</p>
                 </div>
                 <div class="second-content">
                     <div class="nisn">
                         <p>NISN</p>
-                        <p>987654321</p>
+                        <p>{{Auth()->user()->siswa->nisn}}</p>
                     </div>
                     <div class="name">
                         <p>Name</p>
-                        <p>Divadan Arya Putrama</p>
+                        <p>{{Auth()->user()->siswa->nama}}</p>
                     </div>
                     <div class="class">
                         <p>Class</p>
-                        <p>XI PPLG 2</p>
+                        <p>{{Auth()->user()->siswa->kelas->nama}}</p>
                     </div>
                     <div class="gender">
                         <p>Gender</p>
-                        <p>Male</p>
+                        <p>{{Auth()->user()->siswa->kelamin}}</p>
                     </div>
                     <div class="birth-date">
                         <p>Birth Date</p>
-                        <p>22 - 12 - 2005</p>
+                        <p>{{Auth()->user()->siswa->tanggal}}</p>
                     </div>
                     <div class="phone-nmbr">
                         <p>Phone Number</p>
-                        <p>081234567</p>
+                        <p>{{Auth()->user()->siswa->telepon}}</p>
                     </div>
                     <div class="email">
                         <p>Email</p>
-                        <p>Divadanarya@gmail.com</p>
+                        <p>{{Auth()->user()->email}}</p>
                     </div>
                 </div>
 
@@ -77,9 +77,6 @@
                     <p>Schedule</p>
                     <p>You can check your schedule here</p>
                 </div>
-                <div class="date-picker">
-                    <input type="date" id="Test_DatetimeLocal">
-                </div>
             </div>
             <div class="schedule-body">
                 <table>
@@ -96,14 +93,13 @@
                     </tr>
 
                     @foreach ($konselingBk as $konseling)
-                    @if ($konseling->konselingBk->status=='accepted')
+                    @if ($konseling->konselingBk->status=='accepted' || $konseling->konselingBk->status=='re-schedule' )
                     @if ($konseling->konselingBk->jam_mulai=='08:00:00')
                     <tr class="bbt">
                         <td>{{ $konseling->konselingBk->tanggal }}</td>
                         <td
                             colspan="{{ Carbon\Carbon::parse($konseling->konselingBk->jam_mulai)->diffInHours(Carbon\Carbon::parse($konseling->konselingBk->jam_berakhir))+1}}">
-                            <div 
-                                @if ($konseling->konselingBk->layanan->jenis_layanan == 'bimbingan belajar')
+                            <div @if ($konseling->konselingBk->layanan->jenis_layanan == 'bimbingan belajar')
                                 class="belajar"
                                 @endif
 
@@ -118,9 +114,15 @@
                                 @if ($konseling->konselingBk->layanan->jenis_layanan == 'bimbingan pribadi')
                                 class="pribadi"
                                 @endif
-                            >
+                                >
                                 <div class="schedule-book">
-                                    <p>{{ $konseling->konselingBk->guruBK->nama }}</p>
+                                    <p>{{ $konseling->konselingBk->guruBK->nama }}
+                                    
+                                    @if ($konseling->konselingBk->status=='re-schedule')
+                                    <span style="background-color: #e1ce7a; padding: 0.5px 7px; border-radius: 10px; margin-left:5px">{{$konseling->konselingBk->status}}</span>
+                                    @endif
+                                    
+                                    </p>
                                     <p>{{ $konseling->konselingBk->topik }}</p>
                                 </div>
                             </div>
@@ -134,8 +136,7 @@
                         <td></td>
                         <td
                             colspan="{{ Carbon\Carbon::parse($konseling->konselingBk->jam_mulai)->diffInHours(Carbon\Carbon::parse($konseling->konselingBk->jam_berakhir))+1}}">
-                            <div 
-                             @if ($konseling->konselingBk->layanan->jenis_layanan == 'bimbingan belajar')
+                            <div @if ($konseling->konselingBk->layanan->jenis_layanan == 'bimbingan belajar')
                                 class="belajar"
                                 @endif
 
@@ -150,16 +151,22 @@
                                 @if ($konseling->konselingBk->layanan->jenis_layanan == 'bimbingan pribadi')
                                 class="pribadi"
                                 @endif
-                            >
+                                >
                                 <div class="schedule-book">
-                                    <p>{{ $konseling->konselingBk->guruBK->nama }}</p>
+                                    <p>{{ $konseling->konselingBk->guruBK->nama }}
+                                    
+                                    @if ($konseling->konselingBk->status=='re-schedule')
+                                    <span style="background-color: #e1ce7a; padding: 0.5px 7px; border-radius: 10px; margin-left:5px">{{$konseling->konselingBk->status}}</span>
+                                    @endif
+                                    
+                                    </p>
                                     <p>{{ $konseling->konselingBk->topik }}</p>
                                 </div>
                             </div>
                         </td>
                     </tr>
                     @endif
-                    
+
                     @if ($konseling->konselingBk->jam_mulai=='10:00:00')
                     <tr class="bbt">
                         <td>{{ $konseling->konselingBk->tanggal }}</td>
@@ -167,8 +174,7 @@
                         <td></td>
                         <td
                             colspan="{{ Carbon\Carbon::parse($konseling->konselingBk->jam_mulai)->diffInHours(Carbon\Carbon::parse($konseling->konselingBk->jam_berakhir))+1}}">
-                            <div 
-                             @if ($konseling->konselingBk->layanan->jenis_layanan == 'bimbingan belajar')
+                            <div @if ($konseling->konselingBk->layanan->jenis_layanan == 'bimbingan belajar')
                                 class="belajar"
                                 @endif
 
@@ -183,9 +189,15 @@
                                 @if ($konseling->konselingBk->layanan->jenis_layanan == 'bimbingan pribadi')
                                 class="pribadi"
                                 @endif
-                            >
+                                >
                                 <div class="schedule-book">
-                                    <p>{{ $konseling->konselingBk->guruBK->nama }}</p>
+                                    <p>{{ $konseling->konselingBk->guruBK->nama }}
+                                    
+                                    @if ($konseling->konselingBk->status=='re-schedule')
+                                    <span style="background-color: #e1ce7a; padding: 0.5px 7px; border-radius: 10px; margin-left:5px">{{$konseling->konselingBk->status}}</span>
+                                    @endif
+                                    
+                                    </p>
                                     <p>{{ $konseling->konselingBk->topik }}</p>
                                 </div>
                             </div>
@@ -201,8 +213,7 @@
                         <td></td>
                         <td
                             colspan="{{ Carbon\Carbon::parse($konseling->konselingBk->jam_mulai)->diffInHours(Carbon\Carbon::parse($konseling->konselingBk->jam_berakhir))+1}}">
-                            <div 
-                             @if ($konseling->konselingBk->layanan->jenis_layanan == 'bimbingan belajar')
+                            <div @if ($konseling->konselingBk->layanan->jenis_layanan == 'bimbingan belajar')
                                 class="belajar"
                                 @endif
 
@@ -217,9 +228,15 @@
                                 @if ($konseling->konselingBk->layanan->jenis_layanan == 'bimbingan pribadi')
                                 class="pribadi"
                                 @endif
-                            >
+                                >
                                 <div class="schedule-book">
-                                    <p>{{ $konseling->konselingBk->guruBK->nama }}</p>
+                                    <p>{{ $konseling->konselingBk->guruBK->nama }}
+                                    
+                                    @if ($konseling->konselingBk->status=='re-schedule')
+                                    <span style="background-color: #e1ce7a; padding: 0.5px 7px; border-radius: 10px; margin-left:5px">{{$konseling->konselingBk->status}}</span>
+                                    @endif
+                                    
+                                    </p>
                                     <p>{{ $konseling->konselingBk->topik }}</p>
                                 </div>
                             </div>
@@ -227,7 +244,7 @@
                     </tr>
                     @endif
 
-                       
+
                     @if ($konseling->konselingBk->jam_mulai=='12:00:00')
                     <tr class="bbt">
                         <td>{{ $konseling->konselingBk->tanggal }}</td>
@@ -237,8 +254,7 @@
                         <td></td>
                         <td
                             colspan="{{ Carbon\Carbon::parse($konseling->konselingBk->jam_mulai)->diffInHours(Carbon\Carbon::parse($konseling->konselingBk->jam_berakhir))+1}}">
-                            <div 
-                             @if ($konseling->konselingBk->layanan->jenis_layanan == 'bimbingan belajar')
+                            <div @if ($konseling->konselingBk->layanan->jenis_layanan == 'bimbingan belajar')
                                 class="belajar"
                                 @endif
 
@@ -253,9 +269,15 @@
                                 @if ($konseling->konselingBk->layanan->jenis_layanan == 'bimbingan pribadi')
                                 class="pribadi"
                                 @endif
-                            >
+                                >
                                 <div class="schedule-book">
-                                    <p>{{ $konseling->konselingBk->guruBK->nama }}</p>
+                                    <p>{{ $konseling->konselingBk->guruBK->nama }}
+                                    
+                                    @if ($konseling->konselingBk->status=='re-schedule')
+                                    <span style="background-color: #e1ce7a; padding: 0.5px 7px; border-radius: 10px; margin-left:5px">{{$konseling->konselingBk->status}}</span>
+                                    @endif
+                                    
+                                    </p>
                                     <p>{{ $konseling->konselingBk->topik }}</p>
                                 </div>
                             </div>
@@ -272,8 +294,7 @@
                         <td></td>
                         <td
                             colspan="{{ Carbon\Carbon::parse($konseling->konselingBk->jam_mulai)->diffInHours(Carbon\Carbon::parse($konseling->konselingBk->jam_berakhir))+1}}">
-                            <div 
-                             @if ($konseling->konselingBk->layanan->jenis_layanan == 'bimbingan belajar')
+                            <div @if ($konseling->konselingBk->layanan->jenis_layanan == 'bimbingan belajar')
                                 class="belajar"
                                 @endif
 
@@ -288,9 +309,15 @@
                                 @if ($konseling->konselingBk->layanan->jenis_layanan == 'bimbingan pribadi')
                                 class="pribadi"
                                 @endif
-                            >
+                                >
                                 <div class="schedule-book">
-                                    <p>{{ $konseling->konselingBk->guruBK->nama }}</p>
+                                    <p>{{ $konseling->konselingBk->guruBK->nama }}
+                                    
+                                    @if ($konseling->konselingBk->status=='re-schedule')
+                                    <span style="background-color: #e1ce7a; padding: 0.5px 7px; border-radius: 10px; margin-left:5px">{{$konseling->konselingBk->status}}</span>
+                                    @endif
+                                    
+                                    </p>
                                     <p>{{ $konseling->konselingBk->topik }}</p>
                                 </div>
                             </div>
@@ -308,8 +335,7 @@
                         <td></td>
                         <td
                             colspan="{{ Carbon\Carbon::parse($konseling->konselingBk->jam_mulai)->diffInHours(Carbon\Carbon::parse($konseling->konselingBk->jam_berakhir))+1}}">
-                            <div 
-                             @if ($konseling->konselingBk->layanan->jenis_layanan == 'bimbingan belajar')
+                            <div @if ($konseling->konselingBk->layanan->jenis_layanan == 'bimbingan belajar')
                                 class="belajar"
                                 @endif
 
@@ -324,9 +350,15 @@
                                 @if ($konseling->konselingBk->layanan->jenis_layanan == 'bimbingan pribadi')
                                 class="pribadi"
                                 @endif
-                            >
+                                >
                                 <div class="schedule-book">
-                                    <p>{{ $konseling->konselingBk->guruBK->nama }}</p>
+                                    <p>{{ $konseling->konselingBk->guruBK->nama }}
+                                    
+                                    @if ($konseling->konselingBk->status=='re-schedule')
+                                    <span style="background-color: #e1ce7a; padding: 0.5px 7px; border-radius: 10px; margin-left:5px">{{$konseling->konselingBk->status}}</span>
+                                    @endif
+                                    
+                                    </p>
                                     <p>{{ $konseling->konselingBk->topik }}</p>
                                 </div>
                             </div>
@@ -343,10 +375,8 @@
                         <td></td>
                         <td></td>
                         <td></td>
-                        <td
-                            colspan="0">
-                            <div 
-                             @if ($konseling->konselingBk->layanan->jenis_layanan == 'bimbingan belajar')
+                        <td colspan="0">
+                            <div @if ($konseling->konselingBk->layanan->jenis_layanan == 'bimbingan belajar')
                                 class="belajar"
                                 @endif
 
@@ -361,9 +391,15 @@
                                 @if ($konseling->konselingBk->layanan->jenis_layanan == 'bimbingan pribadi')
                                 class="pribadi"
                                 @endif
-                            >
+                                >
                                 <div class="schedule-book">
-                                    <p>{{ $konseling->konselingBk->guruBK->nama }}</p>
+                                    <p>{{ $konseling->konselingBk->guruBK->nama }}
+                                    
+                                    @if ($konseling->konselingBk->status=='re-schedule')
+                                    <span style="background-color: #e1ce7a; padding: 0.5px 7px; border-radius: 10px; margin-left:5px">{{$konseling->konselingBk->status}}</span>
+                                    @endif
+                                    
+                                    </p>
                                     <p>{{ $konseling->konselingBk->topik }}</p>
                                 </div>
                             </div>
@@ -408,25 +444,46 @@
 
             <div id="modal-private" class="modal">
                 <div class="modal__content">
-                    <div class="modal-header">
-                        <p>Request A Private Conseling</p>
-                        <p>Request for a private conseling service here !</p>
-                    </div>
-                    <div class="modal-body">
-                        <div class="title">
-                            <p>Conseling Topic</p>
-                            <input type="text" placeholder="What do you want to talk about?">
+                    <form action="{{route('add-siswa')}}" method="POST">
+                        @csrf
+                        <div class="modal-header">
+                            <p>Request A Private Conseling</p>
+                            <p>Request for a private conseling service here !</p>
                         </div>
+                        <div class="modal-body">
+                            <div class="title">
+                                <p>Conseling Topic</p>
+                                <div style="display: none">
+                                    <input type="text" name="layanan" value="bimbingan pribadi">
+                                    <input type="text" name="siswa[]" multiple value="{{Auth()->user()->siswa->id}}">
+                                </div>
+                                <input type="text" name="topik" placeholder="What do you want to talk about?">
+                                <div class="place">
+                                    <p>Conseling Place</p>
+                                    <input type="text" name="lokasi" placeholder="place">
+                                </div>
+                                <p>Conseling Date</p>
+                                <input type="date" name="tanggal" placeholder="Date">
+                                <div class="time">
+                                    <p>Conseling Time</p>
+                                    <input type="time" name="jam_mulai" placeholder="Date">
+                                    <input type="time" name="jam_berakhir" placeholder="Date">
 
-                    </div>
-                    <div class="modal-footer">
-                        <a href="#" class="Cancle">
-                            Cancel
-                        </a>
-                        <a href="">
-                            Send Request
-                        </a>
-                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="modal-footer">
+                            <a href="#" class="Cancle">
+                                Cancel
+                            </a>
+                            <a>
+                                <button type="submit" style="font-weight: 600; color:white">
+                                    Send Request
+                                </button>
+                            </a>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
@@ -465,25 +522,46 @@
                 {{-- modal study --}}
                 <div id="modal-study" class="modal">
                     <div class="modal__content">
-                        <div class="modal-header">
-                            <p>Request A Study Conseling</p>
-                            <p>Request for a Study conseling service here !</p>
-                        </div>
-                        <div class="modal-body">
-                            <div class="title">
-                                <p>Conseling Topic</p>
-                                <input type="text" placeholder="What do you want to talk about?">
+                        <form action="{{route('add-siswa')}}" method="POST">
+                            @csrf
+                            <div class="modal-header">
+                                <p>Request A Study Conseling</p>
+                                <p>Request for a Study conseling service here !</p>
                             </div>
-
-                        </div>
-                        <div class="modal-footer">
-                            <a href="#" class="Cancle">
-                                Cancel
-                            </a>
-                            <a href="">
-                                Send Request
-                            </a>
-                        </div>
+                            <div class="modal-body">
+                                <div class="title">
+                                    <p>Conseling Topic</p>
+                                    <div style="display: none">
+                                        <input type="text" name="layanan" value="bimbingan belajar">
+                                        <input type="text" name="siswa[]" multiple value="{{Auth()->user()->siswa->id}}">
+                                    </div>
+                                    <input type="text" name="topik" placeholder="What do you want to talk about?">
+                                    <div class="place">
+                                        <p>Conseling Place</p>
+                                        <input type="text" name="lokasi" placeholder="place">
+                                    </div>
+                                    <p>Conseling Date</p>
+                                    <input type="date" name="tanggal" placeholder="Date">
+                                    <div class="time">
+                                        <p>Conseling Time</p>
+                                        <input type="time" name="jam_mulai" placeholder="Date">
+                                        <input type="time" name="jam_berakhir" placeholder="Date">
+    
+                                    </div>
+                                </div>
+    
+                            </div>
+                            <div class="modal-footer">
+                                <a href="#" class="Cancle">
+                                    Cancel
+                                </a>
+                                <a>
+                                    <button type="submit" style="font-weight: 600; color:white">
+                                        Send Request
+                                    </button>
+                                </a>
+                            </div>
+                        </form>
                     </div>
                 </div>
 
@@ -521,28 +599,55 @@
 
                 <div id="modal-social" class="modal">
                     <div class="modal__content">
-                        <div class="modal-header">
-                            <p>Request A Social Conseling</p>
-                            <p>Request for a Social conseling service here !</p>
-                        </div>
-                        <div class="modal-body">
-                            <div class="title">
-                                <p>Conseling Title</p>
-                                <input type="text" placeholder="What do you want to talk about?">
+                        <form action="{{route('add-siswa')}}" method="POST">
+                            @csrf
+                            <div class="modal-header">
+                                <p>Request A Social Conseling</p>
+                                <p>Request for a Social conseling service here !</p>
                             </div>
-                            <div class="title">
-                                <p>Conseling Friends</p>
-                                <input type="text" placeholder="">
+                            <div class="modal-body">
+                                <div class="title">
+                                    <div style="display: none">
+                                        <input type="text" name="layanan" value="bimbingan sosial">
+                                    </div>
+                                    <p>Siswa</p>
+                                    <select id="select-state" name="siswa[]" multiple  autocomplete="off">
+                                        <option value="">Select a state...</option>
+                                        <option value="{{Auth()->user()->siswa->id}}" selected>{{Auth()->user()->siswa->nama}}</option>
+                                        @foreach ($siswaAll as $item)
+                                        <option value="{{ $item->id }}">{{ $item->nama }}</option>
+                                        @endforeach
+    
+                                    </select>
+                                    <p>Conseling Topic</p>
+                                    
+                                    <input type="text" name="topik" placeholder="What do you want to talk about?">
+                                    <div class="place">
+                                        <p>Conseling Place</p>
+                                        <input type="text" name="lokasi" placeholder="place">
+                                    </div>
+                                    <p>Conseling Date</p>
+                                    <input type="date" name="tanggal" placeholder="Date">
+                                    <div class="time">
+                                        <p>Conseling Time</p>
+                                        <input type="time" name="jam_mulai" placeholder="Date">
+                                        <input type="time" name="jam_berakhir" placeholder="Date">
+    
+                                    </div>
+                                </div>
+    
                             </div>
-                        </div>
-                        <div class="modal-footer">
-                            <a href="#" class="Cancle">
-                                Cancel
-                            </a>
-                            <a href="">
-                                Send Request
-                            </a>
-                        </div>
+                            <div class="modal-footer">
+                                <a href="#" class="Cancle">
+                                    Cancel
+                                </a>
+                                <a>
+                                    <button type="submit" style="font-weight: 600; color:white">
+                                        Send Request
+                                    </button>
+                                </a>
+                            </div>
+                        </form>
                     </div>
                 </div>
 
@@ -579,25 +684,46 @@
                 </a>
                 <div id="modal-career" class="modal">
                     <div class="modal__content">
-                        <div class="modal-header">
-                            <p>Request A Career Conseling</p>
-                            <p>Request for a Career conseling service here !</p>
-                        </div>
-                        <div class="modal-body">
-                            <div class="title">
-                                <p>Conseling Topic</p>
-                                <input type="text" placeholder="What do you want to talk about?">
+                        <form action="{{route('add-siswa')}}" method="POST">
+                            @csrf
+                            <div class="modal-header">
+                                <p>Request A Career Conseling</p>
+                                <p>Request for a Career conseling service here !</p>
                             </div>
-
-                        </div>
-                        <div class="modal-footer">
-                            <a href="#" class="cancle">
-                                Cancel
-                            </a>
-                            <a href="">
-                                Send Request
-                            </a>
-                        </div>
+                            <div class="modal-body">
+                                <div class="title">
+                                    <p>Conseling Topic</p>
+                                    <div style="display: none">
+                                        <input type="text" name="layanan" value="bimbingan karir">
+                                        <input type="text" name="siswa[]" multiple value="{{Auth()->user()->siswa->id}}">
+                                    </div>
+                                    <input type="text" name="topik" placeholder="What do you want to talk about?">
+                                    <div class="place">
+                                        <p>Conseling Place</p>
+                                        <input type="text" name="lokasi" placeholder="place">
+                                    </div>
+                                    <p>Conseling Date</p>
+                                    <input type="date" name="tanggal" placeholder="Date">
+                                    <div class="time">
+                                        <p>Conseling Time</p>
+                                        <input type="time" name="jam_mulai" placeholder="Date">
+                                        <input type="time" name="jam_berakhir" placeholder="Date">
+    
+                                    </div>
+                                </div>
+    
+                            </div>
+                            <div class="modal-footer">
+                                <a href="#" class="Cancle">
+                                    Cancel
+                                </a>
+                                <a>
+                                    <button type="submit" style="font-weight: 600; color:white">
+                                        Send Request
+                                    </button>
+                                </a>
+                            </div>
+                        </form>
                     </div>
                 </div>
 
@@ -639,6 +765,21 @@
     </div>
 </div>
 </div>
+<script>
+    new TomSelect("#select-state", {
+        maxItems: 20
+    });
 
+    new TomSelect("#select-beast", {
+        create: true,
+        sortField: {
+            field: "text",
+            direction: "asc"
+        }
+    });
+
+</script>
+<link href="https://cdn.jsdelivr.net/npm/tom-select@2.2.2/dist/css/tom-select.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/tom-select@2.2.2/dist/js/tom-select.complete.min.js"></script>
 <script src="assets/js/siswa.js"></script>
 @endsection

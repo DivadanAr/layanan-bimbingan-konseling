@@ -229,6 +229,8 @@
 
             <div id="modal-private" class="modal">
                 <div class="modal__content">
+                    <form action="{{url('bimbingan-konseling/pribadi/add')}}" method="POST">
+                        @csrf
                     <div class="modal-header">
                         <p>Request A Private Conseling</p>
                         <p>Request for a private conseling service here !</p>
@@ -236,10 +238,11 @@
                     <div class="modal-body">
                         <div class="title">
                             <p>Conseling Topic</p>
+                            <input type="text" name="layanan" value="bimbingan pribadi">
                             <input type="text" name="topik" placeholder="What do you want to talk about?">
                             <div class="place">
                                 <p>Conseling Place</p>
-                                <input type="text" name="tempat" placeholder="place">
+                                <input type="text" name="lokasi" placeholder="place">
                             </div>
                             <p>Conseling Date</p>
                             <input type="date" name="tanggal" placeholder="Date">
@@ -260,6 +263,7 @@
                             Send Request
                         </a>
                     </div>
+                </form>
                 </div>
             </div>
         </div>

@@ -2,9 +2,11 @@
 
 namespace App\Exports;
 
+use App\Models\GuruBk;
 use App\Models\Kelas;
 use App\Models\PetaKerawanan;
 use App\Models\Walas;
+use Illuminate\Support\Facades\Auth;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\WithEvents;
 use Maatwebsite\Excel\Concerns\WithHeadings;
@@ -20,17 +22,33 @@ class PetaKerawananExport implements FromCollection, WithHeadings, WithMapping, 
     */
     public function collection()
     {
-        $userId = Auth()->id();
-        $walasId = Walas::where('user_id', $userId)->first();
-        $kelasId = Kelas::where('wali_kelas_id', $walasId->id)->first();
-        $data = PetaKerawanan::where('kelas_id', $kelasId->id)->get();
+        if (Auth::user()->hasRole('wali_kelas')) {
+            $userId = Auth()->id();
+            $walasId = Walas::where('user_id', $userId)->first();
+            $kelasId = Kelas::where('wali_kelas_id', $walasId->id)->first();
+            $data = PetaKerawanan::where('kelas_id', $kelasId->id)->get();
+    
+            $data = $data->groupBy('siswa_id')->map(function ($item) {
+                $item[0]->jenis_kerawanan = $item->pluck('jenis_kerawanan.jenis_kerawanan')->implode(', ');
+                return $item[0];
+            });
+    
+            return $data;    
+        }
 
-        $data = $data->groupBy('siswa_id')->map(function ($item) {
-            $item[0]->jenis_kerawanan = $item->pluck('jenis_kerawanan.jenis_kerawanan')->implode(', ');
-            return $item[0];
-        });
-
-        return $data;
+        if (Auth::user()->hasRole('guru_bk')) {
+            $userId = Auth()->id();
+            $walasId = GuruBk::where('user_id', $userId)->first();
+            $kelasId = Kelas::where('guru_bk_id', $walasId->id)->first();
+            $data = PetaKerawanan::where('kelas_id', $kelasId->id)->get();
+    
+            $data = $data->groupBy('siswa_id')->map(function ($item) {
+                $item[0]->jenis_kerawanan = $item->pluck('jenis_kerawanan.jenis_kerawanan')->implode(', ');
+                return $item[0];
+            });
+    
+            return $data;    
+        }
     }
 
     public function headings(): array

@@ -11,18 +11,36 @@
                 <p class="title">Our Quality Ask To Be Different</p>
                 <p class="desk">We Serve Solutions to all your problems </p>
             </div>
-            <div class="tips">
+            @if (Auth::check())
+                <div class="tips">
                 <div class="tips-box">
                     <p>Motivation Quotes For You</p>
-                    <p>Seek social support: Connect with friends, family, or support groups. Share your feelings and
-                        concerns with trusted individuals who can provide a listening ear and offer support. </p>
+                    <p>Keberanian adalah kuncimu untuk membuka pintu kebebasan dan kemungkinan</p>
                 </div>
                 <div class="tips-teacher">
                     <div class="teacher-frame">
-                        <img src="" alt="">
+                        {{-- <p>{{$quotes->guru_bk->nama}}</p> --}}
+                        {{-- @if (strcmp($quotes->guru_bk->nama, 'Kasandra Fitriyani') === 0)
+                        <img src="assets/img/guruBK/kasandra.png" alt="">
+                        @elseif (strcmp($quotes->guru_bk->nama, 'Sheila Riani Putri') === 0)
+                        <img src="assets/img/guruBK/sheila.png" alt="">
+                        @elseif (strcmp($quotes->guru_bk->nama, 'ricky') === 0)
+                        <img src="assets/img/guruBK/ricky.jpg" alt="">
+                        @elseif (strcmp($quotes->guru_bk->nama, 'Ika Rafika') === 0)
+                        <img src="assets/img/guruBK/fika.png" alt="">
+                        @elseif (strcmp($quotes->guru_bk->nama, 'Nadya Afriliani') === 0)
+                        <img src="assets/img/guruBK/nadia.png" alt="">
+                        @elseif (strcmp($quotes->guru_bk->nama, 'Heni Siswanti') === 0)
+                        <img src="assets/img/guruBK/heni.jpg" alt="">
+                        @else --}}
+                        {{-- <img src="assets/img/user.png" alt=""> --}}
+                        {{-- @endif --}}
+                        <img src="assets/img/guruBK/kasandra.png" alt="">
+
                     </div>
                 </div>
             </div>
+            @endif
         </div>
         <div class="right-side">
             <img src="assets/img/hero.png" alt="">
@@ -46,7 +64,7 @@
             </div>
         </div>
     </div>
-    <div class="about" id="about"  data-aos="fade-up">
+    <div class="about" id="about" data-aos="fade-up">
         <div class="first-row">
             <img src="assets/img/kegiatanorganisasi.jpg" alt="">
             <div class="first-row-right">
@@ -133,9 +151,9 @@
     <div class="" data-aos="fade-up">
         @include('users.layout.slider')
     </div>
-    
 
-    <div class="schedule" id="schedule" >
+
+    <div class="schedule" id="schedule">
         <p>You Can Scedhule An Appointment From Now On</p>
 
 
