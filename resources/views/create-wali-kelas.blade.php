@@ -87,10 +87,10 @@
                                     </div>
 
                                     <div class="form">
-                                        <label class="form-label" for="selectKelamin">Kelamin</label>
+                                        <label class="form-label" for="selectKelamin">Jenis Kelamin</label>
                                         <select class="form-select placement-dropdown" name="kelamin"
                                             id="selectKelamin">
-                                            <option value="top-0 start-0" hidden>Pilih Kelamin</option>
+                                            <option value="top-0 start-0" hidden>Pilih Jenis Kelamin</option>
                                             <option value="laki-laki">Laki - Laki</option>
                                             <option value="perempuan">Perempuan</option>
                                         </select>

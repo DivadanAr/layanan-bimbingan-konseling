@@ -28,7 +28,7 @@
                             <div class="card mb-4">
                                 <div class="card">
                                     <div style="align-items: center;display: flex; justify-content:space-between">
-                                        <h5 class="card-header">User Account</h5>
+                                        <h5 class="card-header">Quotes</h5>
                                         <a href="{{ route('quotes.create') }}">
                                             <button type="button" class="btn btn-primary"
                                                 style="height: 37px; margin-right:20px">Add</button>
@@ -38,7 +38,7 @@
                                         <table class="table table-striped">
                                             <thead>
                                                 <tr>
-                                                    <th>Guru BK</th>
+
                                                     <th>Quotes</th>
                                                     <th>Actions</th>
                                                 </tr>
@@ -47,7 +47,6 @@
                                                 @foreach ($quotes as $item)
                                                 <tr>
                                                     
-                                                    <td>{{ $item->guru_bk->nama}}</td>
                                                     <td>{{ $item->quotes }}</td>
                                         
                                                     <td>
