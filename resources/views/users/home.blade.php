@@ -12,19 +12,23 @@
                 <p class="desk">We Serve Solutions to all your problems </p>
             </div>
             @if (Auth::check())
-                <div class="tips">
+            <div class="tips">
                 <div class="tips-box">
                     <p>Motivation Quotes For You</p>
-                    <p>Keberanian adalah kuncimu untuk membuka pintu kebebasan dan kemungkinan</p>
+                    @if (!empty($quotes->quotes))
+                    <p>{{$quotes->quotes}}</p>
+                    @else
+                    <p>No quotes available</p>
+                    @endif
                 </div>
                 <div class="tips-teacher">
                     <div class="teacher-frame">
-                        {{-- <p>{{$quotes->guru_bk->nama}}</p> --}}
-                        {{-- @if (strcmp($quotes->guru_bk->nama, 'Kasandra Fitriyani') === 0)
+                        @if (!empty($quotes->guru_bk->nama))
+                        @if (strcmp($quotes->guru_bk->nama, 'Kasandra Fitriyani') === 0)
                         <img src="assets/img/guruBK/kasandra.png" alt="">
                         @elseif (strcmp($quotes->guru_bk->nama, 'Sheila Riani Putri') === 0)
                         <img src="assets/img/guruBK/sheila.png" alt="">
-                        @elseif (strcmp($quotes->guru_bk->nama, 'ricky') === 0)
+                        @elseif (strcmp($quotes->guru_bk->nama, 'Ricky Sudrajad') === 0)
                         <img src="assets/img/guruBK/ricky.jpg" alt="">
                         @elseif (strcmp($quotes->guru_bk->nama, 'Ika Rafika') === 0)
                         <img src="assets/img/guruBK/fika.png" alt="">
@@ -32,16 +36,57 @@
                         <img src="assets/img/guruBK/nadia.png" alt="">
                         @elseif (strcmp($quotes->guru_bk->nama, 'Heni Siswanti') === 0)
                         <img src="assets/img/guruBK/heni.jpg" alt="">
-                        @else --}}
-                        {{-- <img src="assets/img/user.png" alt=""> --}}
-                        {{-- @endif --}}
-                        <img src="assets/img/guruBK/kasandra.png" alt="">
-
+                        @else
+                        <img src="assets/img/user.png" alt="">
+                        @endif
+                        @else
+                        <img src="assets/img/user.png" alt="">
+                        @endif
                     </div>
                 </div>
             </div>
+
+            @else
+             <div class="tips">
+                <div class="tips-box">
+                    <p>Motivation Quotes For You</p>
+                    @if (!empty($quotes->quotes))
+                    <p>{{$quotes->quotes}}</p>
+                    @else
+                    <p>No quotes available</p>
+                    @endif
+                </div>
+                <div class="tips-teacher">
+                    <div class="teacher-frame">
+                        @if (!empty($quotes->guru_bk->nama))
+                        @if (strcmp($quotes->guru_bk->nama, 'Kasandra Fitriyani') === 0)
+                        <img src="assets/img/guruBK/kasandra.png" alt="">
+                        @elseif (strcmp($quotes->guru_bk->nama, 'Sheila Riani Putri') === 0)
+                        <img src="assets/img/guruBK/sheila.png" alt="">
+                        @elseif (strcmp($quotes->guru_bk->nama, 'Ricky Sudrajad') === 0)
+                        <img src="assets/img/guruBK/ricky.jpg" alt="">
+                        @elseif (strcmp($quotes->guru_bk->nama, 'Ika Rafika') === 0)
+                        <img src="assets/img/guruBK/fika.png" alt="">
+                        @elseif (strcmp($quotes->guru_bk->nama, 'Nadya Afriliani') === 0)
+                        <img src="assets/img/guruBK/nadia.png" alt="">
+                        @elseif (strcmp($quotes->guru_bk->nama, 'Heni Siswanti') === 0)
+                        <img src="assets/img/guruBK/heni.jpg" alt="">
+                        @else
+                        <img src="assets/img/user.png" alt="">
+                        @endif
+                        @else
+                        <img src="assets/img/user.png" alt="">
+                        @endif
+                    </div>
+                </div>
+            </div>
+
             @endif
         </div>
+
+
+
+
         <div class="right-side">
             <img src="assets/img/hero.png" alt="">
         </div>

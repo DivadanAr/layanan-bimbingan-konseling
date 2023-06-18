@@ -48,15 +48,15 @@
             <p>Email/Name/NISN</p>
             <div class="id-input">
                 <iconify-icon icon="mdi:person"></iconify-icon>
-                <input type="text" id="auth" placeholder="Input your email/name/NISN" name="auth" :value="old('auth')" required autofocus autocomplete="username">
+                <input type="text" id="auth" placeholder="Input your email/name/NISN" name="auth" :value="old('auth')" required autofocus autocomplete="off">
             </div>
         </div>
         <div class="password">
             <p>Password</p>
             <div class="password-input">
                 <iconify-icon icon="mdi:password"></iconify-icon>
-                <input type="password" id="password" placeholder="Input your password" type="password" name="password" required autocomplete="current-password">
-
+                <input type="password" id="password" placeholder="Input your password" type="password" name="password" required autocomplete="off">
+    
                 <label for="visible">
                     <input hidden class="visibility" type="checkbox" onclick="myFunction()"id="visible">
                     <iconify-icon id="kebuka" style="display: none" icon="material-symbols:visibility"></iconify-icon>  
@@ -65,6 +65,7 @@
             </div>
         </div>
     </div>
+    
     <button> {{ __('Log in') }}</button>
 </div>
     </form>

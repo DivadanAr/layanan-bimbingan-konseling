@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\GuruBk;
-use App\Models\quotes;
 use App\Models\Siswa;
 use App\Models\siswaKonseling;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Spatie\Permission\Models\Role;
+
 
 class AuthController extends Controller
 {
@@ -54,6 +54,7 @@ class AuthController extends Controller
             $response = ['status' => 500, 'message' => 'Wrong username or password! please try again'];
         }
     }
+
     public function index()
     {
 
