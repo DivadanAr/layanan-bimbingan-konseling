@@ -21,6 +21,10 @@ Route::post('auth/login', [AuthController::class, 'Login']);
 
 Route::get('/siswa', [AuthController::class, 'index']);
 
+Route::get('/qoutess/{id}', [AuthController::class, 'qoutes']);
+
+Route::get('/qoutess2', [AuthController::class, 'qoutes2']);
+
 Route::get('/history/{id}', [AuthController::class, 'history']);
 
 Route::get('/siswa/{id}', [AuthController::class, 'show']);

@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\GuruBk;
+use App\Models\quotes;
 use App\Models\Siswa;
 use App\Models\siswaKonseling;
 use App\Models\User;
@@ -89,5 +91,51 @@ class AuthController extends Controller
         return response()->json(
             $array,
         );
+    }
+    public function qoutes($id)
+    {
+        // $qoutes = quotes::all();
+        // return response()->json($qoutes);
+
+        $user = quotes::all();
+
+        // $guru_bk = $user->guru_bk;
+        // $qoutes = $guru_bk->quotes;
+        $array = [];
+
+        foreach ($user as $data){
+            array_push($array, [
+                "guru_bk" => $data->guru_bk->nama,
+                "nipd" => $data->guru_bk->nipd,
+                "quotes" => $data->quotes,
+            ]);
+        }
+        return response()->json(
+            // $user->guru_bk,
+            // $guru
+            $array
+        );
+
+
+    }
+    public function qoutes2()
+    {
+        $qoutes = quotes::all();
+        return response()->json($qoutes);
+
+        // $user = User::find($id);
+        // $qoutes = quotes::where('guru_bk_id', $user->guru_bk->id)->get();
+        // $array = [];
+
+        // foreach ($qoutes as $data){
+        //     array_push($array, [
+        //         'guru_bk' => $data->qoutes->guru_bk->nama,
+        //     ]);
+        // }
+        // return response()->json(
+        //     $array
+        // );
+
+
     }
 }
