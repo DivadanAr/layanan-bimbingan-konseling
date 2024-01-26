@@ -10,7 +10,7 @@
 
     <div class="left-side">
         <div class="back">
-            <a href="{{route('layanan-siswa')}}">
+            <a href="/">
                 <button>
                     <iconify-icon icon="ion:arrow-back-outline"></iconify-icon>
                 </button>

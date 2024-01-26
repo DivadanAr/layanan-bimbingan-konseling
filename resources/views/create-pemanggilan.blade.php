@@ -70,7 +70,7 @@
                                             <div class="input-group">
                                                 <input type="date" name="tanggal" class="form-control"
                                                     placeholder="Tanggal" aria-label="Tanggal"
-                                                    aria-describedby="basic-addon11" />
+                                                    aria-describedby="basic-addon11" min="@php echo date('Y-m-d') @endphp"/>
                                             </div>
                                         </div>
                                     </div>
@@ -80,7 +80,7 @@
                                             <div class="input-group">
                                                 <input type="time" name="jam" class="form-control"
                                                     placeholder="Tanggal" aria-label="Tanggal"
-                                                    aria-describedby="basic-addon11" />
+                                                    aria-describedby="basic-addon11"/>
                                             </div>
                                         </div>
                                     </div>
@@ -134,6 +134,7 @@
             });
 
         </script>
+       
         <!-- Overlay -->
         <div class="layout-overlay layout-menu-toggle"></div>
     </div>

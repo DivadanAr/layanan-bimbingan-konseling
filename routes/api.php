@@ -20,15 +20,19 @@ Route::post('auth/register', [AuthController::class, 'register']);
 
 Route::post('auth/login', [AuthController::class, 'Login']);
 
-Route::get('/siswa', [AuthController::class, 'index']);
+Route::middleware('jwt.verify')->get('/siswa', [AuthController::class, 'index']);
 
-Route::get('/qoutess/{id}', [AuthController::class, 'qoutes']);
-
-Route::get('/qoutess2', [AuthController::class, 'qoutes2']);
+Route::get('/quotes', [AuthController::class, 'quotes']);
 
 Route::get('/history/{id}', [AuthController::class, 'history']);
 
+Route::get('/schedule/{id}', [AuthController::class, 'schedule']);
+
 Route::get('/siswa/{id}', [AuthController::class, 'show']);
+
+Route::get('/kelas', [AuthController::class, 'showKelas']);
+
+Route::post('/konseling', [AuthController::class, 'siswaStore']);
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();

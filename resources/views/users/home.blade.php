@@ -193,7 +193,7 @@
             </div>
         </div>
     </div>
-    <div class="" data-aos="fade-up">
+    <div class="" data-aos="fade-up" id="teachers">
         @include('users.layout.slider')
     </div>
 
@@ -210,7 +210,7 @@
             </button>
         </a>
         @elseif (Auth::user()->hasRole('siswa'))
-        <a href="/siswas">
+        <a href="{{route('layanan-siswa')}}">
             <button>
                 Scedhule For An Appointment
             </button>

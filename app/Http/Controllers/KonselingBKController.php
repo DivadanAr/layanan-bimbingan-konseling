@@ -22,26 +22,6 @@ class KonselingBKController extends Controller
      */
     public function indexBimbingan()
     {
-        // if (Route::is('pribadi-pending-index')) {
-        //     $data = KonselingBk::where('layanan_id', 1)->where('status', 'pending')->get();
-        //     return view('layanan', compact('data'));
-        // }
-        // if (Route::is('pribadi-accept-index')) {
-        //     $data = KonselingBk::where('layanan_id', 1)->where('status', 'accepted')->get();
-        //     return view('layanan', compact('data'));
-        // }
-        // if (Route::is('pribadi-reschedule-index')) {
-        //     $data = KonselingBk::where('layanan_id', 1)->where('status', 're-schedule')->get();
-        //     return view('layanan', compact('data'));
-        // }
-        // if (Route::is('pribadi-cancel-index')) {
-        //     $data = KonselingBk::where('layanan_id', 1)->where('status', 'canceled')->get();
-        //     return view('layanan', compact('data'));
-        // }
-        // if (Route::is('pribadi-done-index')) {
-        //     $data = KonselingBk::where('layanan_id', 1)->where('status', 'done')->get();
-        //     return view('layanan', compact('data'));
-        // }
         if (Auth::user()->hasRole('siswa')) {
             if (Route::is('layanan-siswa')) {
                 $layananBk = LayananBk::all();
@@ -462,38 +442,38 @@ class KonselingBKController extends Controller
                     'konseling_bk_id' => $layanan->id
                 ]);
             }
+
+            $SERVER_API_KEY = 'AAAA7EUjfOY:APA91bF4Ehl-Zjk1DoA7zBtn0quGwXXJnsUdUD7_ZMI5Qaj1xJax2kr-JRExPdKTq3guoOcRC_5jlE_6PHR28eohZc9funPBiuLrwYbnceCzPkxAGK3vPKj3etzaftqrNQB4Vn5EgX3H';
+    
+            $data = [
+                "registration_ids" => ['eHxTiJ6ET_mx5dgZjoOwBr:APA91bHiyk_jwxFumI3_1uPTtAW_wDZlyQGBcpIYtL1Hhasq-ft5KN24cmUtR7aAy62VZDLT2q1n39BjUhbnYiINMh0_xB3pckQcFvENasDnE2p4IwoO4uBbZ8r_cOqSK98xtmSSbdow'],
+                "notification" => [
+                    "title" => $guru->nama,
+                    "body" => 'Hallo, '.$guru->nama.' ingin bertemu untuk '.$request->input('topik').' pada tanggal '.$request->input('tanggal').' dari jam '.$request->input('jam_mulai').' sampai dengan jam '.$request->input('jam_berakhir').' di '.$request->input('lokasi'),  
+                ]
+            ];
+            $dataString = json_encode($data);
+          
+            $headers = [
+                'Authorization: key=' . $SERVER_API_KEY,
+                'Content-Type: application/json',
+            ];
+          
+            $ch = curl_init();
+            
+            curl_setopt($ch, CURLOPT_URL, 'https://fcm.googleapis.com/fcm/send');
+            curl_setopt($ch, CURLOPT_POST, true);
+            curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+            curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+            curl_setopt($ch, CURLOPT_POSTFIELDS, $dataString);
+                     
+            $response = curl_exec($ch);
+            // return $response;
+    
             return redirect()->route('dashboard.index')->with('success', 'Siswa berhasil ditambahkan.');
         }
         
-        if (Auth::user()->hasRole('guru_bk')) {
-            // $guru = GuruBk::where('user_id', Auth()->id())->first();
-            // $walas = Kelas::where('guru_bk_id', $guru->id)->first();
-            $layanan = LayananBk::where('jenis_layanan', $request->input('layanan'))->first();
-            $siswa = Siswa::where('user_id', Auth()->id())->first();
-            $kelas = Kelas::findOrFail($siswa->kelas_id)->first();
-
-            $layanan = KonselingBk::create([
-                'topik' => $request->input('topik'),
-                'guru_bk_id' => $kelas->guru_bk_id,
-                'wali_kelas_id' => $kelas->wali_kelas_id,
-                'layanan_id' => $layanan->id,
-                'tanggal' => $request->input('tanggal'),
-                'jam_mulai' => $request->input('jam_mulai'),
-                'jam_berakhir' => $request->input('jam_berakhir'),
-                'tempat' => $request->input('lokasi'),
-                'status' => 'accepted'
-            ]);
-
-            foreach ($validated['siswa'] as $siswa) {
-                siswaKonseling::create([
-                    'siswa_id' => $siswa,
-                    'konseling_bk_id' => $layanan->id
-                ]);
-            }
-            return redirect()->route('dashboard.index')->with('success', 'Siswa berhasil ditambahkan.');
-
-        }
-
     }
 
     function storeSiswa(Request $request)
